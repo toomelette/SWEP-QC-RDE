@@ -43,7 +43,6 @@ class MillRepository extends BaseRepository implements MillInterface {
             }
 
             return $mill->select('name', 'mill_id', 'slug')
-                        ->with('millRegistration')
                         ->sortable()
                         ->orderBy('updated_at', 'desc')
                         ->paginate($entries);

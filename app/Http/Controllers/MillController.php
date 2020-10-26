@@ -4,13 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Core\Interfaces\MillInterface;
-use App\Core\Interfaces\MillRegistrationInterface;
-use App\Core\Interfaces\MillFileInterface;
 use App\Http\Requests\Mill\MillFormRequest;
 use App\Http\Requests\Mill\MillFilterRequest;
-use App\Http\Requests\Mill\MillRenewLicenseFormRequest;
-use App\Http\Requests\Mill\MillRenewalHistoryFilterRequest;
-use App\Http\Requests\MillFile\MillFileFilterRequest;
 
 
 class MillController extends Controller{
@@ -18,17 +13,11 @@ class MillController extends Controller{
 
 
     protected $mill_repo;
-    protected $mill_reg_repo;
-    protected $mill_file_repo;
 
 
 
-    public function __construct(MillInterface $mill_repo, 
-                                MillRegistrationInterface $mill_reg_repo,
-                                MillFileInterface $mill_file_repo){
+    public function __construct(MillInterface $mill_repo){
         $this->mill_repo = $mill_repo;
-        $this->mill_reg_repo = $mill_reg_repo;
-        $this->mill_file_repo = $mill_file_repo;
         parent::__construct();
     }
 
@@ -92,57 +81,6 @@ class MillController extends Controller{
         $mill = $this->mill_repo->destroy($slug);
         $this->event->fire('mill.destroy', $mill);
         return redirect()->back();
-
-    }
-
-    
-
-
-    public function renewLicensePost($slug, MillRenewLicenseFormRequest $request){
-
-        $mill = $this->mill_repo->findbySlug($slug);
-
-        if (!$this->mill_reg_repo->isExistInCY($request->crop_year_id, $mill->mill_id)) {
-            $mill_reg = $this->mill_reg_repo->store($request, $mill);
-        }else{
-            $mill_reg = $this->mill_reg_repo->updateOnRenew($request, $mill);
-        }
-
-        $this->event->fire('mill.renew_license', [ $mill, $mill_reg, $request]);
-        return redirect()->back();
-
-    }
-
-    
-
-
-    public function renewalHistory($slug, MillRenewalHistoryFilterRequest $request){
-
-        $mill = $this->mill_repo->findbySlug($slug);
-        $mill_reg_list = $this->mill_reg_repo->fetchByMillId($request, $mill->mill_id);
-
-        $request->flash();
-        return view('dashboard.mill.renewal_history')->with([
-            'mill_reg_list' => $mill_reg_list,
-            'mill' => $mill
-        ]);
-
-    }
-
-    
-
-
-    public function files($slug, MillFileFilterRequest $request){
-
-        $mill = $this->mill_repo->findbySlug($slug);
-        $mill_file_list = $this->mill_file_repo->fetchByMillId($request, $mill->mill_id);
-
-        $request->flash();
-        
-        return view('dashboard.mill_file.index')->with([
-            'mill_file_list' => $mill_file_list,
-            'mill' => $mill,
-        ]);
 
     }
 
