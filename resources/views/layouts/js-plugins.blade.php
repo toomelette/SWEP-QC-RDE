@@ -28,7 +28,7 @@
 
 <script type="text/javascript" src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('custom/js/app.js') }}"></script>
 
 
 {{-- Charts --}}
@@ -39,6 +39,10 @@
 <script type="text/javascript" src="{{ asset('template/bower_components/Flot/jquery.flot.pie.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('template/bower_components/Flot/jquery.flot.categories.js') }}"></script>
+
+	
+{{-- JS Scaffold --}}
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 
 

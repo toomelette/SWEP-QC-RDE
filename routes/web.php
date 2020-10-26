@@ -54,6 +54,9 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	/** MILLS **/
 	Route::get('/mill/reports', 'MillController@reports')->name('mill.reports');
 	Route::resource('mill', 'MillController');
+
+	/** SYNOPSIS **/
+	Route::get('/synopsis/cane_sugar_tons', 'SynopsisController@caneSugarTons')->name('synopsis.cane_sugar_tons_index');
 	
 	
 });

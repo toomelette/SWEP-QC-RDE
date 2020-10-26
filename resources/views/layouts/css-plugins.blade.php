@@ -21,7 +21,7 @@
 
 <link type="text/css" rel="stylesheet" href="{{ asset('template/plugins/bootstrap-fileinput/css/fileinput.min.css') }}">
 
-<link type="text/css" rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link type="text/css" rel="stylesheet" href="{{ asset('custom/css/app.css') }}">
 
 
 {{-- Charts --}}	
