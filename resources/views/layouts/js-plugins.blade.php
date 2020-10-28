@@ -1,4 +1,6 @@
-
+	
+{{-- JS Scaffold --}}
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('template/bower_components/jquery/dist/jquery.min.js') }}"></script>  
 
@@ -39,10 +41,6 @@
 <script type="text/javascript" src="{{ asset('template/bower_components/Flot/jquery.flot.pie.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('template/bower_components/Flot/jquery.flot.categories.js') }}"></script>
-
-	
-{{-- JS Scaffold --}}
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 
 

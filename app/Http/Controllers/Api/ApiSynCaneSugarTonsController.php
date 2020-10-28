@@ -21,7 +21,9 @@ class ApiSynCaneSugarTonsController extends Controller{
 
 	public function fetch(Request $request){
 
-	    return $this->syn_cane_sugar_ton->fetch($request);
+		$syn_cane_sugar_tons = $this->syn_cane_sugar_ton->fetch($request);
+
+	    return response()->json($syn_cane_sugar_tons);
 
     }
 

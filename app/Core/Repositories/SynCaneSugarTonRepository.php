@@ -27,22 +27,17 @@ class SynCaneSugarTonRepository extends BaseRepository implements SynCaneSugarTo
     public function fetch($request){
  
         $key = str_slug($request->fullUrl(), '_');
-        $entries = isset($request->e) ? $request->e : 20;
+        $entries = isset($request->e) ? $request->e : 10;
 
         $syn_cane_sugar_tons = $this->cache->remember('syn_cane_sugar_tons:fetch:' . $key, 240, function() use ($request, $entries){
 
             $syn_cane_sugar_ton = $this->syn_cane_sugar_ton->newQuery();
             
-            // if(isset($request->q)){
-            //     $syn_cane_sugar_ton->where('name', 'LIKE', '%'. $request->q .'%')
-            //          ->orWhere('address', 'LIKE', '%'. $request->q .'%')
-            //          ->orWhere('tel_no', 'LIKE', '%'. $request->q .'%')
-            //          ->orWhere('fax_no', 'LIKE', '%'. $request->q .'%')
-            //          ->orWhere('officer', 'LIKE', '%'. $request->q .'%')
-            //          ->orWhere('salutation', 'LIKE', '%'. $request->q .'%');
-            // }
+            if(isset($request->q)){
+                $syn_cane_sugar_ton->where('cane_sugar_ton_id', 'LIKE', '%'. $request->q .'%');
+            }
 
-            return $syn_cane_sugar_ton->select('slug', 'syn_cane_sugar_ton_id')
+            return $syn_cane_sugar_ton->select('slug', 'cane_sugar_ton_id')
                                       ->sortable()
                                       ->orderBy('updated_at', 'desc')
                                       ->paginate($entries);

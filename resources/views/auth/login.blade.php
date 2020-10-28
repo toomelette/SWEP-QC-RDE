@@ -4,7 +4,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SRA PORTAL | Regulation</title>
+  <title>SRA PORTAL | RD&E</title>
   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -40,9 +40,9 @@
 <body class="hold-transition login-page" style="background-color: #ecf0f5; zoom:107%;">
 <div class="login-box">
 
-  <div class="login-logo">
-    <span style="font-size: 28px;">SRA </b>Portal - Regulation</span>
-  </div>
+	<div class="login-logo">
+	  <span style="font-size: 28px;">SRA </b>Portal - RD&E</span>
+	</div>
 
 	@if(Session::has('AUTH_AUTHENTICATED'))
 		{!! __html::alert('danger', '<i class="icon fa fa-ban"></i> Oops!', Session::get('AUTH_AUTHENTICATED')) !!}

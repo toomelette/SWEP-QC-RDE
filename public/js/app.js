@@ -1708,19 +1708,101 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      sn_cane_sugar_tons: {}
+      sn_cane_sugar_tons: [],
+      is_invalid_fetch: false,
+      search_value: null
     };
   },
   mounted: function mounted() {
     this.fetch();
   },
+  watch: {
+    search_value: function search_value(after, before) {
+      this.fetch();
+    }
+  },
   methods: {
     fetch: function fetch() {
-      axios.get('cane_sugar_tons').then(function (response) {
-        console.log(response);
+      var _this = this;
+
+      axios.get('cane_sugar_tons', {
+        params: {
+          q: this.search_value
+        }
+      }).then(function (response) {
+        _this.sn_cane_sugar_tons = response.data.data;
+      })["catch"](function (error) {
+        _this.is_invalid_fetch = true;
       });
     }
   }
@@ -37340,9 +37422,182 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    testaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n")])
+  return _c("div", { staticClass: "box" }, [
+    _c("div", { staticClass: "box-header with-border" }, [
+      _c("div", { staticClass: "box-title" }, [
+        _c(
+          "div",
+          {
+            staticClass: "input-group input-group-md",
+            staticStyle: { width: "300px" }
+          },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search_value,
+                  expression: "search_value"
+                }
+              ],
+              staticClass: "form-control pull-right",
+              attrs: { placeholder: "Search", type: "text", value: "" },
+              domProps: { value: _vm.search_value },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.search_value = $event.target.value
+                }
+              }
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "box-body no-padding" }, [
+      _c("table", { staticClass: "table table-hover" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm.sn_cane_sugar_tons.length > 0
+          ? _c(
+              "tbody",
+              _vm._l(_vm.sn_cane_sugar_tons, function(sn_cane_sugar_ton) {
+                return _c("tr", { key: sn_cane_sugar_ton.cane_sugar_ton_id }, [
+                  _c("td", [_vm._v(_vm._s(sn_cane_sugar_ton.slug))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(sn_cane_sugar_ton.cane_sugar_ton_id))
+                  ])
+                ])
+              }),
+              0
+            )
+          : _vm._e()
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.sn_cane_sugar_tons.length == 0
+      ? _c(
+          "div",
+          { staticStyle: { padding: "5px" } },
+          [_c("center", [_c("h4", [_vm._v("No Records found!")])])],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.is_invalid_fetch == true
+      ? _c(
+          "div",
+          { staticStyle: { padding: "5px" } },
+          [_c("center", [_c("h4", [_vm._v("Server Error!")])])],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm._m(2)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "box-tools", staticStyle: { "margin-top": "6px" } },
+      [
+        _c(
+          "div",
+          { staticClass: "col-md-4", staticStyle: { "margin-top": "6px" } },
+          [_vm._v("\n                Entries:\n            ")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-8" }, [
+          _c(
+            "select",
+            { staticClass: "form-control input-sm", attrs: { id: "e" } },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("10")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Slug")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("ID")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-footer" }, [
+      _c("strong", [_vm._v("Displaying 1 - 20 out of 31 Records")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "pagination no-margin pull-right pagination-success" },
+        [
+          _c("li", { staticClass: "page-item disabled" }, [
+            _c("span", { staticClass: "page-link" }, [_vm._v("<")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item active" }, [
+            _c("span", { staticClass: "page-link" }, [_vm._v("1")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "page-link",
+                attrs: {
+                  "data-pjax": "",
+                  href: "http://localhost:2009/dashboard/mill?page=2"
+                }
+              },
+              [_vm._v("2")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "page-link",
+                attrs: {
+                  "data-pjax": "",
+                  href: "http://localhost:2009/dashboard/mill?page=2",
+                  rel: "next"
+                }
+              },
+              [_vm._v(">")]
+            )
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

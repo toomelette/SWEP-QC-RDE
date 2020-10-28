@@ -24,7 +24,7 @@ class SynCaneSugarTon extends Model{
     protected $attributes = [
 
         'slug' => '',
-        'cane_sugar_tons_id' => '',
+        'cane_sugar_ton_id' => '',
         'crop_year_id' => '',
         'sgrcane_gross_tonnes' => 0.00,
         'sgrcane_net_tonnes' => 0.00,
