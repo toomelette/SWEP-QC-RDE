@@ -1775,12 +1775,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       sn_cane_sugar_tons: [],
+      page_data: [],
       is_invalid_fetch: false,
-      search_value: null
+      // filters
+      search_value: null,
+      entry_value: 10
     };
   },
   mounted: function mounted() {
@@ -1789,18 +1803,24 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     search_value: function search_value(after, before) {
       this.fetch();
+    },
+    entry_value: function entry_value(after, before) {
+      this.fetch();
     }
   },
   methods: {
-    fetch: function fetch() {
+    fetch: function fetch(page_no) {
       var _this = this;
 
       axios.get('cane_sugar_tons', {
         params: {
-          q: this.search_value
+          q: this.search_value,
+          e: this.entry_value,
+          page: page_no
         }
       }).then(function (response) {
         _this.sn_cane_sugar_tons = response.data.data;
+        _this.page_data = response.data;
       })["catch"](function (error) {
         _this.is_invalid_fetch = true;
       });
@@ -37425,39 +37445,96 @@ var render = function() {
   return _c("div", { staticClass: "box" }, [
     _c("div", { staticClass: "box-header with-border" }, [
       _c("div", { staticClass: "box-title" }, [
-        _c(
-          "div",
-          {
-            staticClass: "input-group input-group-md",
-            staticStyle: { width: "300px" }
-          },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.search_value,
-                  expression: "search_value"
-                }
-              ],
-              staticClass: "form-control pull-right",
-              attrs: { placeholder: "Search", type: "text", value: "" },
-              domProps: { value: _vm.search_value },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4 no-padding" }, [
+          _c(
+            "div",
+            {
+              staticClass: "input-group input-group-md",
+              staticStyle: { width: "250px" }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search_value,
+                    expression: "search_value"
                   }
-                  _vm.search_value = $event.target.value
+                ],
+                staticClass: "form-control pull-right",
+                attrs: { placeholder: "Search ..", type: "text", value: "" },
+                domProps: { value: _vm.search_value },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search_value = $event.target.value
+                  }
                 }
-              }
-            })
-          ]
-        )
+              })
+            ]
+          )
+        ])
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "div",
+        { staticClass: "box-tools", staticStyle: { "margin-top": "7px" } },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "col-md-4 no-padding",
+              staticStyle: { "margin-top": "7px" }
+            },
+            [_vm._v("Entries:")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-8" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.entry_value,
+                    expression: "entry_value"
+                  }
+                ],
+                staticClass: "form-control input-sm",
+                attrs: { id: "e" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.entry_value = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
+              ]
+            )
+          ])
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "box-body no-padding" }, [
@@ -37468,12 +37545,10 @@ var render = function() {
           ? _c(
               "tbody",
               _vm._l(_vm.sn_cane_sugar_tons, function(sn_cane_sugar_ton) {
-                return _c("tr", { key: sn_cane_sugar_ton.cane_sugar_ton_id }, [
-                  _c("td", [_vm._v(_vm._s(sn_cane_sugar_ton.slug))]),
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(sn_cane_sugar_ton.mill.name))]),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(sn_cane_sugar_ton.cane_sugar_ton_id))
-                  ])
+                  _c("td", [_vm._v(_vm._s(sn_cane_sugar_ton.crop_year.name))])
                 ])
               }),
               0
@@ -37500,7 +37575,64 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _vm._m(2)
+    _c("div", { staticClass: "box-footer" }, [
+      _c("strong", [
+        _vm._v(
+          "\n            Displaying " +
+            _vm._s(_vm.page_data.from) +
+            " - " +
+            _vm._s(_vm.page_data.to) +
+            " out of " +
+            _vm._s(_vm.page_data.total) +
+            " Records\n        "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "pagination no-margin pull-right pagination-success" },
+        [
+          _c("div", { staticClass: "btn-group" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default",
+                attrs: {
+                  type: "button",
+                  disabled: _vm.page_data.current_page <= 1 ? true : false
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.fetch(_vm.page_data.current_page - 1)
+                  }
+                }
+              },
+              [_vm._v("\n                 ‹\n             ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default",
+                attrs: {
+                  type: "button",
+                  disabled:
+                    _vm.page_data.current_page == _vm.page_data.last_page
+                      ? true
+                      : false
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.fetch(_vm.page_data.current_page + 1)
+                  }
+                }
+              },
+              [_vm._v("\n                ›  \n             ")]
+            )
+          ])
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -37508,31 +37640,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "box-tools", staticStyle: { "margin-top": "6px" } },
-      [
-        _c(
-          "div",
-          { staticClass: "col-md-4", staticStyle: { "margin-top": "6px" } },
-          [_vm._v("\n                Entries:\n            ")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-8" }, [
-          _c(
-            "select",
-            { staticClass: "form-control input-sm", attrs: { id: "e" } },
-            [
-              _c("option", { attrs: { value: "" } }, [_vm._v("10")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-            ]
-          )
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "col-md-3 no-padding" }, [
+      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Create")])
+    ])
   },
   function() {
     var _vm = this
@@ -37540,61 +37650,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Slug")]),
+        _c("th", [_vm._v("Mill")]),
         _vm._v(" "),
-        _c("th", [_vm._v("ID")])
+        _c("th", [_vm._v("CropYear")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-footer" }, [
-      _c("strong", [_vm._v("Displaying 1 - 20 out of 31 Records")]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "pagination no-margin pull-right pagination-success" },
-        [
-          _c("li", { staticClass: "page-item disabled" }, [
-            _c("span", { staticClass: "page-link" }, [_vm._v("<")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item active" }, [
-            _c("span", { staticClass: "page-link" }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "page-link",
-                attrs: {
-                  "data-pjax": "",
-                  href: "http://localhost:2009/dashboard/mill?page=2"
-                }
-              },
-              [_vm._v("2")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "page-link",
-                attrs: {
-                  "data-pjax": "",
-                  href: "http://localhost:2009/dashboard/mill?page=2",
-                  rel: "next"
-                }
-              },
-              [_vm._v(">")]
-            )
-          ])
-        ]
-      )
     ])
   }
 ]
@@ -49929,8 +49988,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })

@@ -25,6 +25,7 @@ class SynCaneSugarTon extends Model{
 
         'slug' => '',
         'cane_sugar_ton_id' => '',
+        'mill_id' => '',
         'crop_year_id' => '',
         'sgrcane_gross_tonnes' => 0.00,
         'sgrcane_net_tonnes' => 0.00,
@@ -47,6 +48,11 @@ class SynCaneSugarTon extends Model{
     public function cropYear() {
     	return $this->belongsTo('App\Models\CropYear','crop_year_id','crop_year_id');
    	}
+
+
+    public function mill() {
+        return $this->belongsTo('App\Models\Mill','mill_id','mill_id');
+    }
 
 
     

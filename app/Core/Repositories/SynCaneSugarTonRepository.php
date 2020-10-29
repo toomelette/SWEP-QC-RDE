@@ -34,10 +34,16 @@ class SynCaneSugarTonRepository extends BaseRepository implements SynCaneSugarTo
             $syn_cane_sugar_ton = $this->syn_cane_sugar_ton->newQuery();
             
             if(isset($request->q)){
-                $syn_cane_sugar_ton->where('cane_sugar_ton_id', 'LIKE', '%'. $request->q .'%');
+                $syn_cane_sugar_ton->whereHas('mill', function($mill) use ($request){
+                                        $mill->where('name', 'LIKE', '%'. $request->q .'%');
+                                    })
+                                    ->orWhereHas('cropYear', function($cy) use ($request){
+                                        $cy->where('name', 'LIKE', '%'. $request->q .'%');
+                                    });
             }
 
-            return $syn_cane_sugar_ton->select('slug', 'cane_sugar_ton_id')
+            return $syn_cane_sugar_ton->select('slug', 'mill_id', 'crop_year_id', 'cane_sugar_ton_id')
+                                      ->with('mill', 'cropYear')
                                       ->sortable()
                                       ->orderBy('updated_at', 'desc')
                                       ->paginate($entries);
