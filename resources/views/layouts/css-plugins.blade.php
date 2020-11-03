@@ -21,7 +21,7 @@
 
 <link type="text/css" rel="stylesheet" href="{{ asset('template/plugins/bootstrap-fileinput/css/fileinput.min.css') }}">
 
-<link type="text/css" rel="stylesheet" href="{{ asset('custom/css/app.css?q=1') }}">
+<link type="text/css" rel="stylesheet" href="{{ asset('custom/css/app.css') }}">
 
 {{-- Charts --}}	
 <link rel="stylesheet" href="{{asset('template/bower_components/morris.js/morris.css')}}">

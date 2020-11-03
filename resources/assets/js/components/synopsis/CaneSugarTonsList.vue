@@ -8,19 +8,20 @@
             <!-- Search Box -->
             <div class="box-title">  
                 <div class="col-md-3 no-padding">
-                    <button class="btn btn-success">Create</button>
+                    <button class="btn btn-success" @click="emitCreateModal()">
+                        <i class="fa fa-plus"></i> Create
+                    </button>
                 </div>
-                <div class="col-md-4 no-padding">
+                <div class="col-md-4">
                     <div class="input-group input-group-md" style="width: 250px;">
-                      <input class="form-control pull-right" placeholder="Search .." type="text" value="" v-model="search_value">
+                      <input class="form-control pull-right" placeholder="Search .." type="text" v-model.lazy="search_value" v-debounce="300">
                     </div>
                 </div>
             </div>
+
             <!-- Select Entries -->
             <div class="box-tools" style="margin-top:7px;">
-
                 <div class="col-md-4 no-padding" style="margin-top:7px;">Entries:</div>
-
                 <div class="col-md-8">
                     <select id="e" class="form-control input-sm" v-model="entry_value">
                       <option value="10">10</option>
@@ -28,8 +29,8 @@
                       <option value="100">100</option>
                     </select>
                 </div>
-
             </div>
+
         </div>
 
         <!-- Table -->
@@ -89,6 +90,9 @@
 
 <script>
 
+    import debounce from 'v-debounce';
+    import EventBus from '../../CaneSugarTonsMain';
+
     export default {
 
 
@@ -129,6 +133,7 @@
 
         methods: {
 
+
             fetch(page_no){ 
                axios.get('cane_sugar_tons', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
@@ -140,8 +145,15 @@
                     }); 
             },
 
+
+            emitCreateModal(){ 
+                EventBus.$emit('OPEN_CANE_SUGAR_TONS_MODAL', {});
+            },
+
+
         },
 
+        directives: {debounce}
 
     }
 

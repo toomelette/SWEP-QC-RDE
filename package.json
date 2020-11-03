@@ -23,6 +23,7 @@
         "bootstrap": "^4.5.3",
         "jquery": "^3.5.1",
         "popper.js": "^1.16.1",
+        "v-debounce": "^0.1.2",
         "vue": "^2.6.12"
     }
 }

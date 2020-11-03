@@ -63,6 +63,8 @@
       </div>
     </div>
 
+    @yield('vueScripts')
+
     @include('layouts.js-plugins')
     
     @yield('modals')

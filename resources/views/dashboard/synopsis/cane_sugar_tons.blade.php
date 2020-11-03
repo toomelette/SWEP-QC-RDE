@@ -2,16 +2,24 @@
 
 @section('content')
 
-<section class="content-header">
-	<h1>Cane-Sugar Tons</h1>
-</section>
+	<section class="content-header">
+		<h1>Cane-Sugar Tons</h1>
+	</section>
 
-<section class="content">
+	<section class="content">
 
-    <div id="app">
-    	<synopsis-cane-sugar-tons></synopsis-cane-sugar-tons>
-    </div>
+	    <div id="app">
+	    	<synopsis-cane-sugar-tons-list></synopsis-cane-sugar-tons-list>
+	    	<synopsis-cane-sugar-tons-create></synopsis-cane-sugar-tons-create>
+	    </div>
 
-</section>
+	</section>
+
+@endsection
+
+
+@section('vueScripts')
+
+	<script type="text/javascript" src="{{ asset('js/CaneSugarTonsMain.js') }}"></script>
 
 @endsection

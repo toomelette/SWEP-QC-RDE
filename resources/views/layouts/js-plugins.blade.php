@@ -1,6 +1,3 @@
-	
-{{-- JS Scaffold --}}
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('template/bower_components/jquery/dist/jquery.min.js') }}"></script>  
 
