@@ -23,3 +23,18 @@
 	<script type="text/javascript" src="{{ asset('js/CaneSugarTonsMain.js') }}"></script>
 
 @endsection
+
+@section('scripts')
+
+	<script type="text/javascript">
+
+		$(".priceformat").priceFormat({
+            prefix: "",
+            thousandsSeparator: ",",
+            clearOnEmpty: true,
+            allowNegative: true
+        });
+
+	</script>
+
+@endsection

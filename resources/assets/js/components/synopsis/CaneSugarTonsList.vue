@@ -5,6 +5,8 @@
 
         <div class="box-header with-border">
 
+
+
             <!-- Search Box -->
             <div class="box-title">  
                 <div class="col-md-3 no-padding">
@@ -33,6 +35,8 @@
 
         </div>
 
+
+
         <!-- Table -->
         <div class="box-body no-padding">
             <table class="table table-hover">
@@ -43,9 +47,9 @@
                     </tr>    
                 </thead>    
                 <tbody v-if="sn_cane_sugar_tons.length > 0">
-                    <tr v-for="sn_cane_sugar_ton in sn_cane_sugar_tons">
-                        <td>{{ sn_cane_sugar_ton.mill.name }}</td>
-                        <td>{{ sn_cane_sugar_ton.crop_year.name }}</td>
+                    <tr v-for="data in sn_cane_sugar_tons">
+                        <td>{{ data.mill.name }}</td>
+                        <td>{{ data.crop_year.name }}</td>
                     </tr>
                 </tbody>
             </table>  
@@ -58,6 +62,8 @@
         <div v-if="is_invalid_fetch == true" style="padding :5px;">
           <center><h4>Server Error!</h4></center>
         </div>
+
+
 
         <!-- Pagination -->
         <div class="box-footer">
@@ -82,6 +88,7 @@
             </ul>
         </div>
 
+
     </div>
 </template>
 
@@ -94,6 +101,7 @@
     import EventBus from '../../CaneSugarTonsMain';
 
     export default {
+
 
 
         data() {
@@ -113,9 +121,13 @@
         },
 
 
-        mounted() {
+
+        created() {
+
             this.fetch();
+
         },
+
 
 
         watch:{
@@ -129,6 +141,7 @@
             }
 
         },
+
 
 
         methods: {
@@ -153,7 +166,15 @@
 
         },
 
-        directives: {debounce}
+
+
+        directives: {
+
+            debounce
+
+        }
+
+
 
     }
 

@@ -25,8 +25,7 @@ class CropYearRepository extends BaseRepository implements CropYearInterface {
 
     public function getAll(){
 
-        $crop_years = $this->cache->remember('crop_years:getAll', 240, 
-            function(){
+        $crop_years = $this->cache->remember('crop_years:getAll', 240, function(){
                 return $this->crop_year->select('crop_year_id', 'name', 'is_active')
                                        ->orderBy('name', 'desc')
                                        ->get();

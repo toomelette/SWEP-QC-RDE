@@ -38,7 +38,7 @@ class ViewComposerServiceProvider extends ServiceProvider{
         
 
         // Crop Year
-        View::composer([], 'App\Core\ViewComposers\CropYearComposer');
+        View::composer(['dashboard.synopsis.*',], 'App\Core\ViewComposers\CropYearComposer');
 
         
     }

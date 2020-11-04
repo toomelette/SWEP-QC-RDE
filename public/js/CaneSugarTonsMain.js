@@ -1733,15 +1733,125 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      mills: {},
+      crop_years: {},
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      // fields
+      _token: "",
+      mill_id: "",
+      crop_year_id: "",
+      sgrcane_gross_tonnes: "",
+      sgrcane_net_tonnes: "",
+      rawsgr_tonnes_due_cane: "",
+      rawsgr_tonnes_manufactured: "",
+      equivalent: ""
+    };
   },
   created: function created() {
-    _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_0__["default"].$on('OPEN_CANE_SUGAR_TONS_MODAL', function (data) {
-      $("#create_modal").modal("show");
-    });
+    this.showModal();
+    this.getAllMills();
+    this.getAllCropYears();
+  },
+  methods: {
+    showModal: function showModal() {
+      _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_0__["default"].$on('OPEN_CANE_SUGAR_TONS_MODAL', function (data) {
+        $("#create_modal").modal("show");
+      });
+    },
+    getAllMills: function getAllMills() {
+      var _this = this;
+
+      axios.get('mill/get_all').then(function (response) {
+        _this.mills = response.data;
+      });
+    },
+    getAllCropYears: function getAllCropYears() {
+      var _this2 = this;
+
+      axios.get('crop_year/get_all').then(function (response) {
+        _this2.crop_years = response.data;
+      });
+    },
+    store: function store() {
+      axios.post('/cane_sugar_tons/store', {
+        mill_id: this.mill_id,
+        crop_year_id: this.crop_year_id,
+        sgrcane_gross_tonnes: this.sgrcane_gross_tonnes,
+        sgrcane_net_tonnes: this.sgrcane_net_tonnes,
+        rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane,
+        rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured,
+        equivalent: this.equivalent
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -1849,6 +1959,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1862,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
       entry_value: 10
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.fetch();
   },
   watch: {
@@ -37571,61 +37688,341 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: { id: "create_modal", "data-backdrop": "static" }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog modal-lg" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.store($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-6" }, [
+                    _c("label", { attrs: { for: "mill_id" } }, [
+                      _vm._v("Mill *")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.mill_id,
+                            expression: "mill_id"
+                          }
+                        ],
+                        staticClass: "form-control select2",
+                        staticStyle: { width: "100%" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.mill_id = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.mills, function(data) {
+                          return _c(
+                            "option",
+                            { domProps: { value: data.mill_id } },
+                            [
+                              _vm._v(
+                                "\n                              " +
+                                  _vm._s(data.name) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-6" }, [
+                    _c("label", { attrs: { for: "crop_year_id" } }, [
+                      _vm._v("Crop Year *")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.crop_year_id,
+                            expression: "crop_year_id"
+                          }
+                        ],
+                        staticClass: "form-control select2",
+                        staticStyle: { width: "100%" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.crop_year_id = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.crop_years, function(data) {
+                          return _c(
+                            "option",
+                            { domProps: { value: data.crop_year_id } },
+                            [
+                              _vm._v(
+                                "\n                              " +
+                                  _vm._s(data.name) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("label", { attrs: { for: "name" } }, [
+                      _vm._v("Sugar Cane Gross Tonnes")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sgrcane_gross_tonnes,
+                          expression: "sgrcane_gross_tonnes"
+                        }
+                      ],
+                      staticClass: "form-control priceformat",
+                      attrs: { type: "text", placeholder: "Gross Tonnes" },
+                      domProps: { value: _vm.sgrcane_gross_tonnes },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sgrcane_gross_tonnes = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("label", { attrs: { for: "name" } }, [
+                      _vm._v("Sugar Cane Net Tonnes")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sgrcane_net_tonnes,
+                          expression: "sgrcane_net_tonnes"
+                        }
+                      ],
+                      staticClass: "form-control priceformat",
+                      attrs: { type: "text", placeholder: "Gross Tonnes" },
+                      domProps: { value: _vm.sgrcane_net_tonnes },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sgrcane_net_tonnes = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("label", { attrs: { for: "name" } }, [
+                      _vm._v("Raw Sugar Tonnes Due Cane")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.rawsgr_tonnes_due_cane,
+                          expression: "rawsgr_tonnes_due_cane"
+                        }
+                      ],
+                      staticClass: "form-control priceformat",
+                      attrs: { type: "text", placeholder: "Gross Tonnes" },
+                      domProps: { value: _vm.rawsgr_tonnes_due_cane },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.rawsgr_tonnes_due_cane = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("label", { attrs: { for: "name" } }, [
+                      _vm._v("Raw Sugar Tonnes Manufactured")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.rawsgr_tonnes_manufactured,
+                          expression: "rawsgr_tonnes_manufactured"
+                        }
+                      ],
+                      staticClass: "form-control priceformat",
+                      attrs: { type: "text", placeholder: "Gross Tonnes" },
+                      domProps: { value: _vm.rawsgr_tonnes_manufactured },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.rawsgr_tonnes_manufactured = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("label", { attrs: { for: "name" } }, [
+                      _vm._v("Equivalend")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.equivalent,
+                          expression: "equivalent"
+                        }
+                      ],
+                      staticClass: "form-control priceformat",
+                      attrs: { type: "text", placeholder: "Gross Tonnes" },
+                      domProps: { value: _vm.equivalent },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.equivalent = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: { id: "create_modal", "data-backdrop": "static" }
-      },
-      [
-        _c("div", { staticClass: "modal-dialog modal-lg" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c(
-                "button",
-                { staticClass: "close", attrs: { "data-dismiss": "modal" } },
-                [
-                  _c("span", { attrs: { "aria-hidden": "true" } }, [
-                    _vm._v("×")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("h4", { staticClass: "modal-title" }, [_vm._v("Create")])
-            ]),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "modal-body",
-              attrs: { id: "delete_body" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  attrs: { "data-dismiss": "modal" }
-                },
-                [_vm._v("Close")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-success", attrs: { type: "submit" } },
-                [_vm._v("Save")]
-              )
-            ])
-          ])
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          staticStyle: { padding: "5px" },
+          attrs: { "data-dismiss": "modal" }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [
+        _c("i", { staticClass: "fa fa-file-o" }),
+        _vm._v(" Create\n            "),
+        _c("div", { staticClass: "pull-right" }, [
+          _c("code", [_vm._v("Fields with asterisks(*) are required")])
         ])
-      ]
-    )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Save")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -37771,11 +38168,11 @@ var render = function() {
         _vm.sn_cane_sugar_tons.length > 0
           ? _c(
               "tbody",
-              _vm._l(_vm.sn_cane_sugar_tons, function(sn_cane_sugar_ton) {
+              _vm._l(_vm.sn_cane_sugar_tons, function(data) {
                 return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(sn_cane_sugar_ton.mill.name))]),
+                  _c("td", [_vm._v(_vm._s(data.mill.name))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(sn_cane_sugar_ton.crop_year.name))])
+                  _c("td", [_vm._v(_vm._s(data.crop_year.name))])
                 ])
               }),
               0
@@ -50058,6 +50455,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 var EventBus = new Vue();
 /* harmony default export */ __webpack_exports__["default"] = (EventBus);
+Vue.directive('focus', {});
 Vue.component('synopsis-cane-sugar-tons-list', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsList.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue")["default"]);
 Vue.component('synopsis-cane-sugar-tons-create', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsCreate.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsCreate.vue")["default"]);
 var app = new Vue({

@@ -15,5 +15,7 @@ interface MillInterface {
 	public function destroy($slug);
 
 	public function findBySlug($slug);
+
+	public function getAll();
 		
 }

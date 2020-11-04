@@ -6,24 +6,85 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
 
+
             <div class="modal-header">
-              <button class="close" data-dismiss="modal">
+              <button class="close" data-dismiss="modal" style="padding:5px;">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 class="modal-title">Create</h4>
+              <h4 class="modal-title">
+                <i class="fa fa-file-o"></i> Create
+                <div class="pull-right">
+                    <code>Fields with asterisks(*) are required</code>
+                </div> 
+              </h4>
             </div>
 
-            <div class="modal-body" id="delete_body">
+
+            <form @submit.prevent="store">
+                <div class="modal-body">
+                    <div class="row">
+
+                        <input type="hidden" name="_token" :value="csrf">
+
+                        <!-- mills -->
+                        <div class="form-group col-md-6">
+                            <label for="mill_id">Mill *</label>
+                            <select v-model="mill_id" class="form-control select2" style="width:100%;">
+                                <option value="">Select</option>
+                                <option v-for="data in mills" :value="data.mill_id">
+                                  {{ data.name }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- crop year -->
+                        <div class="form-group col-md-6">
+                            <label for="crop_year_id">Crop Year *</label>
+                            <select v-model="crop_year_id" class="form-control select2" style="width:100%;">
+                                <option value="">Select</option>
+                                <option v-for="data in crop_years" :value="data.crop_year_id">
+                                  {{ data.name }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="name">Sugar Cane Gross Tonnes</label>
+                            <input v-model="sgrcane_gross_tonnes" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="name">Sugar Cane Net Tonnes</label>
+                            <input v-model="sgrcane_net_tonnes" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="name">Raw Sugar Tonnes Due Cane</label>
+                            <input v-model="rawsgr_tonnes_due_cane" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="name">Raw Sugar Tonnes Manufactured</label>
+                            <input v-model="rawsgr_tonnes_manufactured" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="name">Equivalend</label>
+                            <input v-model="equivalent" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
+                        </div>
+                        
+                    </div>
 
 
+                </div>
 
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success">Save</button>
-            </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>     
+            </form>
             
+
           </div>
         </div>
       </div>
@@ -44,8 +105,20 @@
 
             return {
 
+                mills : {},
+                crop_years : {},
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
-                
+                // fields
+                _token: "",
+                mill_id: "",
+                crop_year_id: "",
+                sgrcane_gross_tonnes: "",
+                sgrcane_net_tonnes: "",
+                rawsgr_tonnes_due_cane: "",
+                rawsgr_tonnes_manufactured: "", 
+                equivalent: "", 
+
             }
 
         },
@@ -54,14 +127,62 @@
 
         created() {
 
-            EventBus.$on('OPEN_CANE_SUGAR_TONS_MODAL', (data) => {
-              
-                $("#create_modal").modal("show");
+            this.showModal();
+            this.getAllMills();
+            this.getAllCropYears();
 
-            })
+        },
 
-        }
 
+
+        methods: {
+
+
+            showModal(){ 
+                EventBus.$on('OPEN_CANE_SUGAR_TONS_MODAL', (data) => {
+                    $("#create_modal").modal("show");
+                });
+            },
+
+
+            getAllMills(){ 
+               axios.get('mill/get_all')
+                    .then((response) => {
+                        this.mills = response.data;
+                    }); 
+            },
+
+
+            getAllCropYears(){ 
+               axios.get('crop_year/get_all')
+                    .then((response) => {
+                        this.crop_years = response.data;
+                    }); 
+            },
+
+
+            store(){ 
+                
+                axios.post('/cane_sugar_tons/store', {
+                    mill_id: this.mill_id,
+                    crop_year_id: this.crop_year_id, 
+                    sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
+                    sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
+                    rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
+                    rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured, 
+                    equivalent: this.equivalent, 
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            },
+
+
+        },
 
 
     }
