@@ -63,13 +63,13 @@
       </div>
     </div>
 
-    @yield('vueScripts')
-
-    @include('layouts.js-plugins')
-    
     @yield('modals')
 
+    @yield('vueScripts')
+
     @yield('scripts')
+
+    @include('layouts.js-plugins')
 
     @if($errors->any())
       <script type="text/javascript">

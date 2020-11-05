@@ -14,14 +14,14 @@ $('#loader')
 
 
 // SELECT2 Caller
-$('.select2').select2();
+// $('.select2').select2();
 
 
 
 // SELECT2 Multiple
-$('select[multiple]').select2({
-    closeOnSelect: false,
-});
+// $('select[multiple]').select2({
+//     closeOnSelect: false,
+// });
 
 
 // Filter Form Submit Rule

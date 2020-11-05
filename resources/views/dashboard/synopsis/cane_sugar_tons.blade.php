@@ -29,6 +29,7 @@
 	<script type="text/javascript">
 
 		$(".priceformat").priceFormat({
+			centsLimit: 2,
             prefix: "",
             thousandsSeparator: ",",
             clearOnEmpty: true,

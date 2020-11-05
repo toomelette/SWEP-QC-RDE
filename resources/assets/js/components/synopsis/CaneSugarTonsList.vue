@@ -5,8 +5,6 @@
 
         <div class="box-header with-border">
 
-
-
             <!-- Search Box -->
             <div class="box-title">  
                 <div class="col-md-3 no-padding">
@@ -146,7 +144,6 @@
 
         methods: {
 
-
             fetch(page_no){ 
                axios.get('cane_sugar_tons', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
@@ -158,11 +155,9 @@
                     }); 
             },
 
-
             emitCreateModal(){ 
                 EventBus.$emit('OPEN_CANE_SUGAR_TONS_MODAL', {});
             },
-
 
         },
 

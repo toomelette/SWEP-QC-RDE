@@ -26,6 +26,8 @@
 {{-- Charts --}}	
 <link rel="stylesheet" href="{{asset('template/bower_components/morris.js/morris.css')}}">
 
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
 
 
 

@@ -29,23 +29,13 @@
                         <!-- mills -->
                         <div class="form-group col-md-6">
                             <label for="mill_id">Mill *</label>
-                            <select v-model="mill_id" class="form-control select2" style="width:100%;">
-                                <option value="">Select</option>
-                                <option v-for="data in mills" :value="data.mill_id">
-                                  {{ data.name }}
-                                </option>
-                            </select>
+                            <Select2 v-model="mill_id" :options="mills" :settings="{ width: '100%', placeholder: 'Select',}"/>
                         </div>
 
                         <!-- crop year -->
                         <div class="form-group col-md-6">
-                            <label for="crop_year_id">Crop Year *</label>
-                            <select v-model="crop_year_id" class="form-control select2" style="width:100%;">
-                                <option value="">Select</option>
-                                <option v-for="data in crop_years" :value="data.crop_year_id">
-                                  {{ data.name }}
-                                </option>
-                            </select>
+                            <label for="mill_id">Crop Year *</label>
+                            <Select2 v-model="crop_year_id" :options="crop_years" :settings="{ width: '100%', placeholder: 'Select',}"/>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -97,16 +87,23 @@
 <script>
 
     import EventBus from '../../CaneSugarTonsMain';
+    import Utils from '../utils';
 
-    export default {
+
+    export default { 
+
+        mixins: [
+            Utils
+        ],
+
 
 
         data() {
 
             return {
 
-                mills : {},
-                crop_years : {},
+                mills : [],
+                crop_years : [],
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
                 // fields
@@ -117,7 +114,7 @@
                 sgrcane_net_tonnes: "",
                 rawsgr_tonnes_due_cane: "",
                 rawsgr_tonnes_manufactured: "", 
-                equivalent: "", 
+                equivalent: "",
 
             }
 
@@ -137,32 +134,27 @@
 
         methods: {
 
-
             showModal(){ 
                 EventBus.$on('OPEN_CANE_SUGAR_TONS_MODAL', (data) => {
                     $("#create_modal").modal("show");
                 });
             },
 
-
             getAllMills(){ 
                axios.get('mill/get_all')
                     .then((response) => {
-                        this.mills = response.data;
+                       this.mills = this.utilJsonObjToArray(response.data, 'mill_id', 'name');
                     }); 
             },
-
 
             getAllCropYears(){ 
                axios.get('crop_year/get_all')
                     .then((response) => {
-                        this.crop_years = response.data;
+                        this.crop_years = this.utilJsonObjToArray(response.data, 'crop_year_id', 'name');
                     }); 
             },
 
-
             store(){ 
-                
                 axios.post('/cane_sugar_tons/store', {
                     mill_id: this.mill_id,
                     crop_year_id: this.crop_year_id, 
@@ -178,11 +170,10 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-
             },
 
-
         },
+
 
 
     }
