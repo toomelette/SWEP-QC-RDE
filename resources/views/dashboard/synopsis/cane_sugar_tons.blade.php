@@ -19,23 +19,5 @@
 
 
 @section('vueScripts')
-
 	<script type="text/javascript" src="{{ asset('js/CaneSugarTonsMain.js') }}"></script>
-
-@endsection
-
-@section('scripts')
-
-	<script type="text/javascript">
-
-		$(".priceformat").priceFormat({
-			centsLimit: 2,
-            prefix: "",
-            thousandsSeparator: ",",
-            clearOnEmpty: true,
-            allowNegative: true
-        });
-
-	</script>
-
 @endsection

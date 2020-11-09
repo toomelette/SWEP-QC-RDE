@@ -67,9 +67,9 @@
 
     @yield('vueScripts')
 
-    @yield('scripts')
-
     @include('layouts.js-plugins')
+
+    @yield('scripts')
 
     @if($errors->any())
       <script type="text/javascript">
