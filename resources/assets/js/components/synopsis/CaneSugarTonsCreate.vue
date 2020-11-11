@@ -40,13 +40,13 @@
 
                         <div class="form-group col-md-12">
                             <label for="name">Sugar Cane Gross Tonnes</label>
-                            <input v-model="sgrcane_gross_tonnes" class="form-control" type="text" placeholder="Gross Tonnes">  
+                            <number-format v-model="sgrcane_gross_tonnes" class="form-control" placeholder="Gross Tonnes" @change="numberFormat"/></number-format>
                         </div>
 
-                        <div class="form-group col-md-12">
+                        <!-- <div class="form-group col-md-12">
                             <label for="name">Sugar Cane Net Tonnes</label>
                             <input v-model="sgrcane_net_tonnes" class="form-control" type="text" placeholder="Gross Tonnes">    
-                        </div>
+                        </div> -->
 
                         <!-- <div class="form-group col-md-12">
                             <label for="name">Raw Sugar Tonnes Due Cane</label>
@@ -131,19 +131,11 @@
 
 
 
-        watch: {
-            sgrcane_gross_tonnes: function(after, before) {
-                this.sgrcane_gross_tonnes = this.numberFormat(after);
-            },
-        },
-
-
-
         methods: {
 
-            numberFormat(after){
+            numberFormat(event){
 
-                return after;
+                console.log(this.sgrcane_gross_tonnes);
 
             },
 
