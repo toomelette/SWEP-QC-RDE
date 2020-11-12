@@ -39,29 +39,29 @@
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="name">Sugar Cane Gross Tonnes</label>
-                            <number-format v-model="sgrcane_gross_tonnes" class="form-control" placeholder="Gross Tonnes" @change="numberFormat"/></number-format>
-                        </div>
-
-                        <!-- <div class="form-group col-md-12">
-                            <label for="name">Sugar Cane Net Tonnes</label>
-                            <input v-model="sgrcane_net_tonnes" class="form-control" type="text" placeholder="Gross Tonnes">    
-                        </div> -->
-
-                        <!-- <div class="form-group col-md-12">
-                            <label for="name">Raw Sugar Tonnes Due Cane</label>
-                            <input v-model="rawsgr_tonnes_due_cane" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
+                            <label for="sgrcane_gross_tonnes">Sugar Cane Gross Tonnes</label>
+                            <number-format decimals="2" v-model="sgrcane_gross_tonnes" class="form-control" placeholder="Sugar Cane Gross Tonnes"/>
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="name">Raw Sugar Tonnes Manufactured</label>
-                            <input v-model="rawsgr_tonnes_manufactured" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
+                            <label for="sgrcane_net_tonnes">Sugar Cane Net Tonnes</label>
+                            <number-format decimals="2" v-model="sgrcane_net_tonnes" class="form-control" placeholder="Sugar Cane Net Tonnes"/>
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="name">Equivalend</label>
-                            <input v-model="equivalent" class="form-control priceformat" type="text" placeholder="Gross Tonnes">    
-                        </div> -->
+                            <label for="rawsgr_tonnes_due_cane">Raw Sugar Tonnes Due Cane</label>
+                            <number-format decimals="2" v-model="rawsgr_tonnes_due_cane" class="form-control" placeholder="Raw Sugar Tonnes Due Cane"/>  
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="rawsgr_tonnes_manufactured">Raw Sugar Tonnes Manufactured</label>
+                            <number-format decimals="2" v-model="rawsgr_tonnes_manufactured" class="form-control" placeholder="Raw Sugar Tonnes Manufactured"/>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="equivalent">Equivalend</label>
+                            <number-format decimals="2" v-model="equivalent" class="form-control" placeholder="Equivalend"/>  
+                        </div>
                         
                     </div>
 

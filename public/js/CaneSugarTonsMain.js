@@ -1688,6 +1688,63 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Numberformat.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/Numberformat.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.component('number-format', {
+  props: ["value", "decimals"],
+  template: "<input type=\"text\" v-model=\"displayValue\" @blur=\"isInputActive=false\" @focus=\"isInputActive=true\"/>",
+  data: function data() {
+    return {
+      isInputActive: false
+    };
+  },
+  computed: {
+    displayValue: {
+      get: function get() {
+        if (this.isInputActive) {
+          if (this.value.toString().includes('.')) {
+            var input_value = this.value.toString().split(".");
+            input_value[1] = input_value[1].toString().substring(0, this.decimals);
+            input_value = input_value.join(".");
+            return input_value.toString();
+          } else {
+            return this.value.toString();
+          }
+        } else {
+          var _input_value = parseFloat(this.value.toString()).toFixed(this.decimals);
+
+          if (isNaN(_input_value)) {
+            _input_value = 0;
+          } else {
+            _input_value = _input_value.toString().split(".");
+            _input_value[0] = _input_value[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            _input_value = _input_value.join(".");
+          }
+
+          return _input_value.toString();
+        }
+      },
+      set: function set(modified_value) {
+        var new_value = parseFloat(modified_value.replace(',', ''));
+
+        if (isNaN(new_value)) {
+          new_value = 0;
+        }
+
+        this.$emit('input', new_value);
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsCreate.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsCreate.vue?vue&type=script&lang=js& ***!
@@ -45242,20 +45299,127 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-md-12" },
                     [
-                      _c("label", { attrs: { for: "name" } }, [
+                      _c("label", { attrs: { for: "sgrcane_gross_tonnes" } }, [
                         _vm._v("Sugar Cane Gross Tonnes")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
-                        attrs: { placeholder: "Gross Tonnes" },
-                        on: { change: _vm.numberFormat },
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Sugar Cane Gross Tonnes"
+                        },
                         model: {
                           value: _vm.sgrcane_gross_tonnes,
                           callback: function($$v) {
                             _vm.sgrcane_gross_tonnes = $$v
                           },
                           expression: "sgrcane_gross_tonnes"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-12" },
+                    [
+                      _c("label", { attrs: { for: "sgrcane_net_tonnes" } }, [
+                        _vm._v("Sugar Cane Net Tonnes")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Sugar Cane Net Tonnes"
+                        },
+                        model: {
+                          value: _vm.sgrcane_net_tonnes,
+                          callback: function($$v) {
+                            _vm.sgrcane_net_tonnes = $$v
+                          },
+                          expression: "sgrcane_net_tonnes"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-12" },
+                    [
+                      _c(
+                        "label",
+                        { attrs: { for: "rawsgr_tonnes_due_cane" } },
+                        [_vm._v("Raw Sugar Tonnes Due Cane")]
+                      ),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Raw Sugar Tonnes Due Cane"
+                        },
+                        model: {
+                          value: _vm.rawsgr_tonnes_due_cane,
+                          callback: function($$v) {
+                            _vm.rawsgr_tonnes_due_cane = $$v
+                          },
+                          expression: "rawsgr_tonnes_due_cane"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-12" },
+                    [
+                      _c(
+                        "label",
+                        { attrs: { for: "rawsgr_tonnes_manufactured" } },
+                        [_vm._v("Raw Sugar Tonnes Manufactured")]
+                      ),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Raw Sugar Tonnes Manufactured"
+                        },
+                        model: {
+                          value: _vm.rawsgr_tonnes_manufactured,
+                          callback: function($$v) {
+                            _vm.rawsgr_tonnes_manufactured = $$v
+                          },
+                          expression: "rawsgr_tonnes_manufactured"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-12" },
+                    [
+                      _c("label", { attrs: { for: "equivalent" } }, [
+                        _vm._v("Equivalend")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "Equivalend" },
+                        model: {
+                          value: _vm.equivalent,
+                          callback: function($$v) {
+                            _vm.equivalent = $$v
+                          },
+                          expression: "equivalent"
                         }
                       })
                     ],
@@ -57742,42 +57906,16 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var v_select2_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! v-select2-component */ "./node_modules/v-select2-component/dist/Select2.esm.js");
+/* harmony import */ var _components_Numberformat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Numberformat */ "./resources/assets/js/components/Numberformat.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
+
 
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 var EventBus = new Vue();
 /* harmony default export */ __webpack_exports__["default"] = (EventBus);
 Vue.component('Select2', v_select2_component__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.component('number-format', {
-  props: ["value"],
-  template: "\n        <input type=\"text\" v-model=\"displayValue\" @blur=\"isInputActive = false\" @focus=\"isInputActive = true\"/>",
-  data: function data() {
-    return {
-      isInputActive: false
-    };
-  },
-  computed: {
-    displayValue: {
-      get: function get() {
-        if (this.isInputActive) {
-          return this.value.toString();
-        } else {
-          return this.value.toString().replace(',', '').toLocaleString();
-        }
-      },
-      set: function set(modifiedValue) {
-        var newValue = parseFloat(modifiedValue.replace(',', ''));
-
-        if (isNaN(newValue)) {
-          newValue = 0;
-        }
-
-        this.$emit('input', newValue);
-      }
-    }
-  }
-});
+Vue.component('number-format', _components_Numberformat__WEBPACK_IMPORTED_MODULE_1__["default"]["default"]);
 Vue.component('synopsis-cane-sugar-tons-list', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsList.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue")["default"]);
 Vue.component('synopsis-cane-sugar-tons-create', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsCreate.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsCreate.vue")["default"]);
 var app = new Vue({
@@ -57815,7 +57953,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.baseURL = 'http://localhost:2009/api';
+window.axios.defaults.baseURL = window.location.origin + '/api';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -57842,6 +57980,59 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Numberformat.vue":
+/*!*********************************************************!*\
+  !*** ./resources/assets/js/components/Numberformat.vue ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Numberformat.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/Numberformat.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/Numberformat.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Numberformat.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/assets/js/components/Numberformat.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Numberformat.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Numberformat.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Numberformat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -58031,8 +58222,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\CaneSugarTonsMain.js */"./resources/assets/js/CaneSugarTonsMain.js");
-module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\CaneSugarTonsMain.scss */"./resources/assets/sass/CaneSugarTonsMain.scss");
+__webpack_require__(/*! D:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\CaneSugarTonsMain.js */"./resources/assets/js/CaneSugarTonsMain.js");
+module.exports = __webpack_require__(/*! D:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\CaneSugarTonsMain.scss */"./resources/assets/sass/CaneSugarTonsMain.scss");
 
 
 /***/ })
