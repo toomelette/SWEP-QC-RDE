@@ -1717,17 +1717,18 @@ Vue.component('number-format', {
             return this.value.toString();
           }
         } else {
-          var _input_value = parseFloat(this.value.toString()).toFixed(this.decimals);
+          var _input_value = parseFloat(this.value.toString());
 
           if (isNaN(_input_value)) {
             _input_value = 0;
           } else {
             _input_value = _input_value.toString().split(".");
-            _input_value[0] = _input_value[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            _input_value[0] = _input_value[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            _input_value[1] = _input_value[1].toString().substring(0, this.decimals);
             _input_value = _input_value.join(".");
           }
 
-          return _input_value.toString();
+          return _input_value.toString().replace(/^[A-Za-z]+$/, "");
         }
       },
       set: function set(modified_value) {

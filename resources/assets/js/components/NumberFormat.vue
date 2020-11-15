@@ -45,19 +45,20 @@
 	                    	return this.value.toString();
 	                	}
 
-	                } else {
+	                } else {	
 
-	                	let input_value = parseFloat(this.value.toString()).toFixed(this.decimals);
+	                	let input_value = parseFloat(this.value.toString());
 
 	                	if (isNaN(input_value)) {
 	                		input_value = 0;
 	                	}else{
 	                		input_value = input_value.toString().split(".");
-					    	input_value[0] = input_value[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					    	input_value[0] = input_value[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	                		input_value[1] = input_value[1].toString().substring(0,this.decimals);
 					    	input_value = input_value.join(".");
 	                	}
 	                	
-	                	return input_value.toString();
+	                	return input_value.toString().replace(/^[A-Za-z]+$/, "");
 
 	                }
 
