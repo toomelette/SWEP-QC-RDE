@@ -31,7 +31,6 @@
 
 	        displayValue: {
 
-
 	            get: function() {
 
 	                if (this.isInputActive) {
@@ -47,18 +46,22 @@
 
 	                } else {	
 
-	                	let input_value = parseFloat(this.value.toString());
+	                	let input_value = parseFloat(this.value.toString().replace(/^[A-Za-z]+$/, ""));
 
 	                	if (isNaN(input_value)) {
 	                		input_value = 0;
 	                	}else{
-	                		input_value = input_value.toString().split(".");
-					    	input_value[0] = input_value[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	                		input_value[1] = input_value[1].toString().substring(0,this.decimals);
-					    	input_value = input_value.join(".");
+	                		if (input_value.toString().includes('.')) {
+	                			input_value = input_value.toString().split(".");
+					    		input_value[0] = input_value[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	                			input_value[1] = input_value[1].toString().substring(0,this.decimals);
+					    		input_value = input_value.join(".");
+	                		}else{
+					    		input_value = input_value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	                		}
 	                	}
 	                	
-	                	return input_value.toString().replace(/^[A-Za-z]+$/, "");
+	                	return input_value.toString();
 
 	                }
 
@@ -76,9 +79,10 @@
 
 	            }
 
-	        }
-	    }
 
+	        }
+
+	    }
 
 	});
 

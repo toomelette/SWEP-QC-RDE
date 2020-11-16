@@ -6,8 +6,8 @@ Route::get('/submenu/select_submenu_byMenuId/{menu_id}',
 		   'Api\ApiSubmenuController@selectSubmenuByMenuId')->name('selectSubmenuByMenuId');
 
 // Synopsis
-Route::get('/cane_sugar_tons','Api\ApiSynCaneSugarTonsController@fetch')->name('api.synopsis.cane_sugar_tons_list');
-Route::post('/cane_sugar_tons/store','Api\ApiSynCaneSugarTonsController@store')->name('api.synopsis.cane_sugar_tons_store');
+Route::get('/cane_sugar_tons','Api\ApiSynCaneSugarTonsController@fetch')->name('synopsis.cane_sugar_tons_list');
+Route::post('/cane_sugar_tons/store','Api\ApiSynCaneSugarTonsController@store')->name('synopsis.cane_sugar_tons_store');
 
 
 // Mills

@@ -1,7 +1,7 @@
 
 require('./bootstrap');
 
-import Select2 from 'v-select2-component';
+import VueSelect from 'vue-select';
 import Numberformat from './components/Numberformat';
 
 
@@ -12,7 +12,7 @@ const EventBus = new Vue();
 export default EventBus;
 
 
-Vue.component('Select2', Select2);
+Vue.component('v-select', VueSelect);
 Vue.component('number-format', Numberformat.default);
 
 

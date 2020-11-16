@@ -23,19 +23,20 @@
             <form @submit.prevent="store">
                 <div class="modal-body">
                     <div class="row">
-
                         <input type="hidden" name="_token" :value="csrf">
 
                         <!-- mills -->
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6" v-bind:class="error.mill_id ? 'has-error' : ''">
                             <label for="mill_id">Mill *</label>
-                            <Select2 v-model="mill_id" :options="mills" :settings="{ width: '100%', placeholder: 'Select',}"/>
+                            <v-select v-model="mill_id" :options="mills"/>
+                            <p v-if="error.mill_id" class="help-block"> The field is required. </p>
                         </div>
 
                         <!-- crop year -->
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6" v-bind:class="error.crop_year_id ? 'has-error' : ''">
                             <label for="mill_id">Crop Year *</label>
-                            <Select2 v-model="crop_year_id" :options="crop_years" :settings="{ width: '100%', placeholder: 'Select',}"/>
+                            <v-select v-model="crop_year_id" :options="crop_years"/>
+                            <p v-if="error.crop_year_id" class="help-block"> The field is required. </p>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -86,15 +87,15 @@
 
 <script>
 
+    import "vue-select/dist/vue-select.css";
     import EventBus from '../../CaneSugarTonsMain';
     import Utils from '../utils';
 
 
     export default { 
 
-        mixins: [
-            Utils
-        ],
+
+        mixins: [ Utils ],
 
 
         data() {
@@ -104,6 +105,7 @@
                 mills : [],
                 crop_years : [],
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                error:[],
 
                 // fields
                 _token: "",
@@ -133,12 +135,6 @@
 
         methods: {
 
-            numberFormat(event){
-
-                console.log(this.sgrcane_gross_tonnes);
-
-            },
-
             showModal(){ 
                 EventBus.$on('OPEN_CANE_SUGAR_TONS_MODAL', (data) => {
                     $("#create_modal").modal("show");
@@ -148,33 +144,37 @@
             getAllMills(){ 
                axios.get('mill/get_all')
                     .then((response) => {
-                       this.mills = this.utilJsonObjToArray(response.data, 'mill_id', 'name');
+                       this.mills = this.utilVSelectOptions(response.data, 'mill_id', 'name');
                     }); 
             },
 
             getAllCropYears(){ 
                axios.get('crop_year/get_all')
                     .then((response) => {
-                        this.crop_years = this.utilJsonObjToArray(response.data, 'crop_year_id', 'name');
+                        this.crop_years = this.utilVSelectOptions(response.data, 'crop_year_id', 'name');
                     }); 
             },
 
             store(){ 
-                axios.post('/cane_sugar_tons/store', {
-                    mill_id: this.mill_id,
-                    crop_year_id: this.crop_year_id, 
+
+                axios.post('cane_sugar_tons/store', {
+                    mill_id: this.mill_id.code,
+                    crop_year_id: this.crop_year_id.code, 
                     sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
                     sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
                     rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
                     rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured, 
                     equivalent: this.equivalent, 
                 })
-                .then(function (response) {
+                .then((response) => {
                     console.log(response);
                 })
-                .catch(function (error) {
-                    console.log(error);
+                .catch((error) => {
+                    if (error.response.status == 422){
+                        this.error = error.response.data.errors;
+                    }
                 });
+
             },
 
         },

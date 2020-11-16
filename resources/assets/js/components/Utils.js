@@ -5,13 +5,13 @@ export default {
   methods: {
 
 
-    utilJsonObjToArray(obj, id, text) {
+    utilVSelectOptions(obj, id, text) {
 
 	    var array = [];
 
 	    if (Object.keys(obj).length != 0) {
 		    Object.values(obj).forEach(val => {
-		      array.push({id: val[id], text: val[text]});
+		      array.push({code: val[id], label: val[text]});
 		    });
 	    }
 

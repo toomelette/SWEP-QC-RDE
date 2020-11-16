@@ -163,11 +163,7 @@
 
 
 
-        directives: {
-
-            debounce
-
-        }
+        directives: { debounce }
 
 
 
