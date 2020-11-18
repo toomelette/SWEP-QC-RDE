@@ -9,7 +9,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Core\Helpers\__cache;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -71,6 +71,7 @@ class LoginController extends Controller{
             return $this->sendLockoutResponse($request);
         }
 
+        auth('api')->attempt($request->only('username', 'password'));
 
         if($this->auth->guard()->attempt($this->credentials($request))){
 

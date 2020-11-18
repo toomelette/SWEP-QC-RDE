@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 
-class User extends Authenticatable{
+class User extends Authenticatable implements JWTSubject{
 
 
     use Notifiable, Sortable;
@@ -55,6 +56,17 @@ class User extends Authenticatable{
 
     public function userSubmenu() {
         return $this->hasMany('App\Models\UserSubmenu','user_id','user_id');
+    }
+
+
+
+    /** JWT AUTH **/
+    public function getJWTIdentifier(){    
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(){
+        return [];
     }
     
 
