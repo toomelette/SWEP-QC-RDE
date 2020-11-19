@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\Controller;
 use App\Core\Interfaces\UserInterface;
+use JWTAuth;
 
 class ApiUserController extends Controller{
 
@@ -22,7 +23,7 @@ class ApiUserController extends Controller{
 
 	public function getUserBearerToken(){
 
-		dd(auth('api')->guard()->getTokenForRequest());
+		JWTAuth::fromUser(auth()->user());
 
     }
 

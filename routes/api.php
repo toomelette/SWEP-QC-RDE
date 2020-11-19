@@ -19,5 +19,5 @@ Route::get('/crop_year/get_all','Api\ApiCropYearController@getAll')->name('api.c
 
 
 // Synopsis
-Route::get('/cane_sugar_tons','Api\ApiSynCaneSugarTonsController@fetch')->name('synopsis.cane_sugar_tons_list')->middleware('jwt.auth');
+Route::get('/cane_sugar_tons','Api\ApiSynCaneSugarTonsController@fetch')->name('synopsis.cane_sugar_tons_list');
 Route::post('/cane_sugar_tons/store','Api\ApiSynCaneSugarTonsController@store')->name('synopsis.cane_sugar_tons_store');

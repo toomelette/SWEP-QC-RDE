@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Core\Interfaces\UserInterface;
 
 use Auth;
+use JWTAuth;
 use Session;
 use Illuminate\Http\Request;
 use App\Core\Helpers\__cache;
@@ -71,7 +72,7 @@ class LoginController extends Controller{
             return $this->sendLockoutResponse($request);
         }
 
-        auth('api')->attempt($request->only('username', 'password'));
+        JWTAuth::attempt($this->credentials($request));
 
         if($this->auth->guard()->attempt($this->credentials($request))){
 

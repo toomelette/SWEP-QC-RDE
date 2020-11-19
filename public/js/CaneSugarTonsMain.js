@@ -2063,6 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
           page: page_no
         }
       }).then(function (response) {
+        console.log(JSON.parse(localStorage.getItem('user')));
         _this.sn_cane_sugar_tons = response.data.data;
         _this.page_data = response.data;
       })["catch"](function (error) {
@@ -51426,8 +51427,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\CaneSugarTonsMain.js */"./resources/assets/js/CaneSugarTonsMain.js");
-module.exports = __webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\CaneSugarTonsMain.scss */"./resources/assets/sass/CaneSugarTonsMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\CaneSugarTonsMain.js */"./resources/assets/js/CaneSugarTonsMain.js");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\CaneSugarTonsMain.scss */"./resources/assets/sass/CaneSugarTonsMain.scss");
 
 
 /***/ })
