@@ -1,13 +1,8 @@
 <?php
 
-
 // Submenu
 Route::get('/submenu/select_submenu_byMenuId/{menu_id}',
 		   'Api\ApiSubmenuController@selectSubmenuByMenuId')->name('selectSubmenuByMenuId');
-
-
-// User
-Route::get('/usr/bt','Api\ApiUserController@getUserBearerToken')->name('api.user.get_bearer_token');
 
 
 // Mills

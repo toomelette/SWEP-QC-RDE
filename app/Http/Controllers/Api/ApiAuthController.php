@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api;
 
 use App\Core\Interfaces\UserInterface;
 
 use Auth;
 use JWTAuth;
-use Session;
 use Illuminate\Http\Request;
 use App\Core\Helpers\__cache;
 
@@ -15,7 +14,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
-class LoginController extends Controller{
+class ApiAuthController extends Controller{
    
 
     use AuthenticatesUsers;
@@ -43,7 +42,7 @@ class LoginController extends Controller{
         $this->session = session();
         $this->__cache = $__cache;
 
-        $this->middleware('guest')->except('logout');
+        $this->middleware('api')->except('logout');
 
     }
 
@@ -72,14 +71,13 @@ class LoginController extends Controller{
             return $this->sendLockoutResponse($request);
         }
 
-        $token = JWTAuth::attempt($this->credentials($request));
-
         if($this->auth->guard()->attempt($this->credentials($request))){
+
+            $token = JWTAuth::attempt($this->credentials($request));
 
             if($this->auth->user()->is_active == false){
 
                 $this->session->flush();
-                $this->session->flash('AUTH_UNACTIVATED','Your account is currently UNACTIVATED! Please contact the designated IT Personel to activate your account.');
                 $this->auth->logout();
 
             }else{
@@ -91,7 +89,7 @@ class LoginController extends Controller{
                 $this->__cache->deletePattern(''. config('app.name') .'_cache:users:getByIsOnline:'. $user->is_online .'');
 
                 $this->clearLoginAttempts($request);
-                return redirect()->intended('dashboard/home');
+                return response()->json(['token' => $token]);
 
             }
         
@@ -107,29 +105,29 @@ class LoginController extends Controller{
 
 
 
-    public function logout(Request $request){
+    // public function logout(Request $request){
         
-        if($request->isMethod('post')){
+    //     if($request->isMethod('post')){
 
-            $user = $this->user_repo->logout($this->auth->user()->slug);
+    //         $user = $this->user_repo->logout($this->auth->user()->slug);
             
-            $this->session->flush();
-            $this->guard()->logout();
-            $request->session()->invalidate();
+    //         $this->session->flush();
+    //         $this->guard()->logout();
+    //         $request->session()->invalidate();
 
-            $this->__cache->deletePattern(''. config('app.name') .'_cache:users:fetch:*');
-            $this->__cache->deletePattern(''. config('app.name') .'_cache:users:findBySlug:'. $user->slug .'');
-            $this->__cache->deletePattern(''. config('app.name') .'_cache:users:getByIsOnline:'. $user->is_online .'');
+    //         $this->__cache->deletePattern(''. config('app.name') .'_cache:users:fetch:*');
+    //         $this->__cache->deletePattern(''. config('app.name') .'_cache:users:findBySlug:'. $user->slug .'');
+    //         $this->__cache->deletePattern(''. config('app.name') .'_cache:users:getByIsOnline:'. $user->is_online .'');
 
-            $this->session->flash('LOGOUT_SUCCESS','You have been logged out successfully!');
+    //         $this->session->flash('LOGOUT_SUCCESS','You have been logged out successfully!');
 
-            return redirect('/');
+    //         return redirect('/');
 
-        }
+    //     }
         
-        return abort(404);
+    //     return abort(404);
 
-    }
+    // }
 
 
 

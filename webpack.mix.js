@@ -13,3 +13,6 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/CaneSugarTonsMain.js', 'public/js')
 	.sass('resources/assets/sass/CaneSugarTonsMain.scss', 'public/css');
+
+mix.js('resources/assets/js/LoginMain.js', 'public/js')
+	.sass('resources/assets/sass/LoginMain.scss', 'public/css');

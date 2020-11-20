@@ -1,4 +1,6 @@
 {
     "/js/CaneSugarTonsMain.js": "/js/CaneSugarTonsMain.js",
-    "/css/CaneSugarTonsMain.css": "/css/CaneSugarTonsMain.css"
+    "/css/CaneSugarTonsMain.css": "/css/CaneSugarTonsMain.css",
+    "/css/LoginMain.css": "/css/LoginMain.css",
+    "/js/LoginMain.js": "/js/LoginMain.js"
 }

@@ -44,6 +44,10 @@
 	  <span style="font-size: 28px;">SRA </b>Portal - RD&E</span>
 	</div>
 
+	@if(Session::has('AUTH_AUTHENTICATED'))
+		{!! __html::alert('danger', '<i class="icon fa fa-ban"></i> Oops!', Session::get('AUTH_AUTHENTICATED')) !!}
+	@endif
+
 	@if(Session::has('AUTH_UNACTIVATED'))
 		{!! __html::alert('danger', '<i class="icon fa fa-ban"></i> Oops!', Session::get('AUTH_UNACTIVATED')) !!}
 	@endif
@@ -72,13 +76,43 @@
 		{!! __html::alert('success', '<i class="icon fa fa-check"></i> Success!', Session::get('LOGOUT_SUCCESS')) !!}
 	@endif
 	
-	<div id="app">
-		<login-form></login-form>
-	</div>
+	<div class="login-box-body">
+		<p class="login-box-msg">Sign in to start your session</p>
 
+		<form method="POST" action="{{ route('auth.login') }}">
+
+		  	@csrf
+
+		  	<div class="form-group {{ $errors->has('username') ? ' has-error' : '' }} has-feedback">
+		    	<input class="form-control is-invalid" name="username" id="username" placeholder="Username" type="text" value="{{ __sanitize::html_attribute_encode(old('username')) }}">
+		    	<span class="glyphicon glyphicon-envelope form-control-feedback"></span>		
+				@if ($errors->has('username'))
+					<span class="help-block"> {{ $errors->first('username') }} </span>
+				@endif
+		  	</div>
+
+
+		  	<div class="form-group {{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
+		    	<input class="form-control" name="password" placeholder="Password" type="password">
+		    	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+				@if ($errors->has('password'))
+					<span class="help-block">{{ $errors->first('password') }}</span>
+				@endif
+		  	</div>
+
+		    <div class="social-auth-links text-center">
+		      <button type="submit" class="btn btn-block btn-flat btn-success">LOGIN</button>
+		    </div>
+
+		</form>
+
+		<br>
+
+	</div>
 </div>
 
-<script type="text/javascript" src="{{ asset('js/LoginMain.js') }}"></script>
+<script src="{{ asset('template/bower_components/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('template/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
 </body>
 </html>
