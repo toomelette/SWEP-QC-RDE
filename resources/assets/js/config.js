@@ -2,7 +2,7 @@
 
 export const getHeader = function(){
 
-	const tokenData = JSON.parse(window.localStorage.getItem('authUser'))
+	const tokenData = JSON.parse(window.localStorage.getItem('auth_usr'))
 
 	const headers = {
 		'Accept': 'application/json',

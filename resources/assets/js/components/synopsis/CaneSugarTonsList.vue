@@ -147,8 +147,6 @@
             fetch(page_no){ 
                axios.get('cane_sugar_tons', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
-
-                        console.log(JSON.parse(localStorage.getItem('user')));
                         this.sn_cane_sugar_tons = response.data.data;
                         this.page_data = response.data;
                     })

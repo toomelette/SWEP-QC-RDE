@@ -71,11 +71,28 @@
 
     @yield('scripts')
 
-    @if($errors->any())
+    @if($errors->any())j
       <script type="text/javascript">
         $("#error_fields").modal("show");
       </script>
     @endif
+
+    <script>
+
+      $(document).on("click", "#logout_btn", function (e) {
+
+        var auth_usr = JSON.parse(window.localStorage.getItem('auth_usr'));
+        
+        if(auth_usr != null){
+          $("#access_token").val(auth_usr.access_token);
+        }
+        
+        e.preventDefault();
+        $("#frm_logout").submit();
+
+      });
+      
+    </script>
 
   </body>
 

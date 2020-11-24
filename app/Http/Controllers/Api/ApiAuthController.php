@@ -42,8 +42,6 @@ class ApiAuthController extends Controller{
         $this->session = session();
         $this->__cache = $__cache;
 
-        $this->middleware('api')->except('logout');
-
     }
 
 
@@ -73,8 +71,6 @@ class ApiAuthController extends Controller{
 
         if($this->auth->guard()->attempt($this->credentials($request))){
 
-            $token = JWTAuth::attempt($this->credentials($request));
-
             if($this->auth->user()->is_active == false){
 
                 $this->session->flush();
@@ -83,6 +79,11 @@ class ApiAuthController extends Controller{
             }else{
 
                 $user = $this->user_repo->login($this->auth->user()->slug);
+
+                $token = JWTAuth::attempt($this->credentials($request));
+
+                $request = new Request();
+                $request->headers->set('Authorization', $token);
 
                 $this->__cache->deletePattern(''. config('app.name') .'_cache:users:fetch:*');
                 $this->__cache->deletePattern(''. config('app.name') .'_cache:users:findBySlug:'. $user->slug .'');
@@ -105,29 +106,33 @@ class ApiAuthController extends Controller{
 
 
 
-    // public function logout(Request $request){
+    public function logout(Request $request){
+
+        if($request->isMethod('post')){
+
+            if(isset($request->access_token)){
+
+                $user = $this->user_repo->logout($this->auth->user()->slug);
+
+                $this->session->flush();
+                $this->auth->guard()->logout();
+                $request->session()->invalidate();
+
+                $this->__cache->deletePattern(''. config('app.name') .'_cache:users:fetch:*');
+                $this->__cache->deletePattern(''. config('app.name') .'_cache:users:findBySlug:'. $user->slug .'');
+                $this->__cache->deletePattern(''. config('app.name') .'_cache:users:getByIsOnline:'. $user->is_online .'');
+    
+                $this->session->flash('LOGOUT_SUCCESS','You have been logged out successfully!');
+    
+                return redirect('/');
+
+            }
+
+        }
         
-    //     if($request->isMethod('post')){
+        return abort(404);
 
-    //         $user = $this->user_repo->logout($this->auth->user()->slug);
-            
-    //         $this->session->flush();
-    //         $this->guard()->logout();
-    //         $request->session()->invalidate();
-
-    //         $this->__cache->deletePattern(''. config('app.name') .'_cache:users:fetch:*');
-    //         $this->__cache->deletePattern(''. config('app.name') .'_cache:users:findBySlug:'. $user->slug .'');
-    //         $this->__cache->deletePattern(''. config('app.name') .'_cache:users:getByIsOnline:'. $user->is_online .'');
-
-    //         $this->session->flash('LOGOUT_SUCCESS','You have been logged out successfully!');
-
-    //         return redirect('/');
-
-    //     }
-        
-    //     return abort(404);
-
-    // }
+    }
 
 
 

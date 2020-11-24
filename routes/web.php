@@ -2,12 +2,13 @@
 
 
 /** Auth **/
-Route::group(['as' => 'auth.'], function () {
+Route::group(['as' => 'auth.', 'middleware' => ['api']], function () {
 	Route::get('/', 'Auth\LoginController@showLoginForm')->name('showLogin');
 	Route::post('api/auth/login','Api\ApiAuthController@login')->name('login_api');
-	Route::post('/', 'Auth\LoginController@login')->name('login');
-	Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-	Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+	Route::post('api/auth/logout','Api\ApiAuthController@logout')->name('logout_api');
+	// Route::post('/', 'Auth\LoginController@login')->name('login');
+	// Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+	// Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
 
 

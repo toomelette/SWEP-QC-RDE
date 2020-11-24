@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\Controller;
 use App\Core\Interfaces\SynCaneSugarTonInterface;
 use App\Http\Requests\Synopsis\CaneSugarTonsFormRequest;
 use Illuminate\Http\Request;
-use JWTAuth;
 
 class ApiSynCaneSugarTonsController extends Controller{
 
@@ -24,7 +23,7 @@ class ApiSynCaneSugarTonsController extends Controller{
 
 
 	public function fetch(Request $request){
-		
+
 		$syn_cane_sugar_tons = $this->syn_cane_sugar_ton_repo->fetch($request);
 	    return response()->json($syn_cane_sugar_tons);
 

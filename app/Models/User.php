@@ -8,6 +8,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
+use JWTAuth;
+
+
 
 class User extends Authenticatable implements JWTSubject{
 

@@ -1697,7 +1697,6 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../config */ "./resources/assets/js/config.js");
 //
 //
 //
@@ -1734,7 +1733,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1745,19 +1743,23 @@ __webpack_require__.r(__webpack_exports__);
       password: ""
     };
   },
+  created: function created() {
+    localStorage.clear();
+  },
   methods: {
     login: function login() {
       var _this = this;
 
-      var authUser = {};
+      var auth_usr = {};
       axios.post('auth/login', {
         username: this.username,
         password: this.password
       }).then(function (response) {
         if (response.status == 200) {
-          authUser.access_token = response.data.token;
-          window.localStorage.setItem('authUser', JSON.stringify(authUser));
+          auth_usr.access_token = response.data.token;
+          window.localStorage.setItem('auth_usr', JSON.stringify(auth_usr));
           location.replace(window.location.origin + '/dashboard/home');
+          console.log(response.data.token);
         }
       })["catch"](function (error) {
         _this.error = error.response.data.errors;
@@ -49715,7 +49717,9 @@ try {
 
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+auth_usr = JSON.parse(window.localStorage.getItem('auth_usr'));
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_usr.access_token;
 window.axios.defaults.baseURL = window.location.origin + '/api';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -49815,27 +49819,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/config.js":
-/*!***************************************!*\
-  !*** ./resources/assets/js/config.js ***!
-  \***************************************/
-/*! exports provided: getHeader */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeader", function() { return getHeader; });
-var getHeader = function getHeader() {
-  var tokenData = JSON.parse(window.localStorage.getItem('authUser'));
-  var headers = {
-    'Accept': 'application/json',
-    'Authorization': 'Bearer ' + tokenData.access_token
-  };
-  return headers;
-};
-
-/***/ }),
-
 /***/ 1:
 /*!************************************************!*\
   !*** multi ./resources/assets/js/LoginMain.js ***!
@@ -49843,7 +49826,7 @@ var getHeader = function getHeader() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\LoginMain.js */"./resources/assets/js/LoginMain.js");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\LoginMain.js */"./resources/assets/js/LoginMain.js");
 
 
 /***/ })

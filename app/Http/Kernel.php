@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
         'JacobBennett\Pjax\PjaxMiddleware',
+        \Spatie\Cors\Cors::class
     ];
 
     /**
@@ -36,7 +37,6 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Fruitcake\Cors\HandleCors::class,
         ],
 
         'api' => [

@@ -22,7 +22,9 @@ try {
 
 window.axios = require('axios');
 
+auth_usr = JSON.parse(window.localStorage.getItem('auth_usr'));
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_usr.access_token;
 window.axios.defaults.baseURL = window.location.origin + '/api';
 
 /**

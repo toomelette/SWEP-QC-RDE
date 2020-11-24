@@ -2063,7 +2063,6 @@ __webpack_require__.r(__webpack_exports__);
           page: page_no
         }
       }).then(function (response) {
-        console.log(JSON.parse(localStorage.getItem('user')));
         _this.sn_cane_sugar_tons = response.data.data;
         _this.page_data = response.data;
       })["catch"](function (error) {
@@ -51157,7 +51156,9 @@ try {
 
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+auth_usr = JSON.parse(window.localStorage.getItem('auth_usr'));
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_usr.access_token;
 window.axios.defaults.baseURL = window.location.origin + '/api';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -51438,9 +51439,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\CaneSugarTonsMain.js */"./resources/assets/js/CaneSugarTonsMain.js");
-__webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\CaneSugarTonsMain.scss */"./resources/assets/sass/CaneSugarTonsMain.scss");
-module.exports = __webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\LoginMain.scss */"./resources/assets/sass/LoginMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\CaneSugarTonsMain.js */"./resources/assets/js/CaneSugarTonsMain.js");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\CaneSugarTonsMain.scss */"./resources/assets/sass/CaneSugarTonsMain.scss");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\LoginMain.scss */"./resources/assets/sass/LoginMain.scss");
 
 
 /***/ })

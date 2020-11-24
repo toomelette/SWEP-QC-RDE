@@ -36,8 +36,6 @@
 
 <script>
 
-    import {getHeader} from './../../config'
-
     export default { 
 
 
@@ -57,19 +55,28 @@
         },
 
 
+
+        created() {
+
+            localStorage.clear();
+
+        },
+
+
         methods: {
 
             login(){ 
-                const authUser = {};
+                const auth_usr = {};
                 axios.post('auth/login', {
                     username: this.username,
                     password: this.password, 
                 })
                 .then((response) => {
                     if (response.status == 200) {
-                        authUser.access_token = response.data.token;
-                        window.localStorage.setItem('authUser', JSON.stringify(authUser));
+                        auth_usr.access_token = response.data.token;
+                        window.localStorage.setItem('auth_usr', JSON.stringify(auth_usr));
                         location.replace(window.location.origin + '/dashboard/home');
+                        console.log(response.data.token);
                     }
                 })
                 .catch((error) => {
