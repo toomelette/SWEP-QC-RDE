@@ -1736,7 +1736,16 @@ Vue.component('number-format', {
         }
       },
       set: function set(modified_value) {
-        var new_value = parseFloat(modified_value.replace(',', ''));
+        var new_value = modified_value.replace(',', '').toString();
+
+        if (new_value.toString().includes('.')) {
+          new_value = modified_value.toString().split(".");
+          new_value[1] = new_value[1].toString().substring(0, this.decimals);
+          new_value = new_value.join(".");
+          return new_value.toString();
+        } else {
+          return new_value.toString();
+        }
 
         if (isNaN(new_value)) {
           new_value = 0;
@@ -1763,6 +1772,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../CaneSugarTonsMain */ "./resources/assets/js/CaneSugarTonsMain.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./resources/assets/js/components/utils.js");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1909,7 +1923,9 @@ __webpack_require__.r(__webpack_exports__);
         rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured,
         equivalent: this.equivalent
       }).then(function (response) {
-        console.log(response);
+        if (response.status == 200) {
+          console.log(_this3.equivalent);
+        }
       })["catch"](function (error) {
         if (error.response.status == 422) {
           _this3.error = error.response.data.errors;
@@ -38418,7 +38434,7 @@ var render = function() {
                       _vm._v(" "),
                       _vm.error.mill_id
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(" The field is required. ")
+                            _vm._v(_vm._s(_vm.error.mill_id.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -38432,7 +38448,7 @@ var render = function() {
                       class: _vm.error.crop_year_id ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "mill_id" } }, [
+                      _c("label", { attrs: { for: "crop_year_id" } }, [
                         _vm._v("Crop Year *")
                       ]),
                       _vm._v(" "),
@@ -38449,7 +38465,7 @@ var render = function() {
                       _vm._v(" "),
                       _vm.error.crop_year_id
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(" The field is required. ")
+                            _vm._v(_vm._s(_vm.error.crop_year_id.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -38458,7 +38474,10 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-12" },
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.sgrcane_gross_tonnes ? "has-error" : ""
+                    },
                     [
                       _c("label", { attrs: { for: "sgrcane_gross_tonnes" } }, [
                         _vm._v("Sugar Cane Gross Tonnes")
@@ -38477,14 +38496,25 @@ var render = function() {
                           },
                           expression: "sgrcane_gross_tonnes"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error.sgrcane_gross_tonnes
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(
+                              _vm._s(_vm.error.sgrcane_gross_tonnes.toString())
+                            )
+                          ])
+                        : _vm._e()
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-12" },
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.sgrcane_net_tonnes ? "has-error" : ""
+                    },
                     [
                       _c("label", { attrs: { for: "sgrcane_net_tonnes" } }, [
                         _vm._v("Sugar Cane Net Tonnes")
@@ -38503,14 +38533,25 @@ var render = function() {
                           },
                           expression: "sgrcane_net_tonnes"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error.sgrcane_net_tonnes
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(
+                              _vm._s(_vm.error.sgrcane_net_tonnes.toString())
+                            )
+                          ])
+                        : _vm._e()
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-12" },
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.rawsgr_tonnes_due_cane ? "has-error" : ""
+                    },
                     [
                       _c(
                         "label",
@@ -38531,14 +38572,29 @@ var render = function() {
                           },
                           expression: "rawsgr_tonnes_due_cane"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error.rawsgr_tonnes_due_cane
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.error.rawsgr_tonnes_due_cane.toString()
+                              )
+                            )
+                          ])
+                        : _vm._e()
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-12" },
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.rawsgr_tonnes_manufactured
+                        ? "has-error"
+                        : ""
+                    },
                     [
                       _c(
                         "label",
@@ -38559,14 +38615,27 @@ var render = function() {
                           },
                           expression: "rawsgr_tonnes_manufactured"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error.rawsgr_tonnes_manufactured
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.error.rawsgr_tonnes_manufactured.toString()
+                              )
+                            )
+                          ])
+                        : _vm._e()
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-12" },
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.equivalent ? "has-error" : ""
+                    },
                     [
                       _c("label", { attrs: { for: "equivalent" } }, [
                         _vm._v("Equivalend")
@@ -38582,7 +38651,13 @@ var render = function() {
                           },
                           expression: "equivalent"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error.equivalent
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.equivalent.toString()))
+                          ])
+                        : _vm._e()
                     ],
                     1
                   )
@@ -51157,8 +51232,12 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 auth_usr = JSON.parse(window.localStorage.getItem('auth_usr'));
+
+if (auth_usr) {
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_usr.access_token;
+}
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_usr.access_token;
 window.axios.defaults.baseURL = window.location.origin + '/api';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

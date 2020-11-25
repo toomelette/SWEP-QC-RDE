@@ -29,39 +29,44 @@
                         <div class="form-group col-md-6" v-bind:class="error.mill_id ? 'has-error' : ''">
                             <label for="mill_id">Mill *</label>
                             <v-select v-model="mill_id" :options="mills"/>
-                            <p v-if="error.mill_id" class="help-block"> The field is required. </p>
+                            <p v-if="error.mill_id" class="help-block">{{ error.mill_id.toString() }}</p>
                         </div>
 
                         <!-- crop year -->
                         <div class="form-group col-md-6" v-bind:class="error.crop_year_id ? 'has-error' : ''">
-                            <label for="mill_id">Crop Year *</label>
+                            <label for="crop_year_id">Crop Year *</label>
                             <v-select v-model="crop_year_id" :options="crop_years"/>
-                            <p v-if="error.crop_year_id" class="help-block"> The field is required. </p>
+                            <p v-if="error.crop_year_id" class="help-block">{{ error.crop_year_id.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" v-bind:class="error.sgrcane_gross_tonnes ? 'has-error' : ''">
                             <label for="sgrcane_gross_tonnes">Sugar Cane Gross Tonnes</label>
                             <number-format decimals="2" v-model="sgrcane_gross_tonnes" class="form-control" placeholder="Sugar Cane Gross Tonnes"/>
+                            <p v-if="error.sgrcane_gross_tonnes" class="help-block">{{ error.sgrcane_gross_tonnes.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" v-bind:class="error.sgrcane_net_tonnes ? 'has-error' : ''">
                             <label for="sgrcane_net_tonnes">Sugar Cane Net Tonnes</label>
                             <number-format decimals="2" v-model="sgrcane_net_tonnes" class="form-control" placeholder="Sugar Cane Net Tonnes"/>
+                            <p v-if="error.sgrcane_net_tonnes" class="help-block">{{ error.sgrcane_net_tonnes.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" v-bind:class="error.rawsgr_tonnes_due_cane ? 'has-error' : ''">
                             <label for="rawsgr_tonnes_due_cane">Raw Sugar Tonnes Due Cane</label>
                             <number-format decimals="2" v-model="rawsgr_tonnes_due_cane" class="form-control" placeholder="Raw Sugar Tonnes Due Cane"/>  
+                            <p v-if="error.rawsgr_tonnes_due_cane" class="help-block">{{ error.rawsgr_tonnes_due_cane.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" v-bind:class="error.rawsgr_tonnes_manufactured ? 'has-error' : ''">
                             <label for="rawsgr_tonnes_manufactured">Raw Sugar Tonnes Manufactured</label>
                             <number-format decimals="2" v-model="rawsgr_tonnes_manufactured" class="form-control" placeholder="Raw Sugar Tonnes Manufactured"/>
+                            <p v-if="error.rawsgr_tonnes_manufactured" class="help-block">{{ error.rawsgr_tonnes_manufactured.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" v-bind:class="error.equivalent ? 'has-error' : ''">
                             <label for="equivalent">Equivalend</label>
                             <number-format decimals="2" v-model="equivalent" class="form-control" placeholder="Equivalend"/>  
+                            <p v-if="error.equivalent" class="help-block">{{ error.equivalent.toString() }}</p>
                         </div>
                         
                     </div>
@@ -167,7 +172,9 @@
                     equivalent: this.equivalent, 
                 })
                 .then((response) => {
-                    console.log(response);
+                    if(response.status == 200){
+                        console.log(this.equivalent);   
+                    }
                 })
                 .catch((error) => {
                     if (error.response.status == 422){

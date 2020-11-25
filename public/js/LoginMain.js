@@ -49718,8 +49718,12 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 auth_usr = JSON.parse(window.localStorage.getItem('auth_usr'));
+
+if (auth_usr) {
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_usr.access_token;
+}
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_usr.access_token;
 window.axios.defaults.baseURL = window.location.origin + '/api';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

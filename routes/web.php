@@ -2,7 +2,7 @@
 
 
 /** Auth **/
-Route::group(['as' => 'auth.', 'middleware' => ['api']], function () {
+Route::group(['as' => 'auth.'], function () {
 	Route::get('/', 'Auth\LoginController@showLoginForm')->name('showLogin');
 	Route::post('api/auth/login','Api\ApiAuthController@login')->name('login_api');
 	Route::post('api/auth/logout','Api\ApiAuthController@logout')->name('logout_api');
@@ -23,28 +23,19 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 
 
 	/** USER **/   
-	Route::post('/user/activate/{slug}', 'UserController@activate')
-		->name('user.activate');
-	Route::post('/user/deactivate/{slug}', 'UserController@deactivate')
-		->name('user.deactivate');
-	Route::post('/user/logout/{slug}', 'UserController@logout')
-		->name('user.logout');
-	Route::get('/user/{slug}/reset_password', 'UserController@resetPassword')
-		->name('user.reset_password');
-	Route::patch('/user/reset_password/{slug}', 'UserController@resetPasswordPost')
-		->name('user.reset_password_post');
+	Route::post('/user/activate/{slug}', 'UserController@activate')->name('user.activate');
+	Route::post('/user/deactivate/{slug}', 'UserController@deactivate')->name('user.deactivate');
+	Route::post('/user/logout/{slug}', 'UserController@logout')->name('user.logout');
+	Route::get('/user/{slug}/reset_password', 'UserController@resetPassword')->name('user.reset_password');
+	Route::patch('/user/reset_password/{slug}', 'UserController@resetPasswordPost')->name('user.reset_password_post');
 	Route::resource('user', 'UserController');
 
 
 	/** PROFILE **/
-	Route::get('/profile', 'ProfileController@details')
-		->name('profile.details');
-	Route::patch('/profile/update_account_username/{slug}', 'ProfileController@updateAccountUsername')
-		->name('profile.update_account_username');
-	Route::patch('/profile/update_account_password/{slug}', 'ProfileController@updateAccountPassword')
-		->name('profile.update_account_password');
-	Route::patch('/profile/update_account_color/{slug}', 'ProfileController@updateAccountColor')
-		->name('profile.update_account_color');
+	Route::get('/profile', 'ProfileController@details')->name('profile.details');
+	Route::patch('/profile/update_account_username/{slug}', 'ProfileController@updateAccountUsername')->name('profile.update_account_username');
+	Route::patch('/profile/update_account_password/{slug}', 'ProfileController@updateAccountPassword')->name('profile.update_account_password');
+	Route::patch('/profile/update_account_color/{slug}', 'ProfileController@updateAccountColor')->name('profile.update_account_color');
 
 
 	/** MENU **/
@@ -55,6 +46,7 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	Route::get('/mill/reports', 'MillController@reports')->name('mill.reports');
 	Route::resource('mill', 'MillController');
 
+	
 	/** SYNOPSIS **/
 	Route::get('/synopsis/cane_sugar_tons', 'SynopsisController@caneSugarTons')->name('synopsis.cane_sugar_tons_index');
 	

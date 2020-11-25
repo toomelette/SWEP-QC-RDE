@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Core\Interfaces\UserInterface;
 
-use Auth;
 use JWTAuth;
-use Illuminate\Http\Request;
 use App\Core\Helpers\__cache;
 
-use App\Http\Controllers\Api\Controller;
+use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -20,11 +20,8 @@ class ApiAuthController extends Controller{
     use AuthenticatesUsers;
 
     protected $user_repo;
-
-    protected $auth;
-    protected $session;
     protected $__cache;
-    protected $event;
+
     protected $redirectTo = 'dashboard/home';
     protected $maxAttempts = 4;
     protected $decayMinutes = 2;
@@ -35,27 +32,20 @@ class ApiAuthController extends Controller{
 
     public function __construct(UserInterface $user_repo, __cache $__cache){
 
-
         $this->user_repo = $user_repo;
-
-        $this->auth = auth();
-        $this->session = session();
         $this->__cache = $__cache;
+        parent::__construct();
 
     }
-
-
 
 
 
     
     public function username(){
 
-        return 'username';
-    
+        return 'username';    
+        
     }
-
-
 
 
 
@@ -79,11 +69,7 @@ class ApiAuthController extends Controller{
             }else{
 
                 $user = $this->user_repo->login($this->auth->user()->slug);
-
                 $token = JWTAuth::attempt($this->credentials($request));
-
-                $request = new Request();
-                $request->headers->set('Authorization', $token);
 
                 $this->__cache->deletePattern(''. config('app.name') .'_cache:users:fetch:*');
                 $this->__cache->deletePattern(''. config('app.name') .'_cache:users:findBySlug:'. $user->slug .'');
@@ -104,8 +90,6 @@ class ApiAuthController extends Controller{
 
 
 
-
-
     public function logout(Request $request){
 
         if($request->isMethod('post')){
@@ -113,6 +97,9 @@ class ApiAuthController extends Controller{
             if(isset($request->access_token)){
 
                 $user = $this->user_repo->logout($this->auth->user()->slug);
+
+                JWTAuth::setToken($request->access_token);
+                JWTAuth::invalidate();
 
                 $this->session->flush();
                 $this->auth->guard()->logout();
@@ -133,11 +120,6 @@ class ApiAuthController extends Controller{
         return abort(404);
 
     }
-
-
-
-
-
 
 
 

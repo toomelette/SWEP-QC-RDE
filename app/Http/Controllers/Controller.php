@@ -9,8 +9,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
 use App;
-use Auth;
-use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Core\Helpers\__static;

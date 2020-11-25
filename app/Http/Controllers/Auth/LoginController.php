@@ -10,7 +10,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Core\Helpers\__cache;
 
-use App\Http\Controllers\Api\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 

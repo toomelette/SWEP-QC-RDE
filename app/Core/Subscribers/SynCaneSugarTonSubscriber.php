@@ -35,7 +35,6 @@ class SynCaneSugarTonSubscriber extends BaseSubscriber{
     public function onStore(){
         
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:fetch:*');
-        $this->session->flash('SYN_CANE_SUGAR_TON_CREATE_SUCCESS', 'The Data has been successfully created!');
 
     }
 
