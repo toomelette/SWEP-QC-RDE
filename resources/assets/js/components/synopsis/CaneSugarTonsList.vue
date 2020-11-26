@@ -33,8 +33,6 @@
 
         </div>
 
-
-
         <!-- Table -->
         <div class="box-body no-padding">
             <table class="table table-hover">
@@ -45,7 +43,7 @@
                     </tr>    
                 </thead>    
                 <tbody v-if="sn_cane_sugar_tons.length > 0">
-                    <tr v-for="data in sn_cane_sugar_tons">
+                    <tr v-for="data in sn_cane_sugar_tons" v-bind:style="data.slug == created_key ? active_tr_style : {}">
                         <td>{{ data.mill.name }}</td>
                         <td>{{ data.crop_year.name }}</td>
                     </tr>
@@ -53,10 +51,14 @@
             </table>  
         </div>
 
-        <div v-if="sn_cane_sugar_tons.length == 0" style="padding :5px;">
-          <center><h4>No Records found!</h4></center>
+        <div v-if="is_loading == true" style="padding :5px;">
+          <center><h3>Loading ...</h3></center>
         </div>
 
+        <div v-if="is_loading == false && sn_cane_sugar_tons.length == 0" style="padding :5px;">
+          <center><h4>No Records found!</h4></center>
+        </div>
+        
         <div v-if="is_invalid_fetch == true" style="padding :5px;">
           <center><h4>Server Error!</h4></center>
         </div>
@@ -109,6 +111,9 @@
                 sn_cane_sugar_tons: [],
                 page_data: [],
                 is_invalid_fetch: false,
+                is_loading: true,
+                created_key: "",
+                active_tr_style:{ 'background-color': '#D5F5E3', },
 
                 // filters
                 search_value: null,
@@ -123,6 +128,17 @@
         created() {
 
             this.fetch();
+
+        },
+
+
+
+        mounted() {
+            
+            EventBus.$on('UPDATE_LIST', (data) => {
+                this.created_key = data.key;
+                this.fetch();
+            });
 
         },
 
@@ -147,8 +163,13 @@
             fetch(page_no){ 
                axios.get('cane_sugar_tons', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
-                        this.sn_cane_sugar_tons = response.data.data;
-                        this.page_data = response.data;
+                        if(response.status == 200){
+                            this.sn_cane_sugar_tons = response.data.data;
+                            this.page_data = response.data;
+                            this.is_loading = false;
+                        }else{
+                            this.is_invalid_fetch = true;
+                        }
                     })
                     .catch((error) => {
                         this.is_invalid_fetch = true;

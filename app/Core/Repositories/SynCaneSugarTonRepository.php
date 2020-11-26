@@ -65,17 +65,17 @@ class SynCaneSugarTonRepository extends BaseRepository implements SynCaneSugarTo
         $syn_cane_sugar_ton->cane_sugar_ton_id = $this->getSynCaneSugarTonIdInc();
         $syn_cane_sugar_ton->mill_id = $request->mill_id;
         $syn_cane_sugar_ton->crop_year_id = $request->crop_year_id;
-        $syn_cane_sugar_ton->sgrcane_gross_tonnes = $request->sgrcane_gross_tonnes;
-        $syn_cane_sugar_ton->sgrcane_net_tonnes = $request->sgrcane_net_tonnes;
-        $syn_cane_sugar_ton->rawsgr_tonnes_due_cane = $request->rawsgr_tonnes_due_cane;
-        $syn_cane_sugar_ton->rawsgr_tonnes_manufactured = $request->rawsgr_tonnes_manufactured;
-        $syn_cane_sugar_ton->equivalent = $request->equivalent;
+        $syn_cane_sugar_ton->sgrcane_gross_tonnes = $this->__dataType->string_to_num($request->sgrcane_gross_tonnes);
+        $syn_cane_sugar_ton->sgrcane_net_tonnes = $this->__dataType->string_to_num($request->sgrcane_net_tonnes);
+        $syn_cane_sugar_ton->rawsgr_tonnes_due_cane = $this->__dataType->string_to_num($request->rawsgr_tonnes_due_cane);
+        $syn_cane_sugar_ton->rawsgr_tonnes_manufactured = $this->__dataType->string_to_num($request->rawsgr_tonnes_manufactured);
+        $syn_cane_sugar_ton->equivalent = $this->__dataType->string_to_num($request->equivalent);
         $syn_cane_sugar_ton->created_at = $this->carbon->now();
         $syn_cane_sugar_ton->updated_at = $this->carbon->now();
         $syn_cane_sugar_ton->ip_created = request()->ip();
         $syn_cane_sugar_ton->ip_updated = request()->ip();
-        //$syn_cane_sugar_ton->user_created = $this->auth->user()->user_id;
-        //$syn_cane_sugar_ton->user_updated = $this->auth->user()->user_id;
+        $syn_cane_sugar_ton->user_created = $this->auth->user()->user_id;
+        $syn_cane_sugar_ton->user_updated = $this->auth->user()->user_id;
         $syn_cane_sugar_ton->save();
         
         return $syn_cane_sugar_ton;

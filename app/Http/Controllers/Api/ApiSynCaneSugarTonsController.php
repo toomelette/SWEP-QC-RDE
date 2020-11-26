@@ -26,7 +26,7 @@ class ApiSynCaneSugarTonsController extends Controller{
 	public function fetch(Request $request){
 
 		$syn_cane_sugar_tons = $this->syn_cane_sugar_ton_repo->fetch($request);
-	    return response()->json($syn_cane_sugar_tons);
+	    return response()->json($syn_cane_sugar_tons, 200);
 
     }
 
@@ -34,10 +34,13 @@ class ApiSynCaneSugarTonsController extends Controller{
 
 	public function store(CaneSugarTonsFormRequest $request){
 
-		$this->syn_cane_sugar_ton_repo->store($request);
+		$syn_cane_sugar_ton = $this->syn_cane_sugar_ton_repo->store($request);
         $this->event->fire('syn_cane_sugar_ton.store');
-		return response()->json(['request' => $request], 200);
-		
+		return response()->json([
+			'success' => true,
+			'key' => $syn_cane_sugar_ton->slug
+		], 200);
+
     }
 
 

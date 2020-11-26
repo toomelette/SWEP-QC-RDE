@@ -3,15 +3,16 @@ require('./bootstrap');
 
 import VueSelect from 'vue-select';
 import Numberformat from './components/Numberformat';
+import VueToast from 'vue-toast-notification';
 
 
 window.Vue = require('vue');
-
 
 const EventBus = new Vue();	
 export default EventBus;
 
 
+Vue.use(VueToast);
 Vue.component('v-select', VueSelect);
 Vue.component('number-format', Numberformat.default);
 

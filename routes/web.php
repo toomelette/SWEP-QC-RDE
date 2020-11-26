@@ -1,6 +1,7 @@
 <?php
 
 
+
 /** Auth **/
 Route::group(['as' => 'auth.'], function () {
 	Route::get('/', 'Auth\LoginController@showLoginForm')->name('showLogin');
@@ -10,7 +11,6 @@ Route::group(['as' => 'auth.'], function () {
 	// Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 	// Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
-
 
 
 
@@ -52,9 +52,6 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	
 	
 });
-
-
-
 
 
 

@@ -1759,7 +1759,6 @@ __webpack_require__.r(__webpack_exports__);
           auth_usr.access_token = response.data.token;
           window.localStorage.setItem('auth_usr', JSON.stringify(auth_usr));
           location.replace(window.location.origin + '/dashboard/home');
-          console.log(response.data.token);
         }
       })["catch"](function (error) {
         _this.error = error.response.data.errors;

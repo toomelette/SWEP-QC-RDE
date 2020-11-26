@@ -1,13 +1,11 @@
 <?php
 
 // Submenu
-Route::get('/submenu/select_submenu_byMenuId/{menu_id}',
-		   'Api\ApiSubmenuController@selectSubmenuByMenuId')->name('selectSubmenuByMenuId');
-
-		   
+Route::get('/submenu/select_submenu_byMenuId/{menu_id}','Api\ApiSubmenuController@selectSubmenuByMenuId')->name('selectSubmenuByMenuId');
 
 
-		   
+
+
 /** API **/
 Route::group(['middleware' => 'jwt.auth'], function () {
 

@@ -4,7 +4,6 @@ namespace App\Core\BaseClasses;
 
 
 use App;
-use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Core\Helpers\__dataType;

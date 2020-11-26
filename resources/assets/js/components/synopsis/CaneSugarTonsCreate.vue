@@ -20,7 +20,7 @@
             </div>
 
 
-            <form @submit.prevent="store">
+            <form @submit.prevent="store" id="create_form">
                 <div class="modal-body">
                     <div class="row">
                         <input type="hidden" name="_token" :value="csrf">
@@ -65,7 +65,7 @@
 
                         <div class="form-group col-md-12" v-bind:class="error.equivalent ? 'has-error' : ''">
                             <label for="equivalent">Equivalend</label>
-                            <number-format decimals="2" v-model="equivalent" class="form-control" placeholder="Equivalend"/>  
+                            <number-format decimals="2" v-model="equivalent" class="form-control" placeholder="Equivalent"/>  
                             <p v-if="error.equivalent" class="help-block">{{ error.equivalent.toString() }}</p>
                         </div>
                         
@@ -93,6 +93,7 @@
 <script>
 
     import "vue-select/dist/vue-select.css";
+    import 'vue-toast-notification/dist/theme-sugar.css';
     import EventBus from '../../CaneSugarTonsMain';
     import Utils from '../utils';
 
@@ -114,8 +115,8 @@
 
                 // fields
                 _token: "",
-                mill_id: "",
-                crop_year_id: "",
+                mill_id:{},
+                crop_year_id: {},
                 sgrcane_gross_tonnes: "",
                 sgrcane_net_tonnes: "",
                 rawsgr_tonnes_due_cane: "",
@@ -163,23 +164,37 @@
             store(){ 
 
                 axios.post('cane_sugar_tons/store', {
-                    mill_id: this.mill_id.code,
-                    crop_year_id: this.crop_year_id.code, 
+
+                    mill_id: this.mill_id?.code,
+                    crop_year_id: this.crop_year_id?.code, 
                     sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
                     sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
                     rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
                     rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured, 
                     equivalent: this.equivalent, 
+
                 })
                 .then((response) => {
+
                     if(response.status == 200){
-                        console.log(this.equivalent);   
+
+                        this.$toast.success('Data Successfully Saved!', {
+                            position: 'top-right',
+                            duration: 5000,
+                            dismissible: true,
+                        });
+
+                        EventBus.$emit('UPDATE_LIST', {'key': response.data.key});
+
                     }
+
                 })
                 .catch((error) => {
-                    if (error.response.status == 422){
+
+                    if (error.response?.status == 422){
                         this.error = error.response.data.errors;
                     }
+                    
                 });
 
             },
