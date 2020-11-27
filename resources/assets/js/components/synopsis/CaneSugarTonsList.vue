@@ -40,12 +40,17 @@
                     <tr>
                         <th>Mill</th>
                         <th>CropYear</th>
+                        <th>Action</th>
                     </tr>    
                 </thead>    
                 <tbody v-if="sn_cane_sugar_tons.length > 0">
                     <tr v-for="data in sn_cane_sugar_tons" v-bind:style="data.slug == created_key ? active_tr_style : {}">
-                        <td>{{ data.mill.name }}</td>
-                        <td>{{ data.crop_year.name }}</td>
+                        <td id="mid-vert">{{ data.mill.name }}</td>
+                        <td id="mid-vert">{{ data.crop_year.name }}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm bg-navy" @click="emitUpdateModal(data.slug)"><i class="fa fa-pencil"></i></button>
+                            <button type="button" class="btn btn-sm bg-red" @click="emitDeleteModal(data.slug)"><i class="fa fa-trash"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>  
@@ -59,7 +64,7 @@
           <center><h4>No Records found!</h4></center>
         </div>
         
-        <div v-if="is_invalid_fetch == true" style="padding :5px;">
+        <div v-if="is_loading == false && sn_cane_sugar_tons.length == 0 && is_invalid_fetch == true" style="padding :5px;">
           <center><h4>Server Error!</h4></center>
         </div>
 
@@ -161,6 +166,7 @@
         methods: {
 
             fetch(page_no){ 
+
                axios.get('cane_sugar_tons', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
                         if(response.status == 200){
@@ -174,10 +180,19 @@
                     .catch((error) => {
                         this.is_invalid_fetch = true;
                     }); 
+                    
             },
 
             emitCreateModal(){ 
-                EventBus.$emit('OPEN_CANE_SUGAR_TONS_MODAL', {});
+                EventBus.$emit('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', {});
+            },
+
+            emitUpdateModal(update_key){ 
+                EventBus.$emit('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', {'update_key': update_key});
+            },
+
+            emitDeleteModal(delete_key){  
+                EventBus.$emit('OPEN_CANE_SUGAR_TONS_DELETE_MODAL', {'delete_key': delete_key});
             },
 
         },

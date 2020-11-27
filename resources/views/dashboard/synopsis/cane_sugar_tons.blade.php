@@ -10,7 +10,8 @@
 
 	    <div id="app">
 	    	<synopsis-cane-sugar-tons-list></synopsis-cane-sugar-tons-list>
-	    	<synopsis-cane-sugar-tons-create></synopsis-cane-sugar-tons-create>
+	    	<synopsis-cane-sugar-tons-create-modal></synopsis-cane-sugar-tons-create-modal>
+	    	<synopsis-cane-sugar-tons-update-modal></synopsis-cane-sugar-tons-update-modal>
 	    </div>
 
 	</section>

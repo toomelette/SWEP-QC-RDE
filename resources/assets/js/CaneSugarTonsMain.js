@@ -18,7 +18,8 @@ Vue.component('number-format', Numberformat.default);
 
 
 Vue.component('synopsis-cane-sugar-tons-list', require('./components/synopsis/CaneSugarTonsList.vue').default);
-Vue.component('synopsis-cane-sugar-tons-create', require('./components/synopsis/CaneSugarTonsCreate.vue').default);
+Vue.component('synopsis-cane-sugar-tons-create-modal', require('./components/synopsis/CaneSugarTonsCreateModal.vue').default);
+Vue.component('synopsis-cane-sugar-tons-update-modal', require('./components/synopsis/CaneSugarTonsUpdateModal.vue').default);
 
 
 const app = new Vue({

@@ -2,7 +2,7 @@
 
 <template>
 
-    <div class="modal fade" id="create_modal" data-backdrop="static">
+    <div class="modal fade" id="update_modal" data-backdrop="static">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
 
@@ -12,7 +12,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <h4 class="modal-title">
-                <i class="fa fa-file-o"></i> Create
+                <i class="fa fa-file-o"></i> Edit
                 <div class="pull-right">
                     <code>Fields with asterisks(*) are required</code>
                 </div> 
@@ -20,7 +20,7 @@
             </div>
 
 
-            <form @submit.prevent="store" id="create_form">
+            <form @submit.prevent="update" ref="update_form">
                 <div class="modal-body">
                     <div class="row">
                         <input type="hidden" name="_token" :value="csrf">
@@ -92,7 +92,7 @@
 
 <script>
 
-    import "vue-select/dist/vue-select.css";
+    import 'vue-select/dist/vue-select.css';
     import 'vue-toast-notification/dist/theme-sugar.css';
     import EventBus from '../../CaneSugarTonsMain';
     import Utils from '../utils';
@@ -115,7 +115,7 @@
 
                 // fields
                 _token: "",
-                mill_id:{},
+                mill_id: {},
                 crop_year_id: {},
                 sgrcane_gross_tonnes: "",
                 sgrcane_net_tonnes: "",
@@ -142,8 +142,13 @@
         methods: {
 
             showModal(){ 
-                EventBus.$on('OPEN_CANE_SUGAR_TONS_MODAL', (data) => {
-                    $("#create_modal").modal("show");
+                EventBus.$on('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', (data) => {
+                    $("#update_modal").modal("show");
+                    this.sgrcane_gross_tonnes = '6000.00';
+                    // this.sgrcane_net_tonnes = 1111.11;
+                    // this.rawsgr_tonnes_due_cane = 1111.11;
+                    // this.rawsgr_tonnes_manufactured = 1111.11;
+                    // this.equivalent = 1111.11;
                 });
             },
 
@@ -161,41 +166,46 @@
                     }); 
             },
 
-            store(){ 
+            update(){ 
 
-                axios.post('cane_sugar_tons/store', {
+                // axios.post('cane_sugar_tons/store', {
 
-                    mill_id: this.mill_id?.code,
-                    crop_year_id: this.crop_year_id?.code, 
-                    sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
-                    sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
-                    rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
-                    rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured, 
-                    equivalent: this.equivalent, 
+                //     mill_id: this.mill_id?.code,
+                //     crop_year_id: this.crop_year_id?.code, 
+                //     sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
+                //     sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
+                //     rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
+                //     rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured, 
+                //     equivalent: this.equivalent, 
 
-                })
-                .then((response) => {
+                // })
+                // .then((response) => {
 
-                    if(response.status == 200){
+                //     if(response.status == 200){
+                        
+                //         this.$refs.update_form.reset();
 
-                        this.$toast.success('Data Successfully Saved!', {
-                            position: 'top-right',
-                            duration: 5000,
-                            dismissible: true,
-                        });
+                //         this.mill_id = {};
+                //         this.crop_year_id = {};
 
-                        EventBus.$emit('UPDATE_LIST', {'key': response.data.key});
+                //         this.$toast.success('Data Successfully Saved!', {
+                //             position: 'top-right',
+                //             duration: 5000,
+                //             dismissible: true,
+                //         });
 
-                    }
+                //         EventBus.$emit('UPDATE_LIST', {'key': response.data.key});
 
-                })
-                .catch((error) => {
+                //     }
 
-                    if (error.response?.status == 422){
-                        this.error = error.response.data.errors;
-                    }
+                // })
+                // .catch((error) => {
+
+                //     if (error.response?.status == 422){
+                //         this.error = error.response.data.errors;
+                //     }
                     
-                });
+                // });
 
             },
 
