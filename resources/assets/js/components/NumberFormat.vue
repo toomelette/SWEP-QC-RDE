@@ -28,7 +28,11 @@
 	            get: function() {
 
 	                if (this.isInputActive) {
-							
+
+						if(isNaN(this.value)){
+							return '';
+						}
+
 						return this.value.toString();
 						
 	                } else {

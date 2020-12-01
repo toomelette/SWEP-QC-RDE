@@ -12,6 +12,7 @@
 	    	<synopsis-cane-sugar-tons-list></synopsis-cane-sugar-tons-list>
 	    	<synopsis-cane-sugar-tons-create-modal></synopsis-cane-sugar-tons-create-modal>
 	    	<synopsis-cane-sugar-tons-update-modal></synopsis-cane-sugar-tons-update-modal>
+	    	<synopsis-cane-sugar-tons-delete-modal></synopsis-cane-sugar-tons-delete-modal>
 	    </div>
 
 	</section>

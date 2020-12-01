@@ -1708,6 +1708,10 @@ Vue.component('number-format', {
     displayValue: {
       get: function get() {
         if (this.isInputActive) {
+          if (isNaN(this.value)) {
+            return '';
+          }
+
           return this.value.toString();
         } else {
           var input_value = parseFloat(this.value.toString().replace(/^[A-Za-z]+$/, ""));
@@ -1854,8 +1858,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -1866,10 +1868,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       mills: [],
       crop_years: [],
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       error: [],
       // fields
-      _token: "",
       mill_id: {},
       crop_year_id: {},
       sgrcane_gross_tonnes: "",
@@ -1880,34 +1880,36 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.showModal();
+    var _this = this;
+
+    _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', function (data) {
+      _this.showModal();
+    });
     this.getAllMills();
     this.getAllCropYears();
   },
   methods: {
     showModal: function showModal() {
-      _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', function (data) {
-        $("#create_modal").modal("show");
-      });
+      $("#create_modal").modal("show");
     },
     getAllMills: function getAllMills() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('mill/get_all').then(function (response) {
-        _this.mills = _this.utilVSelectOptions(response.data, 'mill_id', 'name');
+        _this2.mills = _this2.utilVSelectOptions(response.data, 'mill_id', 'name');
       });
     },
     getAllCropYears: function getAllCropYears() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('crop_year/get_all').then(function (response) {
-        _this2.crop_years = _this2.utilVSelectOptions(response.data, 'crop_year_id', 'name');
+        _this3.crop_years = _this3.utilVSelectOptions(response.data, 'crop_year_id', 'name');
       });
     },
     store: function store() {
       var _this$mill_id,
           _this$crop_year_id,
-          _this3 = this;
+          _this4 = this;
 
       axios.post('cane_sugar_tons/store', {
         mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code,
@@ -1919,16 +1921,16 @@ __webpack_require__.r(__webpack_exports__);
         equivalent: this.equivalent
       }).then(function (response) {
         if (response.status == 200) {
-          _this3.error = [];
-          _this3.mill_id = {};
-          _this3.crop_year_id = {};
-          _this3.sgrcane_gross_tonnes = '';
-          _this3.sgrcane_net_tonnes = '';
-          _this3.rawsgr_tonnes_due_cane = '';
-          _this3.rawsgr_tonnes_manufactured = '';
-          _this3.equivalent = '';
+          _this4.error = [];
+          _this4.mill_id = {};
+          _this4.crop_year_id = {};
+          _this4.sgrcane_gross_tonnes = '';
+          _this4.sgrcane_net_tonnes = '';
+          _this4.rawsgr_tonnes_due_cane = '';
+          _this4.rawsgr_tonnes_manufactured = '';
+          _this4.equivalent = '';
 
-          _this3.$toast.success('Data Successfully Saved!', {
+          _this4.$toast.success('Data Successfully Saved!', {
             position: 'top-right',
             duration: 5000,
             dismissible: true
@@ -1937,12 +1939,130 @@ __webpack_require__.r(__webpack_exports__);
           _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('UPDATE_LIST', {
             'key': response.data.key
           });
+        } else {
+          _this4.$toast.success('Unable to send data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
         }
       })["catch"](function (error) {
         var _error$response;
 
         if (((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.status) == 422) {
-          _this3.error = error.response.data.errors;
+          _this4.error = error.response.data.errors;
+        } else {
+          _this4.$toast.success('Unable to send data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+        }
+      });
+    },
+    closeModal: function closeModal() {
+      this.error = [];
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../CaneSugarTonsMain */ "./resources/assets/js/CaneSugarTonsMain.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      delete_key: ""
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('OPEN_CANE_SUGAR_TONS_DELETE_MODAL', function (data) {
+      _this.showModal(data);
+    });
+  },
+  methods: {
+    showModal: function showModal(data) {
+      var _this2 = this;
+
+      $("#delete_modal").modal("show");
+      axios.get('cane_sugar_tons/' + data.delete_key).then(function (response) {
+        if (response.status == 200) {
+          _this2.delete_key = response.data.data.slug;
+        }
+      });
+    },
+    destroy: function destroy() {
+      var _this3 = this;
+
+      axios["delete"]('cane_sugar_tons/' + this.delete_key).then(function (response) {
+        if (response.status == 200) {
+          $('#delete_modal').modal('toggle');
+
+          _this3.$toast.success('Data Successfully Deleted!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+
+          _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('UPDATE_LIST', {});
+        } else {
+          _this3.$toast.success('Unable to delete data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
         }
       });
     }
@@ -2263,10 +2383,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       mills: [],
       crop_years: [],
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       error: [],
       // fields
-      _token: "",
+      update_key: "",
       mill_id: {},
       crop_year_id: {},
       sgrcane_gross_tonnes: "",
@@ -2277,63 +2396,102 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.showModal();
+    var _this = this;
+
+    _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', function (data) {
+      _this.showModal(data);
+    });
     this.getAllMills();
     this.getAllCropYears();
   },
   methods: {
-    showModal: function showModal() {
-      var _this = this;
+    showModal: function showModal(data) {
+      var _this2 = this;
 
-      _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', function (data) {
-        $("#update_modal").modal("show");
-        _this.sgrcane_gross_tonnes = '6000.00'; // this.sgrcane_net_tonnes = 1111.11;
-        // this.rawsgr_tonnes_due_cane = 1111.11;
-        // this.rawsgr_tonnes_manufactured = 1111.11;
-        // this.equivalent = 1111.11;
+      $("#update_modal").modal("show");
+      axios.get('cane_sugar_tons/' + data.update_key).then(function (response) {
+        if (response.status == 200) {
+          var cane_sugar_tons = response.data.data;
+          _this2.update_key = cane_sugar_tons.slug;
+          _this2.mill_id = {
+            code: cane_sugar_tons.mill.mill_id,
+            label: cane_sugar_tons.mill.name
+          };
+          _this2.crop_year_id = {
+            code: cane_sugar_tons.crop_year.crop_year_id,
+            label: cane_sugar_tons.crop_year.name
+          };
+          _this2.sgrcane_gross_tonnes = _this2.utilCheckFloat(cane_sugar_tons.sgrcane_gross_tonnes);
+          _this2.sgrcane_net_tonnes = _this2.utilCheckFloat(cane_sugar_tons.sgrcane_net_tonnes);
+          _this2.rawsgr_tonnes_due_cane = _this2.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_due_cane);
+          _this2.rawsgr_tonnes_manufactured = _this2.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_manufactured);
+          _this2.equivalent = _this2.utilCheckFloat(cane_sugar_tons.equivalent);
+        }
       });
     },
     getAllMills: function getAllMills() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('mill/get_all').then(function (response) {
-        _this2.mills = _this2.utilVSelectOptions(response.data, 'mill_id', 'name');
+        _this3.mills = _this3.utilVSelectOptions(response.data, 'mill_id', 'name');
       });
     },
     getAllCropYears: function getAllCropYears() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('crop_year/get_all').then(function (response) {
-        _this3.crop_years = _this3.utilVSelectOptions(response.data, 'crop_year_id', 'name');
+        _this4.crop_years = _this4.utilVSelectOptions(response.data, 'crop_year_id', 'name');
       });
     },
-    update: function update() {// axios.post('cane_sugar_tons/store', {
-      //     mill_id: this.mill_id?.code,
-      //     crop_year_id: this.crop_year_id?.code, 
-      //     sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
-      //     sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
-      //     rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
-      //     rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured, 
-      //     equivalent: this.equivalent, 
-      // })
-      // .then((response) => {
-      //     if(response.status == 200){
-      //         this.$refs.update_form.reset();
-      //         this.mill_id = {};
-      //         this.crop_year_id = {};
-      //         this.$toast.success('Data Successfully Saved!', {
-      //             position: 'top-right',
-      //             duration: 5000,
-      //             dismissible: true,
-      //         });
-      //         EventBus.$emit('UPDATE_LIST', {'key': response.data.key});
-      //     }
-      // })
-      // .catch((error) => {
-      //     if (error.response?.status == 422){
-      //         this.error = error.response.data.errors;
-      //     }
-      // });
+    update: function update() {
+      var _this$mill_id,
+          _this$crop_year_id,
+          _this5 = this;
+
+      axios.post('cane_sugar_tons/' + this.update_key, {
+        mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code.toString(),
+        crop_year_id: (_this$crop_year_id = this.crop_year_id) === null || _this$crop_year_id === void 0 ? void 0 : _this$crop_year_id.code.toString(),
+        sgrcane_gross_tonnes: this.utilCheckFloat(this.sgrcane_gross_tonnes),
+        sgrcane_net_tonnes: this.utilCheckFloat(this.sgrcane_net_tonnes),
+        rawsgr_tonnes_due_cane: this.utilCheckFloat(this.rawsgr_tonnes_due_cane),
+        rawsgr_tonnes_manufactured: this.utilCheckFloat(this.rawsgr_tonnes_manufactured),
+        equivalent: this.utilCheckFloat(this.equivalent)
+      }).then(function (response) {
+        if (response.status == 200) {
+          $('#update_modal').modal('toggle');
+
+          _this5.$toast.success('Data Successfully Updated!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+
+          _CaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('UPDATE_LIST', {
+            'key': response.data.key
+          });
+        } else {
+          _this5.$toast.success('Unable to send data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+        }
+      })["catch"](function (error) {
+        var _error$response;
+
+        if (((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.status) == 422) {
+          _this5.error = error.response.data.errors;
+        } else {
+          _this5.$toast.success('Unable to send data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+        }
+      });
+    },
+    closeModal: function closeModal() {
+      this.error = [];
     }
   }
 });
@@ -38669,11 +38827,6 @@ var render = function() {
             [
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.csrf }
-                  }),
-                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -38928,7 +39081,27 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeModal()
+                      }
+                    }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-success", attrs: { type: "submit" } },
+                  [_vm._v("Save")]
+                )
+              ])
             ]
           )
         ])
@@ -38942,15 +39115,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          staticStyle: { padding: "5px" },
-          attrs: { "data-dismiss": "modal" }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      ),
+      _c("button", {
+        staticClass: "close",
+        staticStyle: { padding: "5px" },
+        attrs: { "data-dismiss": "modal" }
+      }),
       _vm._v(" "),
       _c("h4", { staticClass: "modal-title" }, [
         _c("i", { staticClass: "fa fa-file-o" }),
@@ -38960,23 +39129,122 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: { id: "delete_modal", "data-backdrop": "static" }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog modal-md" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.destroy()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.delete_key,
+                      expression: "delete_key"
+                    }
+                  ],
+                  attrs: { type: "hidden" },
+                  domProps: { value: _vm.delete_key },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.delete_key = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("p", { staticStyle: { "font-size": "17px" } }, [
+                  _vm._v("Are you sure, you want to delete this record?")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeModal()
+                      }
+                    }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+                  [_vm._v("Delete")]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-        [_vm._v("Close")]
-      ),
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("button", {
+        staticClass: "close",
+        staticStyle: { padding: "5px" },
+        attrs: { "data-dismiss": "modal" }
+      }),
       _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Save")]
-      )
+      _c("h4", { staticClass: "modal-title" }, [
+        _c("i", { staticClass: "fa fa-exclamation-circle" }),
+        _vm._v(" Delete\n          ")
+      ])
     ])
   }
 ]
@@ -39321,7 +39589,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.update($event)
+                  return _vm.update()
                 }
               }
             },
@@ -39329,8 +39597,24 @@ var render = function() {
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.csrf }
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.update_key,
+                        expression: "update_key"
+                      }
+                    ],
+                    attrs: { type: "hidden" },
+                    domProps: { value: _vm.update_key },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.update_key = $event.target.value
+                      }
+                    }
                   }),
                   _vm._v(" "),
                   _c(
@@ -39587,7 +39871,27 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeModal()
+                      }
+                    }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-success", attrs: { type: "submit" } },
+                  [_vm._v("Save")]
+                )
+              ])
             ]
           )
         ])
@@ -39601,15 +39905,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          staticStyle: { padding: "5px" },
-          attrs: { "data-dismiss": "modal" }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      ),
+      _c("button", {
+        staticClass: "close",
+        staticStyle: { padding: "5px" },
+        attrs: { "data-dismiss": "modal" }
+      }),
       _vm._v(" "),
       _c("h4", { staticClass: "modal-title" }, [
         _c("i", { staticClass: "fa fa-file-o" }),
@@ -39618,24 +39918,6 @@ var staticRenderFns = [
           _c("code", [_vm._v("Fields with asterisks(*) are required")])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Save")]
-      )
     ])
   }
 ]
@@ -51918,6 +52200,7 @@ Vue.component('number-format', _components_Numberformat__WEBPACK_IMPORTED_MODULE
 Vue.component('synopsis-cane-sugar-tons-list', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsList.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue")["default"]);
 Vue.component('synopsis-cane-sugar-tons-create-modal', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsCreateModal.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue")["default"]);
 Vue.component('synopsis-cane-sugar-tons-update-modal', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsUpdateModal.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue")["default"]);
+Vue.component('synopsis-cane-sugar-tons-delete-modal', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsDeleteModal.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -52111,6 +52394,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& */ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&");
+/* harmony import */ var _CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& ***!
+  \*************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue":
 /*!***********************************************************************!*\
   !*** ./resources/assets/js/components/synopsis/CaneSugarTonsList.vue ***!
@@ -52273,6 +52625,13 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return array;
+    },
+    utilCheckFloat: function utilCheckFloat(_float) {
+      if (!isNaN(_float)) {
+        return parseFloat(_float);
+      } else {
+        return '';
+      }
     }
   }
 });

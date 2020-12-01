@@ -20,6 +20,17 @@ export default {
     },
 
 
+    utilCheckFloat(float) {
+		
+		if(!isNaN(float)){
+			return parseFloat(float);
+		}else{
+			return '';
+		}
+
+    },
+
+
 
   }
 

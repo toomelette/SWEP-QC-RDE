@@ -9,7 +9,6 @@
 
             <div class="modal-header">
               <button class="close" data-dismiss="modal" style="padding:5px;">
-                <span aria-hidden="true">&times;</span>
               </button>
               <h4 class="modal-title">
                 <i class="fa fa-file-o"></i> Edit
@@ -20,10 +19,11 @@
             </div>
 
 
-            <form @submit.prevent="update" ref="update_form">
+            <form @submit.prevent="update()" ref="update_form">
                 <div class="modal-body">
                     <div class="row">
-                        <input type="hidden" name="_token" :value="csrf">
+
+                        <input type="hidden" v-model="update_key">
 
                         <!-- mills -->
                         <div class="form-group col-md-6" v-bind:class="error.mill_id ? 'has-error' : ''">
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-default" data-dismiss="modal" @click="closeModal()">Close</button>
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>     
             </form>
@@ -110,11 +110,10 @@
 
                 mills : [],
                 crop_years : [],
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 error:[],
 
                 // fields
-                _token: "",
+                update_key:"",
                 mill_id: {},
                 crop_year_id: {},
                 sgrcane_gross_tonnes: "",
@@ -130,8 +129,11 @@
 
 
         created() {
+            
+            EventBus.$on('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', (data) => {
+                this.showModal(data);
+            });
 
-            this.showModal();
             this.getAllMills();
             this.getAllCropYears();
 
@@ -141,15 +143,25 @@
 
         methods: {
 
-            showModal(){ 
-                EventBus.$on('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', (data) => {
-                    $("#update_modal").modal("show");
-                    this.sgrcane_gross_tonnes = '6000.00';
-                    // this.sgrcane_net_tonnes = 1111.11;
-                    // this.rawsgr_tonnes_due_cane = 1111.11;
-                    // this.rawsgr_tonnes_manufactured = 1111.11;
-                    // this.equivalent = 1111.11;
-                });
+            showModal(data){ 
+
+                $("#update_modal").modal("show");
+
+                axios.get('cane_sugar_tons/' + data.update_key)
+                    .then((response) => { 
+                        if(response.status == 200){
+                            let cane_sugar_tons = response.data.data;
+                            this.update_key = cane_sugar_tons.slug;
+                            this.mill_id = { code:cane_sugar_tons.mill.mill_id, label:cane_sugar_tons.mill.name };
+                            this.crop_year_id =  { code:cane_sugar_tons.crop_year.crop_year_id, label:cane_sugar_tons.crop_year.name };
+                            this.sgrcane_gross_tonnes =  this.utilCheckFloat(cane_sugar_tons.sgrcane_gross_tonnes);
+                            this.sgrcane_net_tonnes =  this.utilCheckFloat(cane_sugar_tons.sgrcane_net_tonnes);
+                            this.rawsgr_tonnes_due_cane =  this.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_due_cane);
+                            this.rawsgr_tonnes_manufactured =  this.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_manufactured); 
+                            this.equivalent =  this.utilCheckFloat(cane_sugar_tons.equivalent);
+                        }
+                    }); 
+
             },
 
             getAllMills(){ 
@@ -168,46 +180,57 @@
 
             update(){ 
 
-                // axios.post('cane_sugar_tons/store', {
+                axios.post('cane_sugar_tons/' + this.update_key, {
 
-                //     mill_id: this.mill_id?.code,
-                //     crop_year_id: this.crop_year_id?.code, 
-                //     sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
-                //     sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
-                //     rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
-                //     rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured, 
-                //     equivalent: this.equivalent, 
+                    mill_id: this.mill_id?.code.toString(),
+                    crop_year_id: this.crop_year_id?.code.toString(), 
+                    sgrcane_gross_tonnes: this.utilCheckFloat(this.sgrcane_gross_tonnes), 
+                    sgrcane_net_tonnes: this.utilCheckFloat(this.sgrcane_net_tonnes), 
+                    rawsgr_tonnes_due_cane: this.utilCheckFloat(this.rawsgr_tonnes_due_cane), 
+                    rawsgr_tonnes_manufactured: this.utilCheckFloat(this.rawsgr_tonnes_manufactured), 
+                    equivalent: this.utilCheckFloat(this.equivalent), 
 
-                // })
-                // .then((response) => {
+                })
+                .then((response) => {
 
-                //     if(response.status == 200){
+                    if(response.status == 200){
+
+                        $('#update_modal').modal('toggle');
+
+                        this.$toast.success('Data Successfully Updated!', {
+                            position: 'top-right',
+                            duration: 5000,
+                            dismissible: true,
+                        });
+
+                        EventBus.$emit('UPDATE_LIST', {'key': response.data.key});
                         
-                //         this.$refs.update_form.reset();
+                    }else{
+                        
+                        this.$toast.error('Unable to send data!', {
+                            position: 'top-right',
+                            duration: 5000,
+                            dismissible: true,
+                        });
 
-                //         this.mill_id = {};
-                //         this.crop_year_id = {};
+                    }
 
-                //         this.$toast.success('Data Successfully Saved!', {
-                //             position: 'top-right',
-                //             duration: 5000,
-                //             dismissible: true,
-                //         });
+                })
+                .catch((error) => {
 
-                //         EventBus.$emit('UPDATE_LIST', {'key': response.data.key});
-
-                //     }
-
-                // })
-                // .catch((error) => {
-
-                //     if (error.response?.status == 422){
-                //         this.error = error.response.data.errors;
-                //     }
+                    if (error.response?.status == 422){
+                        this.error = error.response.data.errors;
+                    }
                     
-                // });
+                });
 
             },
+
+            closeModal(){ 
+                this.error = [];
+            },
+
+
 
         },
 

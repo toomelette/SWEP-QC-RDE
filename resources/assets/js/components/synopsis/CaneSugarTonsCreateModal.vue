@@ -9,7 +9,6 @@
 
             <div class="modal-header">
               <button class="close" data-dismiss="modal" style="padding:5px;">
-                <span aria-hidden="true">&times;</span>
               </button>
               <h4 class="modal-title">
                 <i class="fa fa-file-o"></i> Create
@@ -23,7 +22,6 @@
             <form @submit.prevent="store" ref="create_form">
                 <div class="modal-body">
                     <div class="row">
-                        <input type="hidden" name="_token" :value="csrf">
 
                         <!-- mills -->
                         <div class="form-group col-md-6" v-bind:class="error.mill_id ? 'has-error' : ''">
@@ -75,7 +73,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-default" data-dismiss="modal" @click="closeModal()">Close</button>
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>     
             </form>
@@ -110,11 +108,9 @@
 
                 mills : [],
                 crop_years : [],
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 error:[],
 
                 // fields
-                _token: "",
                 mill_id: {},
                 crop_year_id: {},
                 sgrcane_gross_tonnes: "",
@@ -131,7 +127,11 @@
 
         created() {
 
-            this.showModal();
+            EventBus.$on('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', (data) => {
+                this.showModal();
+                
+            });
+
             this.getAllMills();
             this.getAllCropYears();
 
@@ -142,9 +142,7 @@
         methods: {
 
             showModal(){ 
-                EventBus.$on('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', (data) => {
-                    $("#create_modal").modal("show");
-                });
+                $("#create_modal").modal("show");
             },
 
             getAllMills(){ 
@@ -195,6 +193,14 @@
 
                         EventBus.$emit('UPDATE_LIST', {'key': response.data.key});
 
+                    }else{
+                        
+                        this.$toast.error('Unable to send data!', {
+                            position: 'top-right',
+                            duration: 5000,
+                            dismissible: true,
+                        });
+
                     }
 
                 })
@@ -207,6 +213,12 @@
                 });
 
             },
+
+            closeModal(){ 
+                this.error = [];
+            },
+
+
 
         },
 
