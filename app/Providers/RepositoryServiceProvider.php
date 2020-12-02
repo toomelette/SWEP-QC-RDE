@@ -32,6 +32,8 @@ class RepositoryServiceProvider extends ServiceProvider {
 		$this->app->bind('App\Core\Interfaces\MillInterface', 'App\Core\Repositories\MillRepository');
 
 		$this->app->bind('App\Core\Interfaces\SynCaneSugarTonInterface', 'App\Core\Repositories\SynCaneSugarTonRepository');
+
+		$this->app->bind('App\Core\Interfaces\SynRatiosOnGrossCaneInterface', 'App\Core\Repositories\SynRatiosOnGrossCaneRepository');
 		
 		
 	}

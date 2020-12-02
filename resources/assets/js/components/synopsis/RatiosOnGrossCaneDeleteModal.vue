@@ -38,7 +38,7 @@
 <script>
 
     import 'vue-toast-notification/dist/theme-sugar.css';
-    import EventBus from '../../SynCaneSugarTonsMain';
+    import EventBus from '../../SynRatiosOnGrossCaneMain';
 
 
     export default { 
@@ -58,7 +58,7 @@
 
         created() {
             
-            EventBus.$on('OPEN_CANE_SUGAR_TONS_DELETE_MODAL', (data) => {
+            EventBus.$on('OPEN_RATIOS_ON_GROSS_CANE_DELETE_MODAL', (data) => {
                 this.showModal(data);
             });
 
@@ -72,7 +72,7 @@
 
                 $("#delete_modal").modal("show");
 
-                axios.get('cane_sugar_tons/' + data.delete_key)
+                axios.get('ratios_on_gross_cane/' + data.delete_key)
                     .then((response) => { 
                         if(response.status == 200){
                             this.delete_key = response.data.data.slug;
@@ -83,7 +83,7 @@
 
             destroy(){ 
 
-                axios.delete('cane_sugar_tons/' + this.delete_key)
+                axios.delete('ratios_on_gross_cane/' + this.delete_key)
                     .then((response) => {
 
                         if(response.status == 200){
@@ -96,7 +96,7 @@
                                 dismissible: true,
                             });
                             
-                            EventBus.$emit('CANE_SUGAR_TONS_UPDATE_LIST', {});
+                            EventBus.$emit('RATIOS_ON_GROSS_CANE_UPDATE_LIST', {});
                             
                         }else{
                             

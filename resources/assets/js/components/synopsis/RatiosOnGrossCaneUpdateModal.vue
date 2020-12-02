@@ -39,34 +39,28 @@
                             <p v-if="error.mill_id" class="help-block">{{ error.mill_id.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.sgrcane_gross_tonnes ? 'has-error' : ''">
-                            <label for="sgrcane_gross_tonnes">Sugar Cane Gross Tonnes</label>
-                            <number-format decimals="2" v-model="sgrcane_gross_tonnes" class="form-control" placeholder="Sugar Cane Gross Tonnes"/>
-                            <p v-if="error.sgrcane_gross_tonnes" class="help-block">{{ error.sgrcane_gross_tonnes.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.burnt_cane_percent ? 'has-error' : ''">
+                            <label for="burnt_cane_percent">Burnt Cane Percent Gross Cane</label>
+                            <number-format decimals="2" v-model="burnt_cane_percent" class="form-control" placeholder="Burnt Cane Percent Gross Cane"/>
+                            <p v-if="error.burnt_cane_percent" class="help-block">{{ error.burnt_cane_percent.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.sgrcane_net_tonnes ? 'has-error' : ''">
-                            <label for="sgrcane_net_tonnes">Sugar Cane Net Tonnes</label>
-                            <number-format decimals="2" v-model="sgrcane_net_tonnes" class="form-control" placeholder="Sugar Cane Net Tonnes"/>
-                            <p v-if="error.sgrcane_net_tonnes" class="help-block">{{ error.sgrcane_net_tonnes.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.quality_ratio ? 'has-error' : ''">
+                            <label for="quality_ratio">Quality Ratio (TC/TS)</label>
+                            <number-format decimals="2" v-model="quality_ratio" class="form-control" placeholder="Quality Ratio (TC/TS)"/>
+                            <p v-if="error.quality_ratio" class="help-block">{{ error.quality_ratio.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.rawsgr_tonnes_due_cane ? 'has-error' : ''">
-                            <label for="rawsgr_tonnes_due_cane">Raw Sugar Tonnes Due Cane</label>
-                            <number-format decimals="2" v-model="rawsgr_tonnes_due_cane" class="form-control" placeholder="Raw Sugar Tonnes Due Cane"/>  
-                            <p v-if="error.rawsgr_tonnes_due_cane" class="help-block">{{ error.rawsgr_tonnes_due_cane.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.rendement ? 'has-error' : ''">
+                            <label for="rendement">Rendement (Lkg/TC)</label>
+                            <number-format decimals="2" v-model="rendement" class="form-control" placeholder="Rendement (Lkg/TC)"/>  
+                            <p v-if="error.rendement" class="help-block">{{ error.rendement.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.rawsgr_tonnes_manufactured ? 'has-error' : ''">
-                            <label for="rawsgr_tonnes_manufactured">Raw Sugar Tonnes Manufactured</label>
-                            <number-format decimals="2" v-model="rawsgr_tonnes_manufactured" class="form-control" placeholder="Raw Sugar Tonnes Manufactured"/>
-                            <p v-if="error.rawsgr_tonnes_manufactured" class="help-block">{{ error.rawsgr_tonnes_manufactured.toString() }}</p>
-                        </div>
-
-                        <div class="form-group col-md-12" v-bind:class="error.equivalent ? 'has-error' : ''">
-                            <label for="equivalent">Equivalend</label>
-                            <number-format decimals="2" v-model="equivalent" class="form-control" placeholder="Equivalent"/>  
-                            <p v-if="error.equivalent" class="help-block">{{ error.equivalent.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.total_sugar_recovered ? 'has-error' : ''">
+                            <label for="total_sugar_recovered">Total Sugar Recovered (% Cane)</label>
+                            <number-format decimals="2" v-model="total_sugar_recovered" class="form-control" placeholder="Total Sugar Recovered (% Cane)"/>
+                            <p v-if="error.total_sugar_recovered" class="help-block">{{ error.total_sugar_recovered.toString() }}</p>
                         </div>
                         
                     </div>
@@ -94,7 +88,7 @@
 
     import 'vue-select/dist/vue-select.css';
     import 'vue-toast-notification/dist/theme-sugar.css';
-    import EventBus from '../../SynCaneSugarTonsMain';
+    import EventBus from '../../SynRatiosOnGrossCaneMain';
     import Utils from '../utils';
 
 
@@ -116,11 +110,10 @@
                 update_key:"",
                 crop_year_id: {},
                 mill_id: {},
-                sgrcane_gross_tonnes: "",
-                sgrcane_net_tonnes: "",
-                rawsgr_tonnes_due_cane: "",
-                rawsgr_tonnes_manufactured: "", 
-                equivalent: "",
+                burnt_cane_percent: "",
+                quality_ratio: "",
+                rendement: "",
+                total_sugar_recovered: "",
 
             }
 
@@ -130,7 +123,7 @@
 
         created() {
             
-            EventBus.$on('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', (data) => {
+            EventBus.$on('OPEN_RATIOS_ON_GROSS_CANE_UPDATE_MODAL', (data) => {
                 this.showModal(data);
             });
 
@@ -147,18 +140,17 @@
 
                 $("#update_modal").modal("show");
 
-                axios.get('cane_sugar_tons/' + data.update_key)
+                axios.get('ratios_on_gross_cane/' + data.update_key)
                     .then((response) => { 
                         if(response.status == 200){
                             let cane_sugar_tons = response.data.data;
                             this.update_key = cane_sugar_tons.slug;
                             this.crop_year_id =  { code:cane_sugar_tons.crop_year.crop_year_id, label:cane_sugar_tons.crop_year.name };
                             this.mill_id = { code:cane_sugar_tons.mill.mill_id, label:cane_sugar_tons.mill.name };
-                            this.sgrcane_gross_tonnes =  this.utilCheckFloat(cane_sugar_tons.sgrcane_gross_tonnes);
-                            this.sgrcane_net_tonnes =  this.utilCheckFloat(cane_sugar_tons.sgrcane_net_tonnes);
-                            this.rawsgr_tonnes_due_cane =  this.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_due_cane);
-                            this.rawsgr_tonnes_manufactured =  this.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_manufactured); 
-                            this.equivalent =  this.utilCheckFloat(cane_sugar_tons.equivalent);
+                            this.burnt_cane_percent =  this.utilCheckFloat(cane_sugar_tons.burnt_cane_percent);
+                            this.quality_ratio =  this.utilCheckFloat(cane_sugar_tons.quality_ratio);
+                            this.rendement =  this.utilCheckFloat(cane_sugar_tons.rendement);
+                            this.total_sugar_recovered =  this.utilCheckFloat(cane_sugar_tons.total_sugar_recovered); 
                         }
                     }); 
 
@@ -180,14 +172,13 @@
 
             update(){ 
 
-                axios.post('cane_sugar_tons/' + this.update_key, {
+                axios.post('ratios_on_gross_cane/' + this.update_key, {
                     crop_year_id: this.crop_year_id?.code.toString(), 
                     mill_id: this.mill_id?.code.toString(),
-                    sgrcane_gross_tonnes: this.utilCheckFloat(this.sgrcane_gross_tonnes), 
-                    sgrcane_net_tonnes: this.utilCheckFloat(this.sgrcane_net_tonnes), 
-                    rawsgr_tonnes_due_cane: this.utilCheckFloat(this.rawsgr_tonnes_due_cane), 
-                    rawsgr_tonnes_manufactured: this.utilCheckFloat(this.rawsgr_tonnes_manufactured), 
-                    equivalent: this.utilCheckFloat(this.equivalent), 
+                    burnt_cane_percent: this.utilCheckFloat(this.burnt_cane_percent), 
+                    quality_ratio: this.utilCheckFloat(this.quality_ratio), 
+                    rendement: this.utilCheckFloat(this.rendement), 
+                    total_sugar_recovered: this.utilCheckFloat(this.total_sugar_recovered), 
                 })
                 .then((response) => {
 
@@ -201,7 +192,7 @@
                             dismissible: true,
                         });
 
-                        EventBus.$emit('CANE_SUGAR_TONS_UPDATE_LIST', {'key': response.data.key});
+                        EventBus.$emit('RATIOS_ON_GROSS_CANE_UPDATE_LIST', {'key': response.data.key});
                         
                     }else{
                         

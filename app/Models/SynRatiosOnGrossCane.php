@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
 
-class SynCaneSugarTon extends Model{
+class SynRatiosOnGrossCane extends Model{
 
 
 
     use Sortable;
 
-    protected $table = 'syn_cane_sugar_tons';
+    protected $table = 'syn_ratios_on_gross_cane';
 
     protected $dates = ['created_at', 'updated_at'];
     
@@ -24,14 +24,13 @@ class SynCaneSugarTon extends Model{
     protected $attributes = [
 
         'slug' => '',
-        'cane_sugar_ton_id' => '',
+        'ratios_on_gross_cane_id' => '',
         'crop_year_id' => '',
         'mill_id' => '',
-        'sgrcane_gross_tonnes' => 0.00000,
-        'sgrcane_net_tonnes' => 0.00000,
-        'rawsgr_tonnes_due_cane' => 0.00000,
-        'rawsgr_tonnes_manufactured' => 0.00000,
-        'equivalent' => 0.00000,
+        'burnt_cane_percent' => 0.00000,
+        'quality_ratio' => 0.00000,
+        'rendement' => 0.00000,
+        'total_sugar_recovered' => 0.00000,
         'created_at' => null,
         'updated_at' => null,
         'ip_created' => '',

@@ -34,6 +34,7 @@ class EventServiceProvider extends ServiceProvider{
         'App\Core\Subscribers\MenuSubscriber',
         'App\Core\Subscribers\MillSubscriber',
         'App\Core\Subscribers\SynCaneSugarTonSubscriber',
+        'App\Core\Subscribers\SynRatiosOnGrossCaneSubscriber',
         
     ];
 

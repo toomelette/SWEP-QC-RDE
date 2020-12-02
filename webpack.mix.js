@@ -11,8 +11,12 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/CaneSugarTonsMain.js', 'public/js')
-	.sass('resources/assets/sass/CaneSugarTonsMain.scss', 'public/css');
-
+ 
 mix.js('resources/assets/js/LoginMain.js', 'public/js')
-	.sass('resources/assets/sass/LoginMain.scss', 'public/css');
+.sass('resources/assets/sass/LoginMain.scss', 'public/css');
+
+mix.js('resources/assets/js/SynCaneSugarTonsMain.js', 'public/js')
+	.sass('resources/assets/sass/SynCaneSugarTonsMain.scss', 'public/css');
+
+mix.js('resources/assets/js/SynRatiosOnGrossCaneMain.js', 'public/js')
+	.sass('resources/assets/sass/SynRatiosOnGrossCaneMain.scss', 'public/css');

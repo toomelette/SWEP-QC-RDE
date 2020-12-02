@@ -1,6 +1,8 @@
 {
-    "/js/CaneSugarTonsMain.js": "/js/CaneSugarTonsMain.js",
-    "/css/CaneSugarTonsMain.css": "/css/CaneSugarTonsMain.css",
+    "/js/LoginMain.js": "/js/LoginMain.js",
     "/css/LoginMain.css": "/css/LoginMain.css",
-    "/js/LoginMain.js": "/js/LoginMain.js"
+    "/css/SynCaneSugarTonsMain.css": "/css/SynCaneSugarTonsMain.css",
+    "/css/SynRatiosOnGrossCaneMain.css": "/css/SynRatiosOnGrossCaneMain.css",
+    "/js/SynCaneSugarTonsMain.js": "/js/SynCaneSugarTonsMain.js",
+    "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js"
 }

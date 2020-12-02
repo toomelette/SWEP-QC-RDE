@@ -21,5 +21,5 @@
 
 
 @section('vueScripts')
-	<script type="text/javascript" src="{{ asset('js/CaneSugarTonsMain.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/SynCaneSugarTonsMain.js') }}"></script>
 @endsection

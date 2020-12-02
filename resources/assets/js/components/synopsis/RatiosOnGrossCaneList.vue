@@ -43,8 +43,8 @@
                         <th>Action</th>
                     </tr>    
                 </thead>    
-                <tbody v-if="cane_sugar_tons.length > 0">
-                    <tr v-for="data in cane_sugar_tons" v-bind:style="data.slug == created_key ? active_tr_style : {}">
+                <tbody v-if="ratios_on_gross_cane.length > 0">
+                    <tr v-for="data in ratios_on_gross_cane" v-bind:style="data.slug == created_key ? active_tr_style : {}">
                         <td id="mid-vert">{{ data.crop_year.name }}</td>
                         <td id="mid-vert">{{ data.mill.name }}</td>
                         <td>
@@ -56,11 +56,11 @@
             </table>  
         </div>
         
-        <div v-if="is_loading == false && cane_sugar_tons.length == 0 && is_invalid_fetch == true" style="padding :5px;">
+        <div v-if="is_loading == false && ratios_on_gross_cane.length == 0 && is_invalid_fetch == true" style="padding :5px;">
           <center><h4>Server Error!</h4></center>
         </div>
 
-        <div v-if="is_loading == false && cane_sugar_tons.length == 0" style="padding :5px;">
+        <div v-if="is_loading == false && ratios_on_gross_cane.length == 0" style="padding :5px;">
           <center><h4>No Records found!</h4></center>
         </div>
 
@@ -103,7 +103,7 @@
 <script>
 
     import debounce from 'v-debounce';
-    import EventBus from '../../SynCaneSugarTonsMain';
+    import EventBus from '../../SynRatiosOnGrossCaneMain';
 
     export default {
 
@@ -113,7 +113,7 @@
 
             return {
 
-                cane_sugar_tons: [],
+                ratios_on_gross_cane: [],
                 page_data: [],
                 is_invalid_fetch: false,
                 is_loading: true,
@@ -140,7 +140,7 @@
 
         mounted() {
             
-            EventBus.$on('CANE_SUGAR_TONS_UPDATE_LIST', (data) => {
+            EventBus.$on('RATIOS_ON_GROSS_CANE_UPDATE_LIST', (data) => {
                 this.created_key = data.key;
                 this.fetch();
             });
@@ -167,10 +167,10 @@
 
             fetch(page_no){ 
 
-               axios.get('cane_sugar_tons', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
+               axios.get('ratios_on_gross_cane', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
                         if(response.status == 200){
-                            this.cane_sugar_tons = response.data.data;
+                            this.ratios_on_gross_cane = response.data.data;
                             this.page_data = response.data;
                             this.is_loading = false;
                         }else{
@@ -184,15 +184,15 @@
             },
 
             emitCreateModal(){ 
-                EventBus.$emit('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', {});
+                EventBus.$emit('OPEN_RATIOS_ON_GROSS_CANE_CREATE_MODAL', {});
             },
 
             emitUpdateModal(update_key){ 
-                EventBus.$emit('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', {'update_key': update_key});
+                EventBus.$emit('OPEN_RATIOS_ON_GROSS_CANE_UPDATE_MODAL', {'update_key': update_key});
             },
 
             emitDeleteModal(delete_key){  
-                EventBus.$emit('OPEN_CANE_SUGAR_TONS_DELETE_MODAL', {'delete_key': delete_key});
+                EventBus.$emit('OPEN_RATIOS_ON_GROSS_CANE_DELETE_MODAL', {'delete_key': delete_key});
             },
 
         },
