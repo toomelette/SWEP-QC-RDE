@@ -14,9 +14,6 @@ class ApiSynRatiosOnGrossCaneController extends Controller{
 
 	protected $syn_ratios_on_gross_cane_repo;
 
-	const syn_ratios_on_gross_cane = [];
-	const syn_ratios_on_gross_cane_list = [];
-
 
 	public function __construct(SynRatiosOnGrossCaneInterface $syn_ratios_on_gross_cane_repo){
 		$this->syn_ratios_on_gross_cane_repo = $syn_ratios_on_gross_cane_repo;
@@ -27,8 +24,8 @@ class ApiSynRatiosOnGrossCaneController extends Controller{
 
 	public function fetch(Request $request){
 
-		$this->syn_ratios_on_gross_cane_list = $this->syn_ratios_on_gross_cane_repo->fetch($request);
-	    return response()->json($this->syn_ratios_on_gross_cane_list, 200);
+		$syn_ratios_on_gross_cane_list = $this->syn_ratios_on_gross_cane_repo->fetch($request);
+	    return response()->json($syn_ratios_on_gross_cane_list, 200);
 
     }
 
@@ -36,9 +33,9 @@ class ApiSynRatiosOnGrossCaneController extends Controller{
 
 	public function store(RatiosOnGrossCaneFormRequest $request){
 
-		$this->syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->store($request);
+		$syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->store($request);
         $this->event->fire('syn_ratios_on_gross_cane.store');
-		return response()->json(['key' => $this->syn_ratios_on_gross_cane->slug], 200);
+		return response()->json(['key' => $syn_ratios_on_gross_cane->slug], 200);
 
     }
 
@@ -46,8 +43,8 @@ class ApiSynRatiosOnGrossCaneController extends Controller{
 
 	public function edit($slug){
 
-		$this->syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->findBySlug($slug);
-		return response()->json(['data' => $this->syn_ratios_on_gross_cane], 200);
+		$syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->findBySlug($slug);
+		return response()->json(['data' => $syn_ratios_on_gross_cane], 200);
 
     }
 
@@ -55,9 +52,9 @@ class ApiSynRatiosOnGrossCaneController extends Controller{
 
 	public function update(RatiosOnGrossCaneFormRequest $request, $slug){
 
-		$this->syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->update($request, $slug);
-        $this->event->fire('syn_ratios_on_gross_cane.update', $this->syn_ratios_on_gross_cane);
-		return response()->json(['key' => $this->syn_ratios_on_gross_cane->slug], 200);
+		$syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->update($request, $slug);
+        $this->event->fire('syn_ratios_on_gross_cane.update', $syn_ratios_on_gross_cane);
+		return response()->json(['key' => $syn_ratios_on_gross_cane->slug], 200);
 
     }
 
@@ -65,8 +62,8 @@ class ApiSynRatiosOnGrossCaneController extends Controller{
 
 	public function delete($slug){
 
-		$this->syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->destroy($slug);
-        $this->event->fire('syn_ratios_on_gross_cane.destroy', $this->syn_ratios_on_gross_cane);
+		$syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->destroy($slug);
+        $this->event->fire('syn_ratios_on_gross_cane.destroy', $syn_ratios_on_gross_cane);
 		return response()->json(['success' => true], 200);
 
     }

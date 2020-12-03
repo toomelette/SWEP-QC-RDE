@@ -3,6 +3,8 @@
     "/css/LoginMain.css": "/css/LoginMain.css",
     "/css/SynCaneSugarTonsMain.css": "/css/SynCaneSugarTonsMain.css",
     "/css/SynRatiosOnGrossCaneMain.css": "/css/SynRatiosOnGrossCaneMain.css",
+    "/css/SynOutputsMain.css": "/css/SynOutputsMain.css",
     "/js/SynCaneSugarTonsMain.js": "/js/SynCaneSugarTonsMain.js",
+    "/js/SynOutputsMain.js": "/js/SynOutputsMain.js",
     "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js"
 }

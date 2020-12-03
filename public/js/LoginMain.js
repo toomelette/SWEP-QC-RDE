@@ -49844,6 +49844,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/sass/SynOutputsMain.scss":
+/*!***************************************************!*\
+  !*** ./resources/assets/sass/SynOutputsMain.scss ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/SynRatiosOnGrossCaneMain.scss":
 /*!*************************************************************!*\
   !*** ./resources/assets/sass/SynRatiosOnGrossCaneMain.scss ***!
@@ -49856,16 +49867,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!***********************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/LoginMain.js ./resources/assets/sass/LoginMain.scss ./resources/assets/sass/SynCaneSugarTonsMain.scss ./resources/assets/sass/SynRatiosOnGrossCaneMain.scss ***!
-  \***********************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/LoginMain.js ./resources/assets/sass/LoginMain.scss ./resources/assets/sass/SynCaneSugarTonsMain.scss ./resources/assets/sass/SynRatiosOnGrossCaneMain.scss ./resources/assets/sass/SynOutputsMain.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\LoginMain.js */"./resources/assets/js/LoginMain.js");
 __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\LoginMain.scss */"./resources/assets/sass/LoginMain.scss");
 __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynCaneSugarTonsMain.scss */"./resources/assets/sass/SynCaneSugarTonsMain.scss");
-module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynRatiosOnGrossCaneMain.scss */"./resources/assets/sass/SynRatiosOnGrossCaneMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynRatiosOnGrossCaneMain.scss */"./resources/assets/sass/SynRatiosOnGrossCaneMain.scss");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynOutputsMain.scss */"./resources/assets/sass/SynOutputsMain.scss");
 
 
 /***/ })

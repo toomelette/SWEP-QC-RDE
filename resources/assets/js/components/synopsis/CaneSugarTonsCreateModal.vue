@@ -160,7 +160,7 @@
 
             store(){ 
 
-                axios.post('cane_sugar_tons/store', {
+                axios.post('synopsis/cane_sugar_tons/store', {
 
                     crop_year_id: this.crop_year_id?.code, 
                     mill_id: this.mill_id?.code,

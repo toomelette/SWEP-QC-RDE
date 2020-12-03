@@ -72,7 +72,7 @@
 
                 $("#delete_modal").modal("show");
 
-                axios.get('cane_sugar_tons/' + data.delete_key)
+                axios.get('synopsis/cane_sugar_tons/' + data.delete_key)
                     .then((response) => { 
                         if(response.status == 200){
                             this.delete_key = response.data.data.slug;
@@ -83,7 +83,7 @@
 
             destroy(){ 
 
-                axios.delete('cane_sugar_tons/' + this.delete_key)
+                axios.delete('synopsis/cane_sugar_tons/' + this.delete_key)
                     .then((response) => {
 
                         if(response.status == 200){

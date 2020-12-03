@@ -14,46 +14,6 @@
 }
 
 
-/* Api Loader */
-.lds-facebook {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-}
-.lds-facebook div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 16px;
-    background: #fff;
-    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-.lds-facebook div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
-}
-.lds-facebook div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-}
-.lds-facebook div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-}
-@keyframes lds-facebook {
-    0% {
-      top: 8px;
-      height: 64px;
-    }
-    50%, 100% {
-      top: 24px;
-      height: 32px;
-    }
-}
-  
-
-
 /* Input Uppercase */
 input[data-transform=uppercase] {
     text-transform: uppercase;
@@ -62,34 +22,6 @@ input[data-transform=uppercase] {
 
 #mid-vert{
     vertical-align: middle;
-}
-
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/open-sans-v18-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Open Sans Regular'), local('OpenSans-Regular'),
-       url('/fonts/open-sans-v18-latin-regular.eot?#iefix') format('embedded-opentype'),
-       url('/fonts/open-sans-v18-latin-regular.woff2') format('woff2'),
-       url('/fonts/open-sans-v18-latin-regular.woff') format('woff'),
-       url('/fonts/open-sans-v18-latin-regular.ttf') format('truetype'),
-       url('/fonts/open-sans-v18-latin-regular.svg#OpenSans') format('svg'),
-}
-
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: bold;
-  font-weight: 700;
-  src: url('/fonts/open-sans-v18-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Open Sans Regular'), local('OpenSans-Regular'),
-       url('/fonts/open-sans-v18-latin-700.eot?#iefix') format('embedded-opentype'),
-       url('/fonts/open-sans-v18-latin-700.woff2') format('woff2'),
-       url('/fonts/open-sans-v18-latin-700.woff') format('woff'),
-       url('/fonts/open-sans-v18-latin-700.ttf') format('truetype'),
-       url('/fonts/open-sans-v18-latin-700.svg#OpenSans') format('svg');
 }
 
 

@@ -135,6 +135,25 @@ class SynCaneSugarTonRepository extends BaseRepository implements SynCaneSugarTo
 
 
 
+    public function getByCropYearId($crop_year_id){
+
+        $syn_cane_sugar_tons = $this->cache->remember('syn_cane_sugar_tons:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
+
+            $syn_cane_sugar_ton = $this->syn_cane_sugar_ton->newQuery();
+
+            return $syn_cane_sugar_ton->select('mill_id', 'sgrcane_gross_tonnes', 'sgrcane_net_tonnes', 'rawsgr_tonnes_due_cane', 'rawsgr_tonnes_manufactured', 'equivalent')
+                                      ->with('mill')
+                                      ->where('crop_year_id', $crop_year_id)
+                                      ->get();
+
+        });
+
+        return $syn_cane_sugar_tons;
+
+    }
+
+
+
 
     public function getSynCaneSugarTonIdInc(){
 

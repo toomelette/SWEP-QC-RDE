@@ -167,7 +167,7 @@
 
             fetch(page_no){ 
 
-               axios.get('ratios_on_gross_cane', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
+               axios.get('synopsis/ratios_on_gross_cane', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
                         if(response.status == 200){
                             this.ratios_on_gross_cane = response.data.data;

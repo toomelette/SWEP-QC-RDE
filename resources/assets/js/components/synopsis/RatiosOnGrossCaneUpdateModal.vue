@@ -140,7 +140,7 @@
 
                 $("#update_modal").modal("show");
 
-                axios.get('ratios_on_gross_cane/' + data.update_key)
+                axios.get('synopsis/ratios_on_gross_cane/' + data.update_key)
                     .then((response) => { 
                         if(response.status == 200){
                             let cane_sugar_tons = response.data.data;
@@ -172,7 +172,7 @@
 
             update(){ 
 
-                axios.post('ratios_on_gross_cane/' + this.update_key, {
+                axios.post('synopsis/ratios_on_gross_cane/' + this.update_key, {
                     crop_year_id: this.crop_year_id?.code.toString(), 
                     mill_id: this.mill_id?.code.toString(),
                     burnt_cane_percent: this.utilCheckFloat(this.burnt_cane_percent), 

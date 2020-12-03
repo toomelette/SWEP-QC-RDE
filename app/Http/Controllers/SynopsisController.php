@@ -14,6 +14,11 @@ class SynopsisController extends Controller{
     public function ratiosOnGrossCane(){
         return view('dashboard.synopsis.ratios_on_gross_cane');
     }
+
+
+    public function outputs(){
+        return view('dashboard.synopsis.outputs');
+    }
     
 
 }

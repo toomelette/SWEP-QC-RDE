@@ -20,3 +20,6 @@ mix.js('resources/assets/js/SynCaneSugarTonsMain.js', 'public/js')
 
 mix.js('resources/assets/js/SynRatiosOnGrossCaneMain.js', 'public/js')
 	.sass('resources/assets/sass/SynRatiosOnGrossCaneMain.scss', 'public/css');
+
+mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')
+	.sass('resources/assets/sass/SynOutputsMain.scss', 'public/css');

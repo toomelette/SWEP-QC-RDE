@@ -153,7 +153,7 @@
 
             store(){ 
 
-                axios.post('ratios_on_gross_cane/store', {
+                axios.post('synopsis/ratios_on_gross_cane/store', {
 
                     crop_year_id: this.crop_year_id?.code, 
                     mill_id: this.mill_id?.code,

@@ -72,7 +72,7 @@
 
                 $("#delete_modal").modal("show");
 
-                axios.get('ratios_on_gross_cane/' + data.delete_key)
+                axios.get('synopsis/ratios_on_gross_cane/' + data.delete_key)
                     .then((response) => { 
                         if(response.status == 200){
                             this.delete_key = response.data.data.slug;
@@ -83,7 +83,7 @@
 
             destroy(){ 
 
-                axios.delete('ratios_on_gross_cane/' + this.delete_key)
+                axios.delete('synopsis/ratios_on_gross_cane/' + this.delete_key)
                     .then((response) => {
 
                         if(response.status == 200){
