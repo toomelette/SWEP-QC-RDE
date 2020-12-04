@@ -34,7 +34,7 @@ class ApiSynCaneSugarTonsController extends Controller{
 	public function store(CaneSugarTonsFormRequest $request){
 
 		$syn_cane_sugar_ton = $this->syn_cane_sugar_ton_repo->store($request);
-        $this->event->fire('syn_cane_sugar_ton.store');
+        $this->event->fire('syn_cane_sugar_ton.store', $syn_cane_sugar_ton);
 		return response()->json(['key' => $syn_cane_sugar_ton->slug], 200);
 
     }

@@ -1688,6 +1688,84 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.component('cane-sugar-tons-output-format', {
+  props: {
+    collection: {},
+    regions: {},
+    crop_year: ''
+  },
+  template: "<div v-if=\"collection.length > 0\">\n                    <h3 style=\"text-align:center;\">Cane-Sugar Tons</h3>\n                    <h4 style=\"text-align:center;\">{{ crop_year }}</h4>\n                    <br>\n                    <table class=\"table table-bordered\">\n                        <thead>\n                            <tr>\n                                <th rowspan=\"2\" style=\"text-align:center;\">SUGAR FACTORY</th>\n                                <th colspan=\"2\" style=\"text-align: center;\">SUGARCANE</th>\n                                <th colspan=\"3\" style=\"text-align: center;\">RAW SUGAR</th>\n                            </tr>  \n                            <tr>\n                                <th>GROSS TONNES</th>\n                                <th>NET TONNES</th>\n                                <th>TONNES DUE CANE</th>\n                                <th>TONNES MANUFACTURED</th>\n                                <th>EQUIVALENT (50-Kg Bag)</th>\n                            </tr>    \n                        </thead>    \n                        <tbody v-if=\"filterCollection(collection, region_key).length > 0\" v-for=\"(region, region_key) in regions\" v-bind:key=\"region_key\">\n                            <tr>\n                                <td style=\"font-weight:bold;\">{{ region }}</td>\n                                <td style=\"font-weight:bold;\">{{ totalPerRegion(collection, region_key, \"sgrcane_gross_tonnes\") }}</td>\n                                <td style=\"font-weight:bold;\">{{ totalPerRegion(collection, region_key, \"sgrcane_net_tonnes\") }}</td>\n                                <td style=\"font-weight:bold;\">{{ totalPerRegion(collection, region_key, \"rawsgr_tonnes_due_cane\") }}</td>\n                                <td style=\"font-weight:bold;\">{{ totalPerRegion(collection, region_key, \"rawsgr_tonnes_manufactured\") }}</td>\n                                <td style=\"font-weight:bold;\">{{ totalPerRegion(collection, region_key, \"equivalent\") }}</td>\n                            </tr>\n                            <tr v-for=\"(data, data_key) in filterCollection(collection, region_key)\" v-bind:key=\"data_key\">\n                                <td id=\"mid-vert\">{{ data_key + 1 }}. {{ data.mill_name }}</td>\n                                <td id=\"mid-vert\">{{ data.sgrcane_gross_tonnes }}</td>\n                                <td id=\"mid-vert\">{{ data.sgrcane_net_tonnes }}</td>\n                                <td id=\"mid-vert\">{{ data.rawsgr_tonnes_due_cane }}</td>\n                                <td id=\"mid-vert\">{{ data.rawsgr_tonnes_manufactured }}</td>\n                                <td id=\"mid-vert\">{{ data.equivalent }}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                  </div>",
+  methods: {
+    filterCollection: function filterCollection(collection, region) {
+      var _this = this;
+
+      var array = [];
+
+      if (Object.keys(collection).length != 0) {
+        Object.values(collection).forEach(function (data) {
+          if (data.mill.report_region == region) {
+            array.push({
+              mill_name: data.mill.name,
+              sgrcane_gross_tonnes: _this.filterFloat(data.sgrcane_gross_tonnes),
+              sgrcane_net_tonnes: _this.filterFloat(data.sgrcane_net_tonnes),
+              rawsgr_tonnes_due_cane: _this.filterFloat(data.rawsgr_tonnes_due_cane),
+              rawsgr_tonnes_manufactured: _this.filterFloat(data.rawsgr_tonnes_manufactured),
+              equivalent: _this.filterFloat(data.equivalent)
+            });
+          }
+        });
+      }
+
+      return array;
+    },
+    filterFloat: function filterFloat(_float) {
+      var input_value = parseFloat(_float).toFixed(2);
+
+      if (isNaN(input_value)) {
+        input_value = '';
+      } else {
+        input_value = input_value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      return input_value.toString();
+    },
+    totalPerRegion: function totalPerRegion(collection, region, field) {
+      var total = 0.00;
+
+      if (Object.keys(collection).length != 0) {
+        Object.values(collection).forEach(function (data) {
+          if (data.mill.report_region == region) {
+            total += Number(data[field]);
+          }
+        });
+      }
+
+      return this.filterFloat(total);
+    },
+    totalPerCY: function totalPerCY(collection, field) {
+      var total = 0.00;
+
+      if (Object.keys(collection).length != 0) {
+        Object.values(collection).forEach(function (data) {
+          total += Number(data[field]);
+        });
+      }
+
+      return this.filterFloat(total);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/Outputs.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/Outputs.vue?vue&type=script&lang=js& ***!
@@ -1702,37 +1780,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./resources/assets/js/components/utils.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1891,7 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this3.collection = response.data;
       })["catch"](function (error) {
-        _this3.$toast.error('Cannot Process! Invalid data given.', {
+        _this3.$toast.error('Cannot Process! Error occurred.', {
           position: 'top-right',
           duration: 5000,
           dismissible: true
@@ -38190,57 +38237,61 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _vm._l(_vm.categories, function(cat) {
-                  return _c("div", { staticStyle: { "margin-left": "10px" } }, [
-                    _c("label", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.category_id,
-                            expression: "category_id"
-                          }
-                        ],
-                        attrs: { type: "checkbox" },
-                        domProps: {
-                          value: cat.id,
-                          checked: Array.isArray(_vm.category_id)
-                            ? _vm._i(_vm.category_id, cat.id) > -1
-                            : _vm.category_id
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$a = _vm.category_id,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = cat.id,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.category_id = $$a.concat([$$v]))
+                  return _c(
+                    "div",
+                    { key: cat.id, staticStyle: { "margin-left": "10px" } },
+                    [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.category_id,
+                              expression: "category_id"
+                            }
+                          ],
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            value: cat.id,
+                            checked: Array.isArray(_vm.category_id)
+                              ? _vm._i(_vm.category_id, cat.id) > -1
+                              : _vm.category_id
+                          },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$a = _vm.category_id,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = cat.id,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.category_id = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.category_id = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
                                 } else {
-                                  $$i > -1 &&
-                                    (_vm.category_id = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
+                                  _vm.category_id = $$c
                                 }
-                              } else {
-                                _vm.category_id = $$c
-                              }
-                            },
-                            _vm.checkBox
-                          ]
-                        }
-                      }),
-                      _vm._v(
-                        "\n                                  " +
-                          _vm._s(cat.label) +
-                          "\n                            "
-                      )
-                    ])
-                  ])
+                              },
+                              _vm.checkBox
+                            ]
+                          }
+                        }),
+                        _vm._v(
+                          "\n                                  " +
+                            _vm._s(cat.label) +
+                            "\n                            "
+                        )
+                      ])
+                    ]
+                  )
                 })
               ],
               2
@@ -38284,79 +38335,22 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "box-body" }, [
-          _vm.collection.length > 0
-            ? _c(
-                "table",
-                { staticClass: "table table-bordered" },
-                [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _vm._l(_vm.regions, function(region, region_key) {
-                    return _c(
-                      "tbody",
-                      { key: region_key },
-                      [
-                        _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticStyle: { "font-weight": "bold" },
-                              attrs: { colspan: "6" }
-                            },
-                            [_vm._v(_vm._s(region))]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.collection, function(data, data_key) {
-                          return _c(
-                            "tr",
-                            { key: data_key },
-                            [
-                              data.mill.report_region == region_key
-                                ? [
-                                    _c("td", { attrs: { id: "mid-vert" } }, [
-                                      _vm._v(_vm._s(data.mill.name))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { attrs: { id: "mid-vert" } }, [
-                                      _vm._v(_vm._s(data.sgrcane_gross_tonnes))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { attrs: { id: "mid-vert" } }, [
-                                      _vm._v(_vm._s(data.sgrcane_net_tonnes))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { attrs: { id: "mid-vert" } }, [
-                                      _vm._v(
-                                        _vm._s(data.rawsgr_tonnes_due_cane)
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { attrs: { id: "mid-vert" } }, [
-                                      _vm._v(
-                                        _vm._s(data.rawsgr_tonnes_manufactured)
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { attrs: { id: "mid-vert" } }, [
-                                      _vm._v(_vm._s(data.equivalent))
-                                    ])
-                                  ]
-                                : _vm._e()
-                            ],
-                            2
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  })
-                ],
-                2
-              )
-            : _vm._e()
-        ])
+        _c(
+          "div",
+          { staticClass: "box-body" },
+          [
+            this.category_id.toString() == 1
+              ? _c("cane-sugar-tons-output-format", {
+                  attrs: {
+                    collection: _vm.collection,
+                    regions: _vm.regions,
+                    crop_year: this.crop_year_id.label
+                  }
+                })
+              : _vm._e()
+          ],
+          1
+        )
       ])
     ])
   ])
@@ -38369,44 +38363,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "box-header with-border" }, [
       _c("div", { staticClass: "box-title" }, [
         _vm._v("  \n                    Filters\n                ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c(
-          "th",
-          { staticStyle: { "text-align": "center" }, attrs: { rowspan: "2" } },
-          [_vm._v("SUGAR FACTORY")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          { staticStyle: { "text-align": "center" }, attrs: { colspan: "2" } },
-          [_vm._v("SUGARCANE")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          { staticStyle: { "text-align": "center" }, attrs: { colspan: "3" } },
-          [_vm._v("RAW SUGAR")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("th", [_vm._v("GROSS TONNES")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("NET TONNES")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("TONNES DUE CANE")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("TONNES MANUFACTURED")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("EQUIVALENT (50-Kg Bag)")])
       ])
     ])
   }
@@ -50671,19 +50627,22 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification */ "./node_modules/vue-toast-notification/dist/index.min.js");
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
-/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Synopsis_OutputCategoryFormats_CaneSugarTonsFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat */ "./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue");
+/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toast-notification */ "./node_modules/vue-toast-notification/dist/index.min.js");
+/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_2__);
 __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
+
 
 
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 var EventBus = new Vue();
 /* harmony default export */ __webpack_exports__["default"] = (EventBus);
-Vue.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_0___default.a);
-Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
+Vue.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_1___default.a);
+Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_2___default.a);
+Vue.component('cane-sugar-tons-output-format', _components_Synopsis_OutputCategoryFormats_CaneSugarTonsFormat__WEBPACK_IMPORTED_MODULE_0__["default"]["default"]);
 Vue.component('outputs', __webpack_require__(/*! ./components/synopsis/Outputs.vue */ "./resources/assets/js/components/synopsis/Outputs.vue")["default"]);
 var app = new Vue({
   el: '#app'
@@ -50753,6 +50712,59 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue":
+/*!***********************************************************************************************!*\
+  !*** ./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneSugarTonsFormat.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsFormat.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsFormat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -50869,7 +50881,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynOutputsMain.js */"./resources/assets/js/SynOutputsMain.js");
+module.exports = __webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynOutputsMain.js */"./resources/assets/js/SynOutputsMain.js");
 
 
 /***/ })

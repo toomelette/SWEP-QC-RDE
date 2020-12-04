@@ -32,9 +32,10 @@ class SynCaneSugarTonSubscriber extends BaseSubscriber{
 
 
 
-    public function onStore(){
+    public function onStore($syn_cane_sugar_ton){
         
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:fetch:*');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:getByCropYearId:'. $syn_cane_sugar_ton->crop_year_id .'');
 
     }
 
@@ -44,6 +45,7 @@ class SynCaneSugarTonSubscriber extends BaseSubscriber{
 
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:fetch:*');
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:findBySlug:'. $syn_cane_sugar_ton->slug .'');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:getByCropYearId:'. $syn_cane_sugar_ton->crop_year_id .'');
 
     }
 
@@ -53,6 +55,7 @@ class SynCaneSugarTonSubscriber extends BaseSubscriber{
 
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:fetch:*');
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:findBySlug:'. $syn_cane_sugar_ton->slug .'');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_sugar_tons:getByCropYearId:'. $syn_cane_sugar_ton->crop_year_id .'');
 
     }
 

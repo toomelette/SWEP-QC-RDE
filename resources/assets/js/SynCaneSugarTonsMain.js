@@ -1,8 +1,7 @@
 
 require('./bootstrap');
-
-import VueSelect from 'vue-select';
 import Numberformat from './components/Numberformat';
+import VueSelect from 'vue-select';
 import VueToast from 'vue-toast-notification';
 
 

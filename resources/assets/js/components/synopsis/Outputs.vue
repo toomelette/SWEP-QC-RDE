@@ -32,7 +32,7 @@
                         <!-- input categories -->
                         <div class="form-group no-padding col-md-12">
                             <label>Categories: </label><br>
-                            <div v-for="cat in categories" style="margin-left:10px;">
+                            <div v-for="cat in categories" v-bind:key="cat.id" style="margin-left:10px;">
                                 <label>
                                     <input type="checkbox" v-model="category_id" :value="cat.id" @change="checkBox">
                                     &nbsp; {{ cat.label }}
@@ -79,40 +79,9 @@
                 </div>
 
 
-                <div class="box-body">
-
-                    <table v-if="collection.length > 0" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th rowspan="2" style="text-align:center;">SUGAR FACTORY</th>
-                                <th colspan="2" style="text-align: center;">SUGARCANE</th>
-                                <th colspan="3" style="text-align: center;">RAW SUGAR</th>
-                            </tr>  
-                            <tr>
-                                <th>GROSS TONNES</th>
-                                <th>NET TONNES</th>
-                                <th>TONNES DUE CANE</th>
-                                <th>TONNES MANUFACTURED</th>
-                                <th>EQUIVALENT (50-Kg Bag)</th>
-                            </tr>    
-                        </thead>    
-                        <tbody v-for="(region, region_key) in regions" v-bind:key="region_key">
-                            <tr>
-                                <td colspan="6" style="font-weight:bold;">{{ region }}</td>
-                            </tr>
-                            <tr v-for="(data, data_key) in collection" v-bind:key="data_key">
-                                <template v-if="data.mill.report_region ==  region_key">
-                                    <td id="mid-vert">{{ data.mill.name }}</td>
-                                    <td id="mid-vert">{{ data.sgrcane_gross_tonnes }}</td>
-                                    <td id="mid-vert">{{ data.sgrcane_net_tonnes }}</td>
-                                    <td id="mid-vert">{{ data.rawsgr_tonnes_due_cane }}</td>
-                                    <td id="mid-vert">{{ data.rawsgr_tonnes_manufactured }}</td>
-                                    <td id="mid-vert">{{ data.equivalent }}</td>
-                                </template>
-                            </tr>
-                        </tbody>
-                    </table>  
-
+                <div class="box-body"> 
+                    <cane-sugar-tons-output-format v-if="this.category_id.toString() == 1" :collection="collection" :regions="regions" :crop_year="this.crop_year_id.label">
+                    </cane-sugar-tons-output-format>
                 </div>
 
 
@@ -207,13 +176,11 @@
                        this.collection = response.data;
                     })
                     .catch((error) =>{
-
-                        this.$toast.error('Cannot Process! Invalid data given.', {
+                        this.$toast.error('Cannot Process! Error occurred.', {
                             position: 'top-right',
                             duration: 5000,
                             dismissible: true,
                         })
-
                     }); 
 
             },
