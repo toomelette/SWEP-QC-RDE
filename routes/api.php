@@ -36,6 +36,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');
+	Route::get('synopsis/outputs/get_regions','Api\ApiSynOutputController@getAllRegions')->name('synopsis.output_get_regions');
 	Route::get('synopsis/outputs/filter','Api\ApiSynOutputController@filter')->name('synopsis.output_filter');
+	Route::get('synopsis/outputs/export_excel','Api\ApiSynOutputController@exportExcel')->name('synopsis.output_export_excel');
 
 });

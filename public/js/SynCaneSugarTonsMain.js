@@ -52629,7 +52629,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynCaneSugarTonsMain.js */"./resources/assets/js/SynCaneSugarTonsMain.js");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynCaneSugarTonsMain.js */"./resources/assets/js/SynCaneSugarTonsMain.js");
 
 
 /***/ })

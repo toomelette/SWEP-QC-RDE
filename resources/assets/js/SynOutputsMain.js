@@ -1,7 +1,7 @@
 
 
 require('./bootstrap');
-import CaneSugarTonsFormat from './components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat';
+
 import VueToast from 'vue-toast-notification';
 import VueSelect from 'vue-select';
 
@@ -10,11 +10,14 @@ window.Vue = require('vue');
 const EventBus = new Vue();	
 export default EventBus;
 
+// 3RD PARTY
 Vue.use(VueToast);
 Vue.component('v-select', VueSelect);
 
-Vue.component('cane-sugar-tons-output-format', CaneSugarTonsFormat.default);
+// CATEGORY FORMATS
+Vue.component('cane-sugar-tons-output-format', require('./components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat').default);
 
+// MAIN COMPONENT
 Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);
 
 

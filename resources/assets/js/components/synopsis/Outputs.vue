@@ -64,13 +64,13 @@
                     </div>
 
                     <!-- Select Entries -->
-                    <div class="box-tools">
+                    <div v-if="collection.length > 0" class="box-tools">
                         
-                        <button class="btn btn-sm btn-success" @click="">
+                        <button class="btn btn-sm btn-success" @click="exportExcel()" target="_blank">
                             <i class="fa fa-file-text-o"></i>&nbsp; Excel
                         </button>
                         
-                        <button class="btn btn-sm btn-default" @click="">
+                        <button class="btn btn-sm btn-default" @click="print()">
                             <i class="fa fa-print"></i>&nbsp; Print
                         </button>
 
@@ -80,7 +80,10 @@
 
 
                 <div class="box-body"> 
-                    <cane-sugar-tons-output-format v-if="this.category_id.toString() == 1" :collection="collection" :regions="regions" :crop_year="this.crop_year_id.label">
+                    <cane-sugar-tons-output-format v-if="category_id.toString() == 1" 
+                                                  :collection="collection" 
+                                                  :regions="regions" 
+                                                  :crop_year="crop_year_id.label">
                     </cane-sugar-tons-output-format>
                 </div>
 
@@ -112,10 +115,10 @@
 
             return {
 
-                regions : {'LUZ':'LUZON', 'NEG':'NEGROS', 'EV':'EASTERN VISAYAS', 'PAN':'PANAY', 'MIN':'MINDANAO', },
+                regions : {},
+                categories : {},
                 crop_years : [],
                 crop_year_id : '',
-                categories : [],
                 category_id : [],
 
                 collection : {},
@@ -130,6 +133,7 @@
             
             this.getAllMills();
             this.getAllSynOutputCategories();
+            this.getAllSynOutputRegions();
         
         },
 
@@ -169,6 +173,14 @@
             },
 
 
+            getAllSynOutputRegions(){ 
+               axios.get('synopsis/outputs/get_regions')
+                    .then((response) => {
+                       this.regions = response.data;
+                    }); 
+            },
+
+
             filter(){
 
                axios.get('synopsis/outputs/filter', { params: { cy: this.crop_year_id?.code, cat: this.category_id.toString()} })
@@ -182,6 +194,14 @@
                             dismissible: true,
                         })
                     }); 
+
+            },
+
+
+            exportExcel(){
+
+                let url = window.location.origin+'/dashboard/synopsis/outputs/export_excel?cy_id='+this.crop_year_id?.code+'&cy_name='+this.crop_year_id?.label+'&cat='+this.category_id.toString();
+                window.open(url, '_blank');
 
             },
 
