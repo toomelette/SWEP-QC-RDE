@@ -44,9 +44,11 @@ class SynopsisController extends Controller{
 	}
 
 
+
     public function caneSugarTons(){
         return view('dashboard.synopsis.cane_sugar_tons');
     }
+
 
 
     public function ratiosOnGrossCane(){
@@ -54,6 +56,7 @@ class SynopsisController extends Controller{
     }
 
     
+
     public function outputs(){
         return view('dashboard.synopsis.outputs');
     }
@@ -80,6 +83,35 @@ class SynopsisController extends Controller{
         }
 
     }
+
+
+
+	public function outputsPrint (OutputExportExcelRequest $request){
+
+        if(isset($request->cy_id) && isset($request->cy_name) && isset($request->cat)){
+            
+            $collection = [];
+            $category = self::SYN_OUTPUT_CATEGORIES[$request->cat];
+            $filename = $category['label'].'-'.$request->cy_name.'.xlsx';
+
+            if($request->cat == '1'){
+                $collection = $this->syn_cane_sugar_ton_repo->getByCropYearId($request->cy_id);
+                return view('printables.synopsis.cane_sugar_tons_print')->with([
+                    'collection' => $collection,
+                    'regions' => self::SYN_OUTPUT_REGIONS,
+                    'crop_year' => $request->cy_name
+                ]);
+            }
+
+        }else{
+
+            return abort(404);
+
+        }
+
+    }
+
+    
     
 
 }

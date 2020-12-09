@@ -2010,6 +2010,12 @@ __webpack_require__.r(__webpack_exports__);
 
       var url = window.location.origin + '/dashboard/synopsis/outputs/export_excel?cy_id=' + ((_this$crop_year_id2 = this.crop_year_id) === null || _this$crop_year_id2 === void 0 ? void 0 : _this$crop_year_id2.code) + '&cy_name=' + ((_this$crop_year_id3 = this.crop_year_id) === null || _this$crop_year_id3 === void 0 ? void 0 : _this$crop_year_id3.label) + '&cat=' + this.category_id.toString();
       window.open(url, '_blank');
+    },
+    print: function print() {
+      var _this$crop_year_id4, _this$crop_year_id5;
+
+      var url = window.location.origin + '/dashboard/synopsis/outputs/print?cy_id=' + ((_this$crop_year_id4 = this.crop_year_id) === null || _this$crop_year_id4 === void 0 ? void 0 : _this$crop_year_id4.code) + '&cy_name=' + ((_this$crop_year_id5 = this.crop_year_id) === null || _this$crop_year_id5 === void 0 ? void 0 : _this$crop_year_id5.label) + '&cat=' + this.category_id.toString();
+      window.open(url, '_blank');
     }
   }
 });

@@ -6,11 +6,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Core\Interfaces\SynCaneSugarTonInterface;
 use App\Http\Requests\Synopsis\OutputFilterRequest;
-use App\Http\Requests\Synopsis\OutputExportExcelRequest;
-
-use Maatwebsite\Excel\Facades\Excel;
-
-use App\Exports\Excel\SynCaneSugarTon;
 
 class ApiSynOutputController extends Controller{
 
@@ -71,23 +66,6 @@ class ApiSynOutputController extends Controller{
         }
 
 	    return response()->json($collection, 200);
-
-    }
-
-
-
-	public function exportExcel(OutputExportExcelRequest $request){
-
-        $collection = [];
-        $category = self::SYN_OUTPUT_CATEGORIES[$request->cat];
-        $filename = $category['label'].'-'.$request->cy_name.'.xlsx';
-
-        if(isset($request->cy_id)){
-            if($request->cat == '1'){
-                $collection = $this->syn_cane_sugar_ton_repo->getByCropYearId($request->cy_id);
-                return Excel::download(new SynCaneSugarTon($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
-            }
-        }
 
     }
 

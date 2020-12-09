@@ -206,6 +206,14 @@
             },
 
 
+            print(){
+
+                let url = window.location.origin+'/dashboard/synopsis/outputs/print?cy_id='+this.crop_year_id?.code+'&cy_name='+this.crop_year_id?.label+'&cat='+this.category_id.toString();
+                window.open(url, '_blank');
+
+            },
+
+
         },
 
 
