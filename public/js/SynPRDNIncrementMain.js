@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1753,9 +1753,9 @@ Vue.component('number-format', {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1766,14 +1766,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../SynCaneSugarTonsMain */ "./resources/assets/js/SynCaneSugarTonsMain.js");
+/* harmony import */ var _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../SynPRDNIncrementMain */ "./resources/assets/js/SynPRDNIncrementMain.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./resources/assets/js/components/utils.js");
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1872,17 +1866,16 @@ __webpack_require__.r(__webpack_exports__);
       // fields
       crop_year_id: {},
       mill_id: {},
-      sgrcane_gross_tonnes: "",
-      sgrcane_net_tonnes: "",
-      rawsgr_tonnes_due_cane: "",
-      rawsgr_tonnes_manufactured: "",
-      equivalent: ""
+      current_cy_prod: "",
+      past_cy_prod: "",
+      increase_decrease: "",
+      sharing_ratio: ""
     };
   },
   created: function created() {
     var _this = this;
 
-    _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', function (data) {
+    _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_PRDN_INCREMENT_CREATE_MODAL', function (data) {
       _this.showModal();
     });
     this.getAllMills();
@@ -1911,24 +1904,22 @@ __webpack_require__.r(__webpack_exports__);
           _this$mill_id,
           _this4 = this;
 
-      axios.post('synopsis/cane_sugar_tons/store', {
+      axios.post('synopsis/prdn_increment/store', {
         crop_year_id: (_this$crop_year_id = this.crop_year_id) === null || _this$crop_year_id === void 0 ? void 0 : _this$crop_year_id.code,
         mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code,
-        sgrcane_gross_tonnes: this.sgrcane_gross_tonnes,
-        sgrcane_net_tonnes: this.sgrcane_net_tonnes,
-        rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane,
-        rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured,
-        equivalent: this.equivalent
+        current_cy_prod: this.current_cy_prod,
+        past_cy_prod: this.past_cy_prod,
+        increase_decrease: this.increase_decrease,
+        sharing_ratio: this.sharing_ratio
       }).then(function (response) {
         if (response.status == 200) {
           _this4.error = [];
           _this4.crop_year_id = {};
           _this4.mill_id = {};
-          _this4.sgrcane_gross_tonnes = '';
-          _this4.sgrcane_net_tonnes = '';
-          _this4.rawsgr_tonnes_due_cane = '';
-          _this4.rawsgr_tonnes_manufactured = '';
-          _this4.equivalent = '';
+          _this4.current_cy_prod = '';
+          _this4.past_cy_prod = '';
+          _this4.increase_decrease = '';
+          _this4.sharing_ratio = '';
 
           _this4.$toast.success('Data Successfully Saved!', {
             position: 'top-right',
@@ -1936,7 +1927,7 @@ __webpack_require__.r(__webpack_exports__);
             dismissible: true
           });
 
-          _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('CANE_SUGAR_TONS_UPDATE_LIST', {
+          _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('PRDN_INCREMENT_UPDATE_LIST', {
             'key': response.data.key
           });
         } else {
@@ -1962,9 +1953,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1973,7 +1964,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynCaneSugarTonsMain */ "./resources/assets/js/SynCaneSugarTonsMain.js");
+/* harmony import */ var _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynPRDNIncrementMain */ "./resources/assets/js/SynPRDNIncrementMain.js");
 //
 //
 //
@@ -2022,7 +2013,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('OPEN_CANE_SUGAR_TONS_DELETE_MODAL', function (data) {
+    _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('OPEN_PRDN_INCREMENT_DELETE_MODAL', function (data) {
       _this.showModal(data);
     });
   },
@@ -2031,7 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       $("#delete_modal").modal("show");
-      axios.get('synopsis/cane_sugar_tons/' + data.delete_key).then(function (response) {
+      axios.get('synopsis/prdn_increment/' + data.delete_key).then(function (response) {
         if (response.status == 200) {
           _this2.delete_key = response.data.data.slug;
         }
@@ -2040,7 +2031,7 @@ __webpack_require__.r(__webpack_exports__);
     destroy: function destroy() {
       var _this3 = this;
 
-      axios["delete"]('synopsis/cane_sugar_tons/' + this.delete_key).then(function (response) {
+      axios["delete"]('synopsis/prdn_increment/' + this.delete_key).then(function (response) {
         if (response.status == 200) {
           $('#delete_modal').modal('toggle');
 
@@ -2050,7 +2041,7 @@ __webpack_require__.r(__webpack_exports__);
             dismissible: true
           });
 
-          _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('CANE_SUGAR_TONS_UPDATE_LIST', {});
+          _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('PRDN_INCREMENT_UPDATE_LIST', {});
         } else {
           _this3.$toast.error('Unable to delete data!', {
             position: 'top-right',
@@ -2065,9 +2056,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2076,7 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var v_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! v-debounce */ "./node_modules/v-debounce/index.js");
 /* harmony import */ var v_debounce__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(v_debounce__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynCaneSugarTonsMain */ "./resources/assets/js/SynCaneSugarTonsMain.js");
+/* harmony import */ var _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynPRDNIncrementMain */ "./resources/assets/js/SynPRDNIncrementMain.js");
 //
 //
 //
@@ -2184,7 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cane_sugar_tons: [],
+      collection: [],
       page_data: [],
       is_invalid_fetch: false,
       is_loading: true,
@@ -2203,7 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('CANE_SUGAR_TONS_UPDATE_LIST', function (data) {
+    _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('PRDN_INCREMENT_UPDATE_LIST', function (data) {
       _this.created_key = data.key;
 
       _this.fetch();
@@ -2221,7 +2212,7 @@ __webpack_require__.r(__webpack_exports__);
     fetch: function fetch(page_no) {
       var _this2 = this;
 
-      axios.get('synopsis/cane_sugar_tons', {
+      axios.get('synopsis/prdn_increment', {
         params: {
           q: this.search_value,
           e: this.entry_value,
@@ -2229,7 +2220,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         if (response.status == 200) {
-          _this2.cane_sugar_tons = response.data.data;
+          _this2.collection = response.data.data;
           _this2.page_data = response.data;
           _this2.is_loading = false;
         } else {
@@ -2240,15 +2231,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     emitCreateModal: function emitCreateModal() {
-      _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_CANE_SUGAR_TONS_CREATE_MODAL', {});
+      _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_PRDN_INCREMENT_CREATE_MODAL', {});
     },
     emitUpdateModal: function emitUpdateModal(update_key) {
-      _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', {
+      _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_PRDN_INCREMENT_UPDATE_MODAL', {
         'update_key': update_key
       });
     },
     emitDeleteModal: function emitDeleteModal(delete_key) {
-      _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_CANE_SUGAR_TONS_DELETE_MODAL', {
+      _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_PRDN_INCREMENT_DELETE_MODAL', {
         'delete_key': delete_key
       });
     }
@@ -2260,9 +2251,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2273,14 +2264,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../SynCaneSugarTonsMain */ "./resources/assets/js/SynCaneSugarTonsMain.js");
+/* harmony import */ var _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../SynPRDNIncrementMain */ "./resources/assets/js/SynPRDNIncrementMain.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./resources/assets/js/components/utils.js");
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2382,17 +2367,16 @@ __webpack_require__.r(__webpack_exports__);
       update_key: "",
       crop_year_id: {},
       mill_id: {},
-      sgrcane_gross_tonnes: "",
-      sgrcane_net_tonnes: "",
-      rawsgr_tonnes_due_cane: "",
-      rawsgr_tonnes_manufactured: "",
-      equivalent: ""
+      current_cy_prod: "",
+      past_cy_prod: "",
+      increase_decrease: "",
+      sharing_ratio: ""
     };
   },
   created: function created() {
     var _this = this;
 
-    _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_CANE_SUGAR_TONS_UPDATE_MODAL', function (data) {
+    _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_2__["default"].$on('OPEN_PRDN_INCREMENT_UPDATE_MODAL', function (data) {
       _this.showModal(data);
     });
     this.getAllMills();
@@ -2403,23 +2387,22 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       $("#update_modal").modal("show");
-      axios.get('synopsis/cane_sugar_tons/' + data.update_key).then(function (response) {
+      axios.get('synopsis/prdn_increment/' + data.update_key).then(function (response) {
         if (response.status == 200) {
-          var cane_sugar_tons = response.data.data;
-          _this2.update_key = cane_sugar_tons.slug;
+          var prdn_increment = response.data.data;
+          _this2.update_key = prdn_increment.slug;
           _this2.crop_year_id = {
-            code: cane_sugar_tons.crop_year.crop_year_id,
-            label: cane_sugar_tons.crop_year.name
+            code: prdn_increment.crop_year.crop_year_id,
+            label: prdn_increment.crop_year.name
           };
           _this2.mill_id = {
-            code: cane_sugar_tons.mill.mill_id,
-            label: cane_sugar_tons.mill.name
+            code: prdn_increment.mill.mill_id,
+            label: prdn_increment.mill.name
           };
-          _this2.sgrcane_gross_tonnes = _this2.utilCheckFloat(cane_sugar_tons.sgrcane_gross_tonnes);
-          _this2.sgrcane_net_tonnes = _this2.utilCheckFloat(cane_sugar_tons.sgrcane_net_tonnes);
-          _this2.rawsgr_tonnes_due_cane = _this2.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_due_cane);
-          _this2.rawsgr_tonnes_manufactured = _this2.utilCheckFloat(cane_sugar_tons.rawsgr_tonnes_manufactured);
-          _this2.equivalent = _this2.utilCheckFloat(cane_sugar_tons.equivalent);
+          _this2.current_cy_prod = _this2.utilCheckFloat(prdn_increment.current_cy_prod);
+          _this2.past_cy_prod = _this2.utilCheckFloat(prdn_increment.past_cy_prod);
+          _this2.increase_decrease = _this2.utilCheckFloat(prdn_increment.increase_decrease);
+          _this2.sharing_ratio = prdn_increment.sharing_ratio;
         }
       });
     },
@@ -2442,14 +2425,13 @@ __webpack_require__.r(__webpack_exports__);
           _this$mill_id,
           _this5 = this;
 
-      axios.post('synopsis/cane_sugar_tons/' + this.update_key, {
+      axios.post('synopsis/prdn_increment/' + this.update_key, {
         crop_year_id: (_this$crop_year_id = this.crop_year_id) === null || _this$crop_year_id === void 0 ? void 0 : _this$crop_year_id.code.toString(),
         mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code.toString(),
-        sgrcane_gross_tonnes: this.utilCheckFloat(this.sgrcane_gross_tonnes),
-        sgrcane_net_tonnes: this.utilCheckFloat(this.sgrcane_net_tonnes),
-        rawsgr_tonnes_due_cane: this.utilCheckFloat(this.rawsgr_tonnes_due_cane),
-        rawsgr_tonnes_manufactured: this.utilCheckFloat(this.rawsgr_tonnes_manufactured),
-        equivalent: this.utilCheckFloat(this.equivalent)
+        current_cy_prod: this.utilCheckFloat(this.current_cy_prod),
+        past_cy_prod: this.utilCheckFloat(this.past_cy_prod),
+        increase_decrease: this.utilCheckFloat(this.increase_decrease),
+        sharing_ratio: this.sharing_ratio
       }).then(function (response) {
         if (response.status == 200) {
           $('#update_modal').modal('toggle');
@@ -2460,7 +2442,7 @@ __webpack_require__.r(__webpack_exports__);
             dismissible: true
           });
 
-          _SynCaneSugarTonsMain__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('CANE_SUGAR_TONS_UPDATE_LIST', {
+          _SynPRDNIncrementMain__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('PRDN_INCREMENT_UPDATE_LIST', {
             'key': response.data.key
           });
         } else {
@@ -38775,9 +38757,9 @@ module.exports = directive
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c&":
 /*!*******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c& ***!
   \*******************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -38881,33 +38863,31 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.sgrcane_gross_tonnes ? "has-error" : ""
+                      class: _vm.error.current_cy_prod ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "sgrcane_gross_tonnes" } }, [
-                        _vm._v("Sugar Cane Gross Tonnes")
+                      _c("label", { attrs: { for: "current_cy_prod" } }, [
+                        _vm._v("Current CY Production")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Sugar Cane Gross Tonnes"
+                          placeholder: "Current CY Production"
                         },
                         model: {
-                          value: _vm.sgrcane_gross_tonnes,
+                          value: _vm.current_cy_prod,
                           callback: function($$v) {
-                            _vm.sgrcane_gross_tonnes = $$v
+                            _vm.current_cy_prod = $$v
                           },
-                          expression: "sgrcane_gross_tonnes"
+                          expression: "current_cy_prod"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.sgrcane_gross_tonnes
+                      _vm.error.current_cy_prod
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(_vm.error.sgrcane_gross_tonnes.toString())
-                            )
+                            _vm._v(_vm._s(_vm.error.current_cy_prod.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -38918,33 +38898,31 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.sgrcane_net_tonnes ? "has-error" : ""
+                      class: _vm.error.past_cy_prod ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "sgrcane_net_tonnes" } }, [
-                        _vm._v("Sugar Cane Net Tonnes")
+                      _c("label", { attrs: { for: "past_cy_prod" } }, [
+                        _vm._v("Past CY Production")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Sugar Cane Net Tonnes"
+                          placeholder: "Past CY Production"
                         },
                         model: {
-                          value: _vm.sgrcane_net_tonnes,
+                          value: _vm.past_cy_prod,
                           callback: function($$v) {
-                            _vm.sgrcane_net_tonnes = $$v
+                            _vm.past_cy_prod = $$v
                           },
-                          expression: "sgrcane_net_tonnes"
+                          expression: "past_cy_prod"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.sgrcane_net_tonnes
+                      _vm.error.past_cy_prod
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(_vm.error.sgrcane_net_tonnes.toString())
-                            )
+                            _vm._v(_vm._s(_vm.error.past_cy_prod.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -38955,116 +38933,81 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.rawsgr_tonnes_due_cane ? "has-error" : ""
+                      class: _vm.error.increase_decrease ? "has-error" : ""
                     },
                     [
-                      _c(
-                        "label",
-                        { attrs: { for: "rawsgr_tonnes_due_cane" } },
-                        [_vm._v("Raw Sugar Tonnes Due Cane")]
-                      ),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Raw Sugar Tonnes Due Cane"
-                        },
-                        model: {
-                          value: _vm.rawsgr_tonnes_due_cane,
-                          callback: function($$v) {
-                            _vm.rawsgr_tonnes_due_cane = $$v
-                          },
-                          expression: "rawsgr_tonnes_due_cane"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.rawsgr_tonnes_due_cane
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.error.rawsgr_tonnes_due_cane.toString()
-                              )
-                            )
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.rawsgr_tonnes_manufactured
-                        ? "has-error"
-                        : ""
-                    },
-                    [
-                      _c(
-                        "label",
-                        { attrs: { for: "rawsgr_tonnes_manufactured" } },
-                        [_vm._v("Raw Sugar Tonnes Manufactured")]
-                      ),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Raw Sugar Tonnes Manufactured"
-                        },
-                        model: {
-                          value: _vm.rawsgr_tonnes_manufactured,
-                          callback: function($$v) {
-                            _vm.rawsgr_tonnes_manufactured = $$v
-                          },
-                          expression: "rawsgr_tonnes_manufactured"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.rawsgr_tonnes_manufactured
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.error.rawsgr_tonnes_manufactured.toString()
-                              )
-                            )
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.equivalent ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "equivalent" } }, [
-                        _vm._v("Equivalend")
+                      _c("label", { attrs: { for: "increase_decrease" } }, [
+                        _vm._v("Increase / Decrease")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Equivalent" },
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Increase / Decrease"
+                        },
                         model: {
-                          value: _vm.equivalent,
+                          value: _vm.increase_decrease,
                           callback: function($$v) {
-                            _vm.equivalent = $$v
+                            _vm.increase_decrease = $$v
                           },
-                          expression: "equivalent"
+                          expression: "increase_decrease"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.equivalent
+                      _vm.error.increase_decrease
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.equivalent.toString()))
+                            _vm._v(
+                              _vm._s(_vm.error.increase_decrease.toString())
+                            )
                           ])
                         : _vm._e()
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.sharing_ratio ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "sharing_ratio" } }, [
+                        _vm._v("Planters-Millers Sharing Ratio")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sharing_ratio,
+                            expression: "sharing_ratio"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Planters-Millers Sharing Ratio"
+                        },
+                        domProps: { value: _vm.sharing_ratio },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.sharing_ratio = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.sharing_ratio
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.sharing_ratio.toString()))
+                          ])
+                        : _vm._e()
+                    ]
                   )
                 ])
               ]),
@@ -39125,9 +39068,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513&":
 /*!*******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513& ***!
   \*******************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -39242,9 +39185,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=template&id=0f28467b&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=template&id=6716169d&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=template&id=0f28467b& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=template&id=6716169d& ***!
   \************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -39376,10 +39319,10 @@ var render = function() {
       _c("table", { staticClass: "table table-hover" }, [
         _vm._m(0),
         _vm._v(" "),
-        _vm.cane_sugar_tons.length > 0
+        _vm.collection.length > 0
           ? _c(
               "tbody",
-              _vm._l(_vm.cane_sugar_tons, function(data) {
+              _vm._l(_vm.collection, function(data) {
                 return _c(
                   "tr",
                   {
@@ -39388,11 +39331,11 @@ var render = function() {
                   },
                   [
                     _c("td", { attrs: { id: "mid-vert" } }, [
-                      _vm._v(_vm._s(data.crop_year.name))
+                      _vm._v(_vm._s(data.mill.name))
                     ]),
                     _vm._v(" "),
                     _c("td", { attrs: { id: "mid-vert" } }, [
-                      _vm._v(_vm._s(data.mill.name))
+                      _vm._v(_vm._s(data.crop_year.name))
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -39434,7 +39377,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _vm.is_loading == false &&
-    _vm.cane_sugar_tons.length == 0 &&
+    _vm.collection.length == 0 &&
     _vm.is_invalid_fetch == true
       ? _c(
           "div",
@@ -39444,7 +39387,7 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _vm.is_loading == false && _vm.cane_sugar_tons.length == 0
+    _vm.is_loading == false && _vm.collection.length == 0
       ? _c(
           "div",
           { staticStyle: { padding: "5px" } },
@@ -39544,9 +39487,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5&":
 /*!*******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5& ***!
   \*******************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -39671,33 +39614,31 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.sgrcane_gross_tonnes ? "has-error" : ""
+                      class: _vm.error.current_cy_prod ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "sgrcane_gross_tonnes" } }, [
-                        _vm._v("Sugar Cane Gross Tonnes")
+                      _c("label", { attrs: { for: "current_cy_prod" } }, [
+                        _vm._v("Current CY Production")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Sugar Cane Gross Tonnes"
+                          placeholder: "Current CY Production"
                         },
                         model: {
-                          value: _vm.sgrcane_gross_tonnes,
+                          value: _vm.current_cy_prod,
                           callback: function($$v) {
-                            _vm.sgrcane_gross_tonnes = $$v
+                            _vm.current_cy_prod = $$v
                           },
-                          expression: "sgrcane_gross_tonnes"
+                          expression: "current_cy_prod"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.sgrcane_gross_tonnes
+                      _vm.error.current_cy_prod
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(_vm.error.sgrcane_gross_tonnes.toString())
-                            )
+                            _vm._v(_vm._s(_vm.error.current_cy_prod.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -39708,33 +39649,31 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.sgrcane_net_tonnes ? "has-error" : ""
+                      class: _vm.error.past_cy_prod ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "sgrcane_net_tonnes" } }, [
-                        _vm._v("Sugar Cane Net Tonnes")
+                      _c("label", { attrs: { for: "past_cy_prod" } }, [
+                        _vm._v("Past CY Production")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Sugar Cane Net Tonnes"
+                          placeholder: "Past CY Production"
                         },
                         model: {
-                          value: _vm.sgrcane_net_tonnes,
+                          value: _vm.past_cy_prod,
                           callback: function($$v) {
-                            _vm.sgrcane_net_tonnes = $$v
+                            _vm.past_cy_prod = $$v
                           },
-                          expression: "sgrcane_net_tonnes"
+                          expression: "past_cy_prod"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.sgrcane_net_tonnes
+                      _vm.error.past_cy_prod
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(_vm.error.sgrcane_net_tonnes.toString())
-                            )
+                            _vm._v(_vm._s(_vm.error.past_cy_prod.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -39745,116 +39684,81 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.rawsgr_tonnes_due_cane ? "has-error" : ""
+                      class: _vm.error.increase_decrease ? "has-error" : ""
                     },
                     [
-                      _c(
-                        "label",
-                        { attrs: { for: "rawsgr_tonnes_due_cane" } },
-                        [_vm._v("Raw Sugar Tonnes Due Cane")]
-                      ),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Raw Sugar Tonnes Due Cane"
-                        },
-                        model: {
-                          value: _vm.rawsgr_tonnes_due_cane,
-                          callback: function($$v) {
-                            _vm.rawsgr_tonnes_due_cane = $$v
-                          },
-                          expression: "rawsgr_tonnes_due_cane"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.rawsgr_tonnes_due_cane
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.error.rawsgr_tonnes_due_cane.toString()
-                              )
-                            )
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.rawsgr_tonnes_manufactured
-                        ? "has-error"
-                        : ""
-                    },
-                    [
-                      _c(
-                        "label",
-                        { attrs: { for: "rawsgr_tonnes_manufactured" } },
-                        [_vm._v("Raw Sugar Tonnes Manufactured")]
-                      ),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Raw Sugar Tonnes Manufactured"
-                        },
-                        model: {
-                          value: _vm.rawsgr_tonnes_manufactured,
-                          callback: function($$v) {
-                            _vm.rawsgr_tonnes_manufactured = $$v
-                          },
-                          expression: "rawsgr_tonnes_manufactured"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.rawsgr_tonnes_manufactured
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.error.rawsgr_tonnes_manufactured.toString()
-                              )
-                            )
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.equivalent ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "equivalent" } }, [
-                        _vm._v("Equivalend")
+                      _c("label", { attrs: { for: "increase_decrease" } }, [
+                        _vm._v("Increase / Decrease")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Equivalent" },
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Increase / Decrease"
+                        },
                         model: {
-                          value: _vm.equivalent,
+                          value: _vm.increase_decrease,
                           callback: function($$v) {
-                            _vm.equivalent = $$v
+                            _vm.increase_decrease = $$v
                           },
-                          expression: "equivalent"
+                          expression: "increase_decrease"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.equivalent
+                      _vm.error.increase_decrease
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.equivalent.toString()))
+                            _vm._v(
+                              _vm._s(_vm.error.increase_decrease.toString())
+                            )
                           ])
                         : _vm._e()
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.sharing_ratio ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "sharing_ratio" } }, [
+                        _vm._v("Planters-Millers Sharing Ratio")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sharing_ratio,
+                            expression: "sharing_ratio"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Planters-Millers Sharing Ratio"
+                        },
+                        domProps: { value: _vm.sharing_ratio },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.sharing_ratio = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.sharing_ratio
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.sharing_ratio.toString()))
+                          ])
+                        : _vm._e()
+                    ]
                   )
                 ])
               ]),
@@ -52156,9 +52060,9 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/SynCaneSugarTonsMain.js":
+/***/ "./resources/assets/js/SynPRDNIncrementMain.js":
 /*!*****************************************************!*\
-  !*** ./resources/assets/js/SynCaneSugarTonsMain.js ***!
+  !*** ./resources/assets/js/SynPRDNIncrementMain.js ***!
   \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -52181,10 +52085,10 @@ var EventBus = new Vue();
 Vue.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_2___default.a);
 Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
 Vue.component('number-format', _components_Numberformat__WEBPACK_IMPORTED_MODULE_0__["default"]["default"]);
-Vue.component('synopsis-cane-sugar-tons-list', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsList.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue")["default"]);
-Vue.component('synopsis-cane-sugar-tons-create-modal', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsCreateModal.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue")["default"]);
-Vue.component('synopsis-cane-sugar-tons-update-modal', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsUpdateModal.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue")["default"]);
-Vue.component('synopsis-cane-sugar-tons-delete-modal', __webpack_require__(/*! ./components/synopsis/CaneSugarTonsDeleteModal.vue */ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue")["default"]);
+Vue.component('prdn-increment-list', __webpack_require__(/*! ./components/synopsis/PRDNIncrementList.vue */ "./resources/assets/js/components/synopsis/PRDNIncrementList.vue")["default"]);
+Vue.component('prdn-increment-create-modal', __webpack_require__(/*! ./components/synopsis/PRDNIncrementCreateModal.vue */ "./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue")["default"]);
+Vue.component('prdn-increment-update-modal', __webpack_require__(/*! ./components/synopsis/PRDNIncrementUpdateModal.vue */ "./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue")["default"]);
+Vue.component('prdn-increment-delete-modal', __webpack_require__(/*! ./components/synopsis/PRDNIncrementDeleteModal.vue */ "./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -52309,17 +52213,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue":
 /*!******************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue ***!
   \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CaneSugarTonsCreateModal_vue_vue_type_template_id_7149df44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44& */ "./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44&");
-/* harmony import */ var _CaneSugarTonsCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CaneSugarTonsCreateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PRDNIncrementCreateModal_vue_vue_type_template_id_f5cbf63c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c& */ "./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c&");
+/* harmony import */ var _PRDNIncrementCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PRDNIncrementCreateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52329,9 +52233,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CaneSugarTonsCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CaneSugarTonsCreateModal_vue_vue_type_template_id_7149df44___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CaneSugarTonsCreateModal_vue_vue_type_template_id_7149df44___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PRDNIncrementCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PRDNIncrementCreateModal_vue_vue_type_template_id_f5cbf63c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PRDNIncrementCreateModal_vue_vue_type_template_id_f5cbf63c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52341,54 +52245,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue"
+component.options.__file = "resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=script&lang=js&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsCreateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementCreateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c&":
 /*!*************************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c& ***!
   \*************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsCreateModal_vue_vue_type_template_id_7149df44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsCreateModal.vue?vue&type=template&id=7149df44&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsCreateModal_vue_vue_type_template_id_7149df44___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementCreateModal_vue_vue_type_template_id_f5cbf63c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementCreateModal.vue?vue&type=template&id=f5cbf63c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementCreateModal_vue_vue_type_template_id_f5cbf63c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsCreateModal_vue_vue_type_template_id_7149df44___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementCreateModal_vue_vue_type_template_id_f5cbf63c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue":
 /*!******************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue ***!
   \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& */ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&");
-/* harmony import */ var _CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PRDNIncrementDeleteModal_vue_vue_type_template_id_0b0df513___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513& */ "./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513&");
+/* harmony import */ var _PRDNIncrementDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PRDNIncrementDeleteModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52398,9 +52302,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PRDNIncrementDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PRDNIncrementDeleteModal_vue_vue_type_template_id_0b0df513___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PRDNIncrementDeleteModal_vue_vue_type_template_id_0b0df513___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52410,54 +52314,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue"
+component.options.__file = "resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513&":
 /*!*************************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513& ***!
   \*************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsDeleteModal.vue?vue&type=template&id=11846116&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementDeleteModal_vue_vue_type_template_id_0b0df513___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementDeleteModal.vue?vue&type=template&id=0b0df513&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementDeleteModal_vue_vue_type_template_id_0b0df513___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsDeleteModal_vue_vue_type_template_id_11846116___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementDeleteModal_vue_vue_type_template_id_0b0df513___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementList.vue":
 /*!***********************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsList.vue ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementList.vue ***!
   \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CaneSugarTonsList_vue_vue_type_template_id_0f28467b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneSugarTonsList.vue?vue&type=template&id=0f28467b& */ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=template&id=0f28467b&");
-/* harmony import */ var _CaneSugarTonsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CaneSugarTonsList.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PRDNIncrementList_vue_vue_type_template_id_6716169d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PRDNIncrementList.vue?vue&type=template&id=6716169d& */ "./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=template&id=6716169d&");
+/* harmony import */ var _PRDNIncrementList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PRDNIncrementList.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52467,9 +52371,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CaneSugarTonsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CaneSugarTonsList_vue_vue_type_template_id_0f28467b___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CaneSugarTonsList_vue_vue_type_template_id_0f28467b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PRDNIncrementList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PRDNIncrementList_vue_vue_type_template_id_6716169d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PRDNIncrementList_vue_vue_type_template_id_6716169d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52479,54 +52383,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/CaneSugarTonsList.vue"
+component.options.__file = "resources/assets/js/components/synopsis/PRDNIncrementList.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=script&lang=js&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=template&id=0f28467b&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=template&id=6716169d&":
 /*!******************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=template&id=0f28467b& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=template&id=6716169d& ***!
   \******************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsList_vue_vue_type_template_id_0f28467b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsList.vue?vue&type=template&id=0f28467b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsList.vue?vue&type=template&id=0f28467b&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsList_vue_vue_type_template_id_0f28467b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementList_vue_vue_type_template_id_6716169d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementList.vue?vue&type=template&id=6716169d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementList.vue?vue&type=template&id=6716169d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementList_vue_vue_type_template_id_6716169d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsList_vue_vue_type_template_id_0f28467b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementList_vue_vue_type_template_id_6716169d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue":
 /*!******************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue ***!
   \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CaneSugarTonsUpdateModal_vue_vue_type_template_id_1078be17___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17& */ "./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17&");
-/* harmony import */ var _CaneSugarTonsUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PRDNIncrementUpdateModal_vue_vue_type_template_id_2448e3b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5& */ "./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5&");
+/* harmony import */ var _PRDNIncrementUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PRDNIncrementUpdateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52536,9 +52440,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CaneSugarTonsUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CaneSugarTonsUpdateModal_vue_vue_type_template_id_1078be17___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CaneSugarTonsUpdateModal_vue_vue_type_template_id_1078be17___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PRDNIncrementUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PRDNIncrementUpdateModal_vue_vue_type_template_id_2448e3b5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PRDNIncrementUpdateModal_vue_vue_type_template_id_2448e3b5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52548,38 +52452,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue"
+component.options.__file = "resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementUpdateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17&":
+/***/ "./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5&":
 /*!*************************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17& ***!
+  !*** ./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5& ***!
   \*************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsUpdateModal_vue_vue_type_template_id_1078be17___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneSugarTonsUpdateModal.vue?vue&type=template&id=1078be17&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsUpdateModal_vue_vue_type_template_id_1078be17___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementUpdateModal_vue_vue_type_template_id_2448e3b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/PRDNIncrementUpdateModal.vue?vue&type=template&id=2448e3b5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementUpdateModal_vue_vue_type_template_id_2448e3b5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneSugarTonsUpdateModal_vue_vue_type_template_id_1078be17___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PRDNIncrementUpdateModal_vue_vue_type_template_id_2448e3b5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -52622,14 +52526,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!***********************************************************!*\
-  !*** multi ./resources/assets/js/SynCaneSugarTonsMain.js ***!
+  !*** multi ./resources/assets/js/SynPRDNIncrementMain.js ***!
   \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynCaneSugarTonsMain.js */"./resources/assets/js/SynCaneSugarTonsMain.js");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynPRDNIncrementMain.js */"./resources/assets/js/SynPRDNIncrementMain.js");
 
 
 /***/ })

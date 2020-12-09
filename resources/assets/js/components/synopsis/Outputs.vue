@@ -85,6 +85,11 @@
                                                   :regions="regions" 
                                                   :crop_year="crop_year_id.label">
                     </cane-sugar-tons-output-format>
+                    <ratios-on-gross-cane-format v-if="category_id.toString() == 2" 
+                                                  :collection="collection" 
+                                                  :regions="regions" 
+                                                  :crop_year="crop_year_id.label">
+                    </ratios-on-gross-cane-format>
                 </div>
 
 

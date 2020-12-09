@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -6897,9 +6897,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css":
-/*!*************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--9-1!./node_modules/postcss-loader/src??ref--9-2!./node_modules/vue-select/dist/vue-select.css ***!
-  \*************************************************************************************************************************************/
+/*!***************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--10-1!./node_modules/postcss-loader/src??ref--10-2!./node_modules/vue-select/dist/vue-select.css ***!
+  \***************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6916,9 +6916,9 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 /***/ }),
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css":
-/*!**************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--9-1!./node_modules/postcss-loader/src??ref--9-2!./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
-  \**************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--10-1!./node_modules/postcss-loader/src??ref--10-2!./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
+  \****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39324,11 +39324,11 @@ var render = function() {
                   },
                   [
                     _c("td", { attrs: { id: "mid-vert" } }, [
-                      _vm._v(_vm._s(data.crop_year.name))
+                      _vm._v(_vm._s(data.mill.name))
                     ]),
                     _vm._v(" "),
                     _c("td", { attrs: { id: "mid-vert" } }, [
-                      _vm._v(_vm._s(data.mill.name))
+                      _vm._v(_vm._s(data.crop_year.name))
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -39921,7 +39921,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--9-1!../../postcss-loader/src??ref--9-2!./vue-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--10-1!../../postcss-loader/src??ref--10-2!./vue-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -39974,7 +39974,7 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--9-1!../../postcss-loader/src??ref--9-2!./theme-sugar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--10-1!../../postcss-loader/src??ref--10-2!./theme-sugar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -52512,7 +52512,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!***************************************************************!*\
   !*** multi ./resources/assets/js/SynRatiosOnGrossCaneMain.js ***!
   \***************************************************************/

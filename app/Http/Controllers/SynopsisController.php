@@ -51,6 +51,12 @@ class SynopsisController extends Controller{
 
 
 
+    public function prdnIncrement(){
+        return view('dashboard.synopsis.prdn_increment');
+    }
+
+
+
     public function ratiosOnGrossCane(){
         return view('dashboard.synopsis.ratios_on_gross_cane');
     }
@@ -112,6 +118,6 @@ class SynopsisController extends Controller{
     }
 
     
-    
+
 
 }

@@ -27,6 +27,13 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::post('synopsis/cane_sugar_tons/{slug}','Api\ApiSynCaneSugarTonsController@update')->name('synopsis.cane_sugar_tons_update');
 	Route::delete('synopsis/cane_sugar_tons/{slug}','Api\ApiSynCaneSugarTonsController@delete')->name('synopsis.cane_sugar_tons_delete');
 	
+	// PRDN Increment
+	Route::get('synopsis/prdn_increment','Api\ApiSynPRDNINcrementController@fetch')->name('synopsis.prdn_increment_list');
+	Route::post('synopsis/prdn_increment/store','Api\ApiSynPRDNINcrementController@store')->name('synopsis.prdn_increment_store');
+	Route::get('synopsis/prdn_increment/{slug}','Api\ApiSynPRDNINcrementController@edit')->name('synopsis.prdn_increment_edit');
+	Route::post('synopsis/prdn_increment/{slug}','Api\ApiSynPRDNINcrementController@update')->name('synopsis.prdn_increment_update');
+	Route::delete('synopsis/prdn_increment/{slug}','Api\ApiSynPRDNINcrementController@delete')->name('synopsis.prdn_increment_delete');
+	
 	// Ratios On Gross Cane
 	Route::get('synopsis/ratios_on_gross_cane','Api\ApiSynRatiosOnGrossCaneController@fetch')->name('synopsis.ratios_on_gross_cane_list');
 	Route::post('synopsis/ratios_on_gross_cane/store','Api\ApiSynRatiosOnGrossCaneController@store')->name('synopsis.ratios_on_gross_cane_store');

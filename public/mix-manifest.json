@@ -2,9 +2,11 @@
     "/js/LoginMain.js": "/js/LoginMain.js",
     "/css/LoginMain.css": "/css/LoginMain.css",
     "/css/SynCaneSugarTonsMain.css": "/css/SynCaneSugarTonsMain.css",
+    "/css/SynPRDNIncrementMain.css": "/css/SynPRDNIncrementMain.css",
     "/css/SynRatiosOnGrossCaneMain.css": "/css/SynRatiosOnGrossCaneMain.css",
     "/css/SynOutputsMain.css": "/css/SynOutputsMain.css",
     "/js/SynCaneSugarTonsMain.js": "/js/SynCaneSugarTonsMain.js",
     "/js/SynOutputsMain.js": "/js/SynOutputsMain.js",
+    "/js/SynPRDNIncrementMain.js": "/js/SynPRDNIncrementMain.js",
     "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js"
 }

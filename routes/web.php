@@ -50,6 +50,7 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	/** SYNOPSIS **/
 	Route::get('/synopsis/cane_sugar_tons', 'SynopsisController@caneSugarTons')->name('synopsis.cane_sugar_tons_index');
 	Route::get('/synopsis/ratios_on_gross_cane', 'SynopsisController@ratiosOnGrossCane')->name('synopsis.ratios_on_gross_cane_index');
+	Route::get('/synopsis/prdn_increment', 'SynopsisController@prdnIncrement')->name('synopsis.prdn_increment_index');
 	Route::get('/synopsis/outputs', 'SynopsisController@outputs')->name('synopsis.outputs');
 	Route::get('/synopsis/outputs/export_excel', 'SynopsisController@outputsExportExcel')->name('synopsis.outputs_export_excel');
 	Route::get('/synopsis/outputs/print', 'SynopsisController@outputsPrint')->name('synopsis.outputs_print');

@@ -16,6 +16,7 @@ Vue.component('v-select', VueSelect);
 
 // CATEGORY FORMATS
 Vue.component('cane-sugar-tons-output-format', require('./components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat').default);
+Vue.component('ratios-on-gross-cane-format', require('./components/Synopsis/OutputCategoryFormats/RatiosOnGrossCaneFormat').default);
 
 // MAIN COMPONENT
 Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);
