@@ -40,6 +40,13 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/ratios_on_gross_cane/{slug}','Api\ApiSynRatiosOnGrossCaneController@edit')->name('synopsis.ratios_on_gross_cane_edit');
 	Route::post('synopsis/ratios_on_gross_cane/{slug}','Api\ApiSynRatiosOnGrossCaneController@update')->name('synopsis.ratios_on_gross_cane_update');
 	Route::delete('synopsis/ratios_on_gross_cane/{slug}','Api\ApiSynRatiosOnGrossCaneController@delete')->name('synopsis.ratios_on_gross_cane_delete');
+	
+	// Cane Analysis
+	Route::get('synopsis/cane_analysis','Api\ApiSynCaneAnalysisController@fetch')->name('synopsis.cane_analysis_list');
+	Route::post('synopsis/cane_analysis/store','Api\ApiSynCaneAnalysisController@store')->name('synopsis.cane_analysis_store');
+	Route::get('synopsis/cane_analysis/{slug}','Api\ApiSynCaneAnalysisController@edit')->name('synopsis.cane_analysis_edit');
+	Route::post('synopsis/cane_analysis/{slug}','Api\ApiSynCaneAnalysisController@update')->name('synopsis.cane_analysis_update');
+	Route::delete('synopsis/cane_analysis/{slug}','Api\ApiSynCaneAnalysisController@delete')->name('synopsis.cane_analysis_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');

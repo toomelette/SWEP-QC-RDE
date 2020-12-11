@@ -133,6 +133,25 @@ class SynRatiosOnGrossCaneRepository extends BaseRepository implements SynRatios
 
 
 
+    public function getByCropYearId($crop_year_id){
+
+        $syn_ratios_on_gross_cane = $this->cache->remember('syn_ratios_on_gross_cane:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
+
+            $syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane->newQuery();
+
+            return $syn_ratios_on_gross_cane->select('mill_id', 'burnt_cane_percent', 'quality_ratio', 'rendement', 'total_sugar_recovered')
+                                            ->with('mill')
+                                            ->where('crop_year_id', $crop_year_id)
+                                            ->get();
+
+        });
+
+        return $syn_ratios_on_gross_cane;
+
+    }
+
+
+
 
     public function getSynRatiosOnGrossCaneIdInc(){
 

@@ -133,22 +133,22 @@ class SynPRDNIncrementRepository extends BaseRepository implements SynPRDNIncrem
 
 
 
-    // public function getByCropYearId($crop_year_id){
+    public function getByCropYearId($crop_year_id){
 
-    //     $syn_prdn_increments = $this->cache->remember('syn_prdn_increment:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
+        $syn_prdn_increments = $this->cache->remember('syn_prdn_increment:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
 
-    //         $syn_prdn_increment = $this->syn_prdn_increment->newQuery();
+            $syn_prdn_increment = $this->syn_prdn_increment->newQuery();
 
-    //         return $syn_prdn_increment->select('mill_id', 'sgrcane_gross_tonnes', 'sgrcane_net_tonnes', 'rawsgr_tonnes_due_cane', 'rawsgr_tonnes_manufactured', 'equivalent')
-    //                                   ->with('mill')
-    //                                   ->where('crop_year_id', $crop_year_id)
-    //                                   ->get();
+            return $syn_prdn_increment->select('mill_id', 'current_cy_prod', 'past_cy_prod', 'increase_decrease', 'sharing_ratio')
+                                      ->with('mill')
+                                      ->where('crop_year_id', $crop_year_id)
+                                      ->get();
 
-    //     });
+        });
 
-    //     return $syn_prdn_increments;
+        return $syn_prdn_increments;
 
-    // }
+    }
 
 
 

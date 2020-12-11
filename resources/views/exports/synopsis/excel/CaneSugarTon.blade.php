@@ -56,15 +56,15 @@
 
 
 <table style="font-size:8px;">
+      
+    <tr>
+      <td colspan="6" style="text-align: center;">CROP YEAR: {{ $crop_year }}</td>
+    </tr>
 
     <tr>
       <td colspan="6" style="text-align: center;">
-        Cane-Sugar Tons
+        TABLE I. TONNAGE OF CANE MILLED AND RAW SUGAR PRODUCED
       </td>
-    </tr>
-      
-    <tr>
-      <td colspan="6" style="text-align: center;">CROP YEAR {{ $crop_year }}</td>
     </tr>
       
     <tr>

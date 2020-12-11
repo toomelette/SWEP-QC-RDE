@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="input-group input-group-md" style="width: 250px;">
-                      <input class="form-control pull-right" placeholder="Search .." type="text" v-model.lazy="search_value" v-debounce="300">
+                      <input class="form-control pull-right" placeholder="Search .." type="text" v-model.lazy="search_value" v-debounce="500">
                     </div>
                 </div>
             </div>
@@ -43,8 +43,8 @@
                         <th>Action</th>
                     </tr>    
                 </thead>    
-                <tbody v-if="cane_sugar_tons.length > 0">
-                    <tr v-for="data in cane_sugar_tons" v-bind:style="data.slug == created_key ? active_tr_style : {}">
+                <tbody v-if="collection.length > 0">
+                    <tr v-for="data in collection" v-bind:style="data.slug == created_key ? active_tr_style : {}">
                         <td id="mid-vert">{{ data.crop_year.name }}</td>
                         <td id="mid-vert">{{ data.mill.name }}</td>
                         <td>
@@ -56,11 +56,11 @@
             </table>  
         </div>
         
-        <div v-if="is_loading == false && cane_sugar_tons.length == 0 && is_invalid_fetch == true" style="padding :5px;">
+        <div v-if="is_loading == false && collection.length == 0 && is_invalid_fetch == true" style="padding :5px;">
           <center><h4>Server Error!</h4></center>
         </div>
 
-        <div v-if="is_loading == false && cane_sugar_tons.length == 0" style="padding :5px;">
+        <div v-if="is_loading == false && collection.length == 0" style="padding :5px;">
           <center><h4>No Records found!</h4></center>
         </div>
 
@@ -113,7 +113,7 @@
 
             return {
 
-                cane_sugar_tons: [],
+                collection: [],
                 page_data: [],
                 is_invalid_fetch: false,
                 is_loading: true,
@@ -170,7 +170,7 @@
                axios.get('synopsis/cane_sugar_tons', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
                         if(response.status == 200){
-                            this.cane_sugar_tons = response.data.data;
+                            this.collection = response.data.data;
                             this.page_data = response.data;
                             this.is_loading = false;
                         }else{

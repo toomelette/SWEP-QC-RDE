@@ -10,7 +10,7 @@
               <button class="close" data-dismiss="modal" style="padding:5px;">
               </button>
               <h4 class="modal-title">
-                <i class="fa fa-exclamation-circle"></i>Delete
+                <i class="fa fa-exclamation-circle"></i> Delete
               </h4>
             </div>
 

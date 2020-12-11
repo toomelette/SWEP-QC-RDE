@@ -46,7 +46,7 @@
 
                       <ul class="treeview-menu">
 
-                        @foreach($user_menu->userSubMenu as $user_nav)
+                        @foreach($user_menu->userSubMenu->sortBy('submenu_id') as $user_nav)
 
                           @if($user_nav->is_nav == true)
 

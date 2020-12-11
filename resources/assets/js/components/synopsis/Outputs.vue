@@ -80,16 +80,25 @@
 
 
                 <div class="box-body"> 
-                    <cane-sugar-tons-output-format v-if="category_id.toString() == 1" 
-                                                  :collection="collection" 
-                                                  :regions="regions" 
-                                                  :crop_year="crop_year_id.label">
-                    </cane-sugar-tons-output-format>
-                    <ratios-on-gross-cane-format v-if="category_id.toString() == 2" 
-                                                  :collection="collection" 
-                                                  :regions="regions" 
-                                                  :crop_year="crop_year_id.label">
-                    </ratios-on-gross-cane-format>
+
+                    <div v-if="collection.length == 0" style="text-align:center;"><h3>No Data Available!</h3></div>
+
+                    <div ref="dataBody">
+
+                        <!-- Cane Sugar Tons -->
+                        <cane-sugar-tons-format v-if="category_id.toString() == 1" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </cane-sugar-tons-format>
+
+                        <!-- Production Increment -->
+                        <prdn-increment-format v-if="category_id.toString() == 2" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </prdn-increment-format>
+
+                        <!-- Ratios on Gross Cane -->
+                        <ratios-on-gross-cane-format v-if="category_id.toString() == 3" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </ratios-on-gross-cane-format>
+
+                    </div>
+
                 </div>
 
 
@@ -106,9 +115,11 @@
 
 <script>
 
+    import Utils from '../utils';
+
     import 'vue-select/dist/vue-select.css';
     import 'vue-toast-notification/dist/theme-sugar.css';
-    import Utils from '../utils';
+    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default {
 
@@ -140,13 +151,6 @@
             this.getAllSynOutputCategories();
             this.getAllSynOutputRegions();
         
-        },
-
-
-
-        watch:{
-
-
         },
 
 
@@ -187,10 +191,22 @@
 
 
             filter(){
+                
+                let loader = this.$loading.show({
+                  container: this.$refs.dataBody,
+                  canCancel: true,
+                  onCancel: this.onCancel,
+                  opacity: 1,
+                  transition: null,
+                  width: 60,
+                  height: 60,
+                });
 
                axios.get('synopsis/outputs/filter', { params: { cy: this.crop_year_id?.code, cat: this.category_id.toString()} })
                     .then((response) => {
-                       this.collection = response.data;
+                        this.collection = response.data;
+                        loader.hide();
+                        console.log(this.collection);
                     })
                     .catch((error) =>{
                         this.$toast.error('Cannot Process! Error occurred.', {

@@ -32,9 +32,10 @@ class SynRatiosOnGrossCaneSubscriber extends BaseSubscriber{
 
 
 
-    public function onStore(){
+    public function onStore($syn_ratios_on_gross_cane){
         
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:fetch:*');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:getByCropYearId:'. $syn_ratios_on_gross_cane->crop_year_id .'');
 
     }
 
@@ -44,6 +45,7 @@ class SynRatiosOnGrossCaneSubscriber extends BaseSubscriber{
 
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:fetch:*');
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:findBySlug:'. $syn_ratios_on_gross_cane->slug .'');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:getByCropYearId:'. $syn_ratios_on_gross_cane->crop_year_id .'');
 
     }
 
@@ -53,6 +55,7 @@ class SynRatiosOnGrossCaneSubscriber extends BaseSubscriber{
 
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:fetch:*');
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:findBySlug:'. $syn_ratios_on_gross_cane->slug .'');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ratios_on_gross_cane:getByCropYearId:'. $syn_ratios_on_gross_cane->crop_year_id .'');
 
     }
 

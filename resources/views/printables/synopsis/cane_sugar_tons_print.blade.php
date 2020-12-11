@@ -55,8 +55,8 @@
 
   {{-- HEADER --}}
   <div class="row" style="padding:11px; text-align: center;">
-    <span style="font-size: 14px;">CANE-SUGAR TONS</span><br>
-    <span style="font-size: 14px;">CY {{ $crop_year }}</span>  
+    <span style="font-size: 14px;">CROP-YEAR: {{ $crop_year }}</span><br>
+    <span style="font-size: 14px;">TABLE I. TONNAGE OF CANE MILLED AND RAW SUGAR PRODUCED</span>
   </div>
 
   <div class="row" id="content">

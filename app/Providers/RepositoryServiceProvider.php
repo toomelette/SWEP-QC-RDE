@@ -36,6 +36,8 @@ class RepositoryServiceProvider extends ServiceProvider {
 		$this->app->bind('App\Core\Interfaces\SynPRDNIncrementInterface', 'App\Core\Repositories\SynPRDNIncrementRepository');
 
 		$this->app->bind('App\Core\Interfaces\SynRatiosOnGrossCaneInterface', 'App\Core\Repositories\SynRatiosOnGrossCaneRepository');
+
+		$this->app->bind('App\Core\Interfaces\SynCaneAnalysisInterface', 'App\Core\Repositories\SynCaneAnalysisRepository');
 		
 		
 	}

@@ -9,10 +9,10 @@
 	<section class="content">
 
 	    <div id="app">
-	    	<synopsis-ratios-on-gross-cane-list></synopsis-ratios-on-gross-cane-list>
-	    	<synopsis-ratios-on-gross-cane-create-modal></synopsis-ratios-on-gross-cane-create-modal>
-	    	<synopsis-ratios-on-gross-cane-update-modal></synopsis-ratios-on-gross-cane-update-modal>
-	    	<synopsis-ratios-on-gross-cane-delete-modal></synopsis-ratios-on-gross-cane-delete-modal>
+	    	<ratios-on-gross-cane-list></ratios-on-gross-cane-list>
+	    	<ratios-on-gross-cane-create-modal></ratios-on-gross-cane-create-modal>
+	    	<ratios-on-gross-cane-update-modal></ratios-on-gross-cane-update-modal>
+	    	<ratios-on-gross-cane-delete-modal></ratios-on-gross-cane-delete-modal>
 	    </div>
 
 	</section>

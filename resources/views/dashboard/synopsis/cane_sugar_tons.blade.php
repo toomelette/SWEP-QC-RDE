@@ -9,10 +9,10 @@
 	<section class="content">
 
 	    <div id="app">
-	    	<synopsis-cane-sugar-tons-list></synopsis-cane-sugar-tons-list>
-	    	<synopsis-cane-sugar-tons-create-modal></synopsis-cane-sugar-tons-create-modal>
-	    	<synopsis-cane-sugar-tons-update-modal></synopsis-cane-sugar-tons-update-modal>
-	    	<synopsis-cane-sugar-tons-delete-modal></synopsis-cane-sugar-tons-delete-modal>
+	    	<cane-sugar-tons-list></cane-sugar-tons-list>
+	    	<cane-sugar-tons-create-modal></cane-sugar-tons-create-modal>
+	    	<cane-sugar-tons-update-modal></cane-sugar-tons-update-modal>
+	    	<cane-sugar-tons-delete-modal></cane-sugar-tons-delete-modal>
 	    </div>
 
 	</section>

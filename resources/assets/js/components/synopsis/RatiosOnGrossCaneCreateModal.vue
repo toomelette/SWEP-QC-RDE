@@ -84,10 +84,12 @@
 
 <script>
 
-    import 'vue-select/dist/vue-select.css';
-    import 'vue-toast-notification/dist/theme-sugar.css';
     import EventBus from '../../SynRatiosOnGrossCaneMain';
     import Utils from '../utils';
+
+    import 'vue-select/dist/vue-select.css';
+    import 'vue-toast-notification/dist/theme-sugar.css';
+    import 'vue-loading-overlay/dist/vue-loading.css';
 
 
     export default { 
@@ -152,6 +154,15 @@
             },
 
             store(){ 
+                
+                let loader = this.$loading.show({
+                  container: this.$refs.create_form,
+                  canCancel: true,
+                  onCancel: this.onCancel,
+                  opacity: 0.7,
+                  transition: null,
+                  isFullPage:false,
+                });
 
                 axios.post('synopsis/ratios_on_gross_cane/store', {
 
@@ -183,6 +194,8 @@
 
                         EventBus.$emit('RATIOS_ON_GROSS_CANE_UPDATE_LIST', {'key': response.data.key});
 
+                        loader.hide();
+
                     }else{
                         
                         this.$toast.error('Unable to send data!', {
@@ -190,6 +203,8 @@
                             duration: 5000,
                             dismissible: true,
                         });
+
+                        loader.hide();
 
                     }
 
@@ -199,6 +214,8 @@
                     if (error.response?.status == 422){
                         this.error = error.response.data.errors;
                     }
+
+                    loader.hide();
                     
                 });
 

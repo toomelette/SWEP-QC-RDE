@@ -92,10 +92,12 @@
 
 <script>
 
-    import 'vue-select/dist/vue-select.css';
-    import 'vue-toast-notification/dist/theme-sugar.css';
     import EventBus from '../../SynCaneSugarTonsMain';
     import Utils from '../utils';
+    
+    import 'vue-select/dist/vue-select.css';
+    import 'vue-toast-notification/dist/theme-sugar.css';
+    import 'vue-loading-overlay/dist/vue-loading.css';
 
 
     export default { 
@@ -179,6 +181,15 @@
             },
 
             update(){ 
+                
+                let loader = this.$loading.show({
+                  container: this.$refs.update_form,
+                  canCancel: true,
+                  onCancel: this.onCancel,
+                  opacity: 0.7,
+                  transition: null,
+                  isFullPage:false,
+                });
 
                 axios.post('synopsis/cane_sugar_tons/' + this.update_key, {
                     crop_year_id: this.crop_year_id?.code.toString(), 
@@ -202,6 +213,8 @@
                         });
 
                         EventBus.$emit('CANE_SUGAR_TONS_UPDATE_LIST', {'key': response.data.key});
+
+                        loader.hide();
                         
                     }else{
                         
@@ -211,6 +224,8 @@
                             dismissible: true,
                         });
 
+                        loader.hide();
+
                     }
 
                 })
@@ -219,6 +234,8 @@
                     if (error.response?.status == 422){
                         this.error = error.response.data.errors;
                     }
+
+                    loader.hide();
                     
                 });
 

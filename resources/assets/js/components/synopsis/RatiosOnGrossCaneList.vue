@@ -43,8 +43,8 @@
                         <th>Action</th>
                     </tr>    
                 </thead>    
-                <tbody v-if="ratios_on_gross_cane.length > 0">
-                    <tr v-for="data in ratios_on_gross_cane" v-bind:style="data.slug == created_key ? active_tr_style : {}">
+                <tbody v-if="collection.length > 0">
+                    <tr v-for="data in collection" v-bind:style="data.slug == created_key ? active_tr_style : {}">
                         <td id="mid-vert">{{ data.mill.name }}</td>
                         <td id="mid-vert">{{ data.crop_year.name }}</td>
                         <td>
@@ -56,11 +56,11 @@
             </table>  
         </div>
         
-        <div v-if="is_loading == false && ratios_on_gross_cane.length == 0 && is_invalid_fetch == true" style="padding :5px;">
+        <div v-if="is_loading == false && collection.length == 0 && is_invalid_fetch == true" style="padding :5px;">
           <center><h4>Server Error!</h4></center>
         </div>
 
-        <div v-if="is_loading == false && ratios_on_gross_cane.length == 0" style="padding :5px;">
+        <div v-if="is_loading == false && collection.length == 0" style="padding :5px;">
           <center><h4>No Records found!</h4></center>
         </div>
 
@@ -113,7 +113,7 @@
 
             return {
 
-                ratios_on_gross_cane: [],
+                collection: [],
                 page_data: [],
                 is_invalid_fetch: false,
                 is_loading: true,
@@ -170,7 +170,7 @@
                axios.get('synopsis/ratios_on_gross_cane', { params: { q: this.search_value, e: this.entry_value, page: page_no, } })
                     .then((response) => {
                         if(response.status == 200){
-                            this.ratios_on_gross_cane = response.data.data;
+                            this.collection = response.data.data;
                             this.page_data = response.data;
                             this.is_loading = false;
                         }else{

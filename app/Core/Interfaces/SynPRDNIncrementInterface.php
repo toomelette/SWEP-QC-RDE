@@ -15,5 +15,7 @@ interface SynPRDNIncrementInterface {
 	public function update($request, $slug);
 
 	public function destroy($slug);
+
+	public function getByCropYearId($crop_year_id);
 		
 }

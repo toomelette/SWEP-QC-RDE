@@ -4,21 +4,21 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
-use App\Core\Interfaces\SynCaneSugarTonInterface;
 use App\Http\Requests\Synopsis\OutputFilterRequest;
 
+use App\Core\Interfaces\SynCaneSugarTonInterface;
+use App\Core\Interfaces\SynPRDNIncrementInterface;
+use App\Core\Interfaces\SynRatiosOnGrossCaneInterface;
+
 class ApiSynOutputController extends Controller{
-
-
-
-    protected $syn_cane_sugar_ton_repo;
     
     
 
 	const SYN_OUTPUT_CATEGORIES = [
 
         ['id' => '1', 'label' => 'Cane-Sugar Tons',],
-        ['id' => '2', 'label' => 'Ratios on Gross Cane',],
+        ['id' => '2', 'label' => 'Production Increment',],
+        ['id' => '3', 'label' => 'Ratios on Gross Cane',],
 
     ];
     
@@ -36,9 +36,22 @@ class ApiSynOutputController extends Controller{
 
 
 
-	public function __construct(SynCaneSugarTonInterface $syn_cane_sugar_ton_repo){
-		$this->syn_cane_sugar_ton_repo = $syn_cane_sugar_ton_repo;
+    protected $cane_sugar_ton_repo;
+    protected $prdn_increment_repo;
+    protected $ratios_on_grosscane_repo;
+
+
+
+    public function __construct(SynCaneSugarTonInterface $cane_sugar_ton_repo, 
+                                SynPRDNIncrementInterface $prdn_increment_repo,
+                                SynRatiosOnGrossCaneInterface $ratios_on_grosscane_repo){
+
+		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
+		$this->prdn_increment_repo = $prdn_increment_repo;
+        $this->ratios_on_grosscane_repo = $ratios_on_grosscane_repo;
+        
         parent::__construct();
+
 	}
 
 
@@ -60,9 +73,19 @@ class ApiSynOutputController extends Controller{
         $collection = [];
 
         if(isset($request->cy)){
+
             if($request->cat == '1'){
-                $collection = $this->syn_cane_sugar_ton_repo->getByCropYearId($request->cy);
+                $collection = $this->cane_sugar_ton_repo->getByCropYearId($request->cy);
             }
+            
+            if($request->cat == '2'){
+                $collection = $this->prdn_increment_repo->getByCropYearId($request->cy);
+            }
+            
+            if($request->cat == '3'){
+                $collection = $this->ratios_on_grosscane_repo->getByCropYearId($request->cy);
+            }
+
         }
 
 	    return response()->json($collection, 200);

@@ -9,7 +9,7 @@ class CropYear extends Model{
 
 
     protected $table = 'crop_years';  
-	public $timestamps = false;
+    public $timestamps = false;
 	
 
 }

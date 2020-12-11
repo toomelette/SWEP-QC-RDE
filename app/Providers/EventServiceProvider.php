@@ -36,6 +36,7 @@ class EventServiceProvider extends ServiceProvider{
         'App\Core\Subscribers\SynCaneSugarTonSubscriber',
         'App\Core\Subscribers\SynPRDNIncrementSubscriber',
         'App\Core\Subscribers\SynRatiosOnGrossCaneSubscriber',
+        'App\Core\Subscribers\SynCaneAnalysisSubscriber',
         
     ];
 

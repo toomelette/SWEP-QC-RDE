@@ -1,11 +1,12 @@
 
 
 <template>
-
+    
     <div class="login-box-body">
+
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form @submit.prevent="login">
+        <form @submit.prevent="login" ref="loadingDiv">
 
             <div class="form-group has-feedback" v-bind:class="error.username ? 'has-error' : ''">
                 <input v-model="username" class="form-control" placeholder="Username" type="text">
@@ -20,7 +21,7 @@
             </div>
 
             <div class="social-auth-links text-center">
-              <button type="submit" class="btn btn-block btn-flat btn-success">LOGIN</button>
+                <button type="submit" class="btn btn-block btn-flat btn-success">Login</button>
             </div>
 
         </form>
@@ -35,6 +36,10 @@
 
 
 <script>
+    
+
+    import 'vue-loading-overlay/dist/vue-loading.css';
+
 
     export default { 
 
@@ -43,7 +48,6 @@
 
             return {
 
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 error: "",
 
                 // fields
@@ -66,19 +70,31 @@
         methods: {
 
             login(){ 
+                
                 const auth_usr = {};
+                
+                let loader = this.$loading.show({
+                  container: this.$refs.loadingDiv,
+                  canCancel: true,
+                  onCancel: this.onCancel,
+                  width: 60,
+                  height: 60,
+                });
+
                 axios.post('auth/login', {
                     username: this.username,
                     password: this.password, 
                 })
                 .then((response) => {
                     if (response.status == 200) {
-                        auth_usr.access_token = response.data.token;
-                        window.localStorage.setItem('auth_usr', JSON.stringify(auth_usr));
-                        location.replace(window.location.origin + '/dashboard/home');
+                        auth_usr.access_token = response.data.token
+                        window.localStorage.setItem('auth_usr', JSON.stringify(auth_usr))
+                        loader.hide()
+                        location.replace(window.location.origin + '/dashboard/home')
                     }
                 })
                 .catch((error) => {
+                    loader.hide()
                     this.error = error.response.data.errors;
                 });
 

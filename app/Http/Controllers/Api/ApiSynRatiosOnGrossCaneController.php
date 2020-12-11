@@ -34,7 +34,7 @@ class ApiSynRatiosOnGrossCaneController extends Controller{
 	public function store(RatiosOnGrossCaneFormRequest $request){
 
 		$syn_ratios_on_gross_cane = $this->syn_ratios_on_gross_cane_repo->store($request);
-        $this->event->fire('syn_ratios_on_gross_cane.store');
+        $this->event->fire('syn_ratios_on_gross_cane.store', $syn_ratios_on_gross_cane);
 		return response()->json(['key' => $syn_ratios_on_gross_cane->slug], 200);
 
     }
