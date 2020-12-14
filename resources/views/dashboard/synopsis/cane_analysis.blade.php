@@ -11,8 +11,8 @@
 	    <div id="app">
 	    	<cane-analysis-list></cane-analysis-list>
 	    	<cane-analysis-create-modal></cane-analysis-create-modal>
-	    	{{-- <cane-analysis-update-modal></cane-analysis-update-modal> --}}
-	    	{{-- <cane-analysis-delete-modal></cane-analysis-delete-modal> --}}
+	    	<cane-analysis-update-modal></cane-analysis-update-modal>
+	    	<cane-analysis-delete-modal></cane-analysis-delete-modal>
 	    </div>
 
 	</section>

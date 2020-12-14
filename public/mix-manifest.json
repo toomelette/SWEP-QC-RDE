@@ -5,10 +5,14 @@
     "/css/SynPRDNIncrementMain.css": "/css/SynPRDNIncrementMain.css",
     "/css/SynRatiosOnGrossCaneMain.css": "/css/SynRatiosOnGrossCaneMain.css",
     "/css/SynCaneAnalysisMain.css": "/css/SynCaneAnalysisMain.css",
+    "/css/SynSugarAnalysisMain.css": "/css/SynSugarAnalysisMain.css",
+    "/css/SynFirstExpressedJuiceMain.css": "/css/SynFirstExpressedJuiceMain.css",
     "/css/SynOutputsMain.css": "/css/SynOutputsMain.css",
     "/js/SynCaneAnalysisMain.js": "/js/SynCaneAnalysisMain.js",
     "/js/SynCaneSugarTonsMain.js": "/js/SynCaneSugarTonsMain.js",
+    "/js/SynFirstExpressedJuiceMain.js": "/js/SynFirstExpressedJuiceMain.js",
     "/js/SynOutputsMain.js": "/js/SynOutputsMain.js",
     "/js/SynPRDNIncrementMain.js": "/js/SynPRDNIncrementMain.js",
-    "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js"
+    "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js",
+    "/js/SynSugarAnalysisMain.js": "/js/SynSugarAnalysisMain.js"
 }

@@ -1860,6 +1860,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1875,11 +1876,11 @@ __webpack_require__.r(__webpack_exports__);
       // fields
       crop_year_id: {},
       mill_id: {},
-      sgrcane_gross_tonnes: "",
-      sgrcane_net_tonnes: "",
-      rawsgr_tonnes_due_cane: "",
-      rawsgr_tonnes_manufactured: "",
-      equivalent: ""
+      percent_pol: "",
+      percent_sucrose: "",
+      percent_fiber: "",
+      percent_trash: "",
+      pol_percent_fiber: ""
     };
   },
   created: function created() {
@@ -1922,24 +1923,24 @@ __webpack_require__.r(__webpack_exports__);
         transition: null,
         isFullPage: false
       });
-      axios.post('synopsis/cane_sugar_tons/store', {
+      axios.post('synopsis/cane_analysis/store', {
         crop_year_id: (_this$crop_year_id = this.crop_year_id) === null || _this$crop_year_id === void 0 ? void 0 : _this$crop_year_id.code,
         mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code,
-        sgrcane_gross_tonnes: this.sgrcane_gross_tonnes,
-        sgrcane_net_tonnes: this.sgrcane_net_tonnes,
-        rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane,
-        rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured,
-        equivalent: this.equivalent
+        percent_pol: this.percent_pol,
+        percent_sucrose: this.percent_sucrose,
+        percent_fiber: this.percent_fiber,
+        percent_trash: this.percent_trash,
+        pol_percent_fiber: this.pol_percent_fiber
       }).then(function (response) {
         if (response.status == 200) {
           _this4.error = [];
           _this4.crop_year_id = {};
           _this4.mill_id = {};
-          _this4.sgrcane_gross_tonnes = '';
-          _this4.sgrcane_net_tonnes = '';
-          _this4.rawsgr_tonnes_due_cane = '';
-          _this4.rawsgr_tonnes_manufactured = '';
-          _this4.equivalent = '';
+          _this4.percent_pol = '';
+          _this4.percent_sucrose = '';
+          _this4.percent_fiber = '';
+          _this4.percent_trash = '';
+          _this4.pol_percent_fiber = '';
 
           _this4.$toast.success('Data Successfully Saved!', {
             position: 'top-right',
@@ -1972,6 +1973,109 @@ __webpack_require__.r(__webpack_exports__);
     },
     closeModal: function closeModal() {
       this.error = [];
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SynCaneAnalysisMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynCaneAnalysisMain */ "./resources/assets/js/SynCaneAnalysisMain.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      delete_key: ""
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    _SynCaneAnalysisMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('OPEN_CANE_ANALYSIS_DELETE_MODAL', function (data) {
+      _this.showModal(data);
+    });
+  },
+  methods: {
+    showModal: function showModal(data) {
+      var _this2 = this;
+
+      $("#delete_modal").modal("show");
+      axios.get('synopsis/cane_analysis/' + data.delete_key).then(function (response) {
+        if (response.status == 200) {
+          _this2.delete_key = response.data.data.slug;
+        }
+      });
+    },
+    destroy: function destroy() {
+      var _this3 = this;
+
+      axios["delete"]('synopsis/cane_analysis/' + this.delete_key).then(function (response) {
+        if (response.status == 200) {
+          $('#delete_modal').modal('toggle');
+
+          _this3.$toast.success('Data Successfully Deleted!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+
+          _SynCaneAnalysisMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('CANE_ANALYSIS_UPDATE_LIST', {});
+        } else {
+          _this3.$toast.error('Unable to delete data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+        }
+      });
     }
   }
 });
@@ -2168,6 +2272,248 @@ __webpack_require__.r(__webpack_exports__);
   },
   directives: {
     debounce: v_debounce__WEBPACK_IMPORTED_MODULE_0___default.a
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SynCaneAnalysisMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../SynCaneAnalysisMain */ "./resources/assets/js/SynCaneAnalysisMain.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./resources/assets/js/components/utils.js");
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select/dist/vue-select.css */ "./node_modules/vue-select/dist/vue-select.css");
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_utils__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  data: function data() {
+    return {
+      mills: [],
+      crop_years: [],
+      error: [],
+      // fields
+      update_key: "",
+      crop_year_id: {},
+      mill_id: {},
+      percent_pol: "",
+      percent_sucrose: "",
+      percent_fiber: "",
+      percent_trash: "",
+      pol_percent_fiber: ""
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    _SynCaneAnalysisMain__WEBPACK_IMPORTED_MODULE_0__["default"].$on('OPEN_CANE_ANALYSIS_UPDATE_MODAL', function (data) {
+      _this.showModal(data);
+    });
+    this.getAllMills();
+    this.getAllCropYears();
+  },
+  methods: {
+    showModal: function showModal(data) {
+      var _this2 = this;
+
+      $("#update_modal").modal("show");
+      axios.get('synopsis/cane_analysis/' + data.update_key).then(function (response) {
+        if (response.status == 200) {
+          var cane_analysis = response.data.data;
+          _this2.update_key = cane_analysis.slug;
+          _this2.crop_year_id = {
+            code: cane_analysis.crop_year.crop_year_id,
+            label: cane_analysis.crop_year.name
+          };
+          _this2.mill_id = {
+            code: cane_analysis.mill.mill_id,
+            label: cane_analysis.mill.name
+          };
+          _this2.percent_pol = _this2.utilCheckFloat(cane_analysis.percent_pol);
+          _this2.percent_sucrose = _this2.utilCheckFloat(cane_analysis.percent_sucrose);
+          _this2.percent_fiber = _this2.utilCheckFloat(cane_analysis.percent_fiber);
+          _this2.percent_trash = _this2.utilCheckFloat(cane_analysis.percent_trash);
+          _this2.pol_percent_fiber = _this2.utilCheckFloat(cane_analysis.pol_percent_fiber);
+        }
+      });
+    },
+    getAllMills: function getAllMills() {
+      var _this3 = this;
+
+      axios.get('mill/get_all').then(function (response) {
+        _this3.mills = _this3.utilVSelectOptions(response.data, 'mill_id', 'name');
+      });
+    },
+    getAllCropYears: function getAllCropYears() {
+      var _this4 = this;
+
+      axios.get('crop_year/get_all').then(function (response) {
+        _this4.crop_years = _this4.utilVSelectOptions(response.data, 'crop_year_id', 'name');
+      });
+    },
+    update: function update() {
+      var _this$crop_year_id,
+          _this$mill_id,
+          _this5 = this;
+
+      var loader = this.$loading.show({
+        container: this.$refs.update_form,
+        canCancel: true,
+        onCancel: this.onCancel,
+        opacity: 0.7,
+        transition: null,
+        isFullPage: false
+      });
+      axios.post('synopsis/cane_analysis/' + this.update_key, {
+        crop_year_id: (_this$crop_year_id = this.crop_year_id) === null || _this$crop_year_id === void 0 ? void 0 : _this$crop_year_id.code.toString(),
+        mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code.toString(),
+        percent_pol: this.utilCheckFloat(this.percent_pol),
+        percent_sucrose: this.utilCheckFloat(this.percent_sucrose),
+        percent_fiber: this.utilCheckFloat(this.percent_fiber),
+        percent_trash: this.utilCheckFloat(this.percent_trash),
+        pol_percent_fiber: this.utilCheckFloat(this.pol_percent_fiber)
+      }).then(function (response) {
+        if (response.status == 200) {
+          $('#update_modal').modal('toggle');
+
+          _this5.$toast.success('Data Successfully Updated!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+
+          _SynCaneAnalysisMain__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('CANE_ANALYSIS_UPDATE_LIST', {
+            'key': response.data.key
+          });
+          loader.hide();
+        } else {
+          _this5.$toast.error('Unable to send data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+
+          loader.hide();
+        }
+      })["catch"](function (error) {
+        var _error$response;
+
+        if (((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.status) == 422) {
+          _this5.error = error.response.data.errors;
+        }
+
+        loader.hide();
+      });
+    },
+    closeModal: function closeModal() {
+      this.error = [];
+    }
   }
 });
 
@@ -6603,7 +6949,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css":
 /*!*************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--11-1!./node_modules/postcss-loader/src??ref--11-2!./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
+  !*** ./node_modules/css-loader??ref--13-1!./node_modules/postcss-loader/src??ref--13-2!./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
   \*************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -6622,7 +6968,7 @@ exports.push([module.i, ".vld-shown {\n  overflow: hidden;\n}\n\n.vld-overlay {\
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css":
 /*!***************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--11-1!./node_modules/postcss-loader/src??ref--11-2!./node_modules/vue-select/dist/vue-select.css ***!
+  !*** ./node_modules/css-loader??ref--13-1!./node_modules/postcss-loader/src??ref--13-2!./node_modules/vue-select/dist/vue-select.css ***!
   \***************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -6641,7 +6987,7 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css":
 /*!****************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--11-1!./node_modules/postcss-loader/src??ref--11-2!./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
+  !*** ./node_modules/css-loader??ref--13-1!./node_modules/postcss-loader/src??ref--13-2!./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
   \****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -38587,33 +38933,63 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.sgrcane_gross_tonnes ? "has-error" : ""
+                      class: _vm.error.percent_pol ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "sgrcane_gross_tonnes" } }, [
-                        _vm._v("Sugar Cane Gross Tonnes")
+                      _c("label", { attrs: { for: "percent_pol" } }, [
+                        _vm._v("PERCENT POL")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "PERCENT POL" },
+                        model: {
+                          value: _vm.percent_pol,
+                          callback: function($$v) {
+                            _vm.percent_pol = $$v
+                          },
+                          expression: "percent_pol"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.percent_pol
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.percent_pol.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.percent_sucrose ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "percent_sucrose" } }, [
+                        _vm._v("PERCENT SUCROSE")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Sugar Cane Gross Tonnes"
+                          placeholder: "PERCENT SUCROSE"
                         },
                         model: {
-                          value: _vm.sgrcane_gross_tonnes,
+                          value: _vm.percent_sucrose,
                           callback: function($$v) {
-                            _vm.sgrcane_gross_tonnes = $$v
+                            _vm.percent_sucrose = $$v
                           },
-                          expression: "sgrcane_gross_tonnes"
+                          expression: "percent_sucrose"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.sgrcane_gross_tonnes
+                      _vm.error.percent_sucrose
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(_vm.error.sgrcane_gross_tonnes.toString())
-                            )
+                            _vm._v(_vm._s(_vm.error.percent_sucrose.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -38624,149 +39000,97 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.sgrcane_net_tonnes ? "has-error" : ""
+                      class: _vm.error.percent_fiber ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "sgrcane_net_tonnes" } }, [
-                        _vm._v("Sugar Cane Net Tonnes")
+                      _c("label", { attrs: { for: "percent_fiber" } }, [
+                        _vm._v("PERCENT FIBER")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "PERCENT FIBER" },
+                        model: {
+                          value: _vm.percent_fiber,
+                          callback: function($$v) {
+                            _vm.percent_fiber = $$v
+                          },
+                          expression: "percent_fiber"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.percent_fiber
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.percent_fiber.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.percent_trash ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "percent_trash" } }, [
+                        _vm._v("PERCENT TRASH")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "PERCENT TRASH" },
+                        model: {
+                          value: _vm.percent_trash,
+                          callback: function($$v) {
+                            _vm.percent_trash = $$v
+                          },
+                          expression: "percent_trash"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.percent_trash
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.percent_trash.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.pol_percent_fiber ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "pol_percent_fiber" } }, [
+                        _vm._v("POL PERCENT FIBER")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Sugar Cane Net Tonnes"
+                          placeholder: "POL PERCENT FIBER"
                         },
                         model: {
-                          value: _vm.sgrcane_net_tonnes,
+                          value: _vm.pol_percent_fiber,
                           callback: function($$v) {
-                            _vm.sgrcane_net_tonnes = $$v
+                            _vm.pol_percent_fiber = $$v
                           },
-                          expression: "sgrcane_net_tonnes"
+                          expression: "pol_percent_fiber"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.sgrcane_net_tonnes
+                      _vm.error.pol_percent_fiber
                         ? _c("p", { staticClass: "help-block" }, [
                             _vm._v(
-                              _vm._s(_vm.error.sgrcane_net_tonnes.toString())
+                              _vm._s(_vm.error.pol_percent_fiber.toString())
                             )
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.rawsgr_tonnes_due_cane ? "has-error" : ""
-                    },
-                    [
-                      _c(
-                        "label",
-                        { attrs: { for: "rawsgr_tonnes_due_cane" } },
-                        [_vm._v("Raw Sugar Tonnes Due Cane")]
-                      ),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Raw Sugar Tonnes Due Cane"
-                        },
-                        model: {
-                          value: _vm.rawsgr_tonnes_due_cane,
-                          callback: function($$v) {
-                            _vm.rawsgr_tonnes_due_cane = $$v
-                          },
-                          expression: "rawsgr_tonnes_due_cane"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.rawsgr_tonnes_due_cane
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.error.rawsgr_tonnes_due_cane.toString()
-                              )
-                            )
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.rawsgr_tonnes_manufactured
-                        ? "has-error"
-                        : ""
-                    },
-                    [
-                      _c(
-                        "label",
-                        { attrs: { for: "rawsgr_tonnes_manufactured" } },
-                        [_vm._v("Raw Sugar Tonnes Manufactured")]
-                      ),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Raw Sugar Tonnes Manufactured"
-                        },
-                        model: {
-                          value: _vm.rawsgr_tonnes_manufactured,
-                          callback: function($$v) {
-                            _vm.rawsgr_tonnes_manufactured = $$v
-                          },
-                          expression: "rawsgr_tonnes_manufactured"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.rawsgr_tonnes_manufactured
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.error.rawsgr_tonnes_manufactured.toString()
-                              )
-                            )
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.equivalent ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "equivalent" } }, [
-                        _vm._v("Equivalend")
-                      ]),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Equivalent" },
-                        model: {
-                          value: _vm.equivalent,
-                          callback: function($$v) {
-                            _vm.equivalent = $$v
-                          },
-                          expression: "equivalent"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.equivalent
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.equivalent.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -38821,6 +39145,123 @@ var staticRenderFns = [
         _c("div", { staticClass: "pull-right" }, [
           _c("code", [_vm._v("Fields with asterisks(*) are required")])
         ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: { id: "delete_modal", "data-backdrop": "static" }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog modal-md" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.destroy()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.delete_key,
+                      expression: "delete_key"
+                    }
+                  ],
+                  attrs: { type: "hidden" },
+                  domProps: { value: _vm.delete_key },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.delete_key = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("p", { staticStyle: { "font-size": "17px" } }, [
+                  _vm._v("Are you sure, you want to delete this record?")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeModal()
+                      }
+                    }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+                  [_vm._v("Delete")]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("button", {
+        staticClass: "close",
+        staticStyle: { padding: "5px" },
+        attrs: { "data-dismiss": "modal" }
+      }),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [
+        _c("i", { staticClass: "fa fa-exclamation-circle" }),
+        _vm._v(" Delete\n          ")
       ])
     ])
   }
@@ -39133,6 +39574,351 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: { id: "update_modal", "data-backdrop": "static" }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog modal-lg" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              ref: "update_form",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.update($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.update_key,
+                        expression: "update_key"
+                      }
+                    ],
+                    attrs: { type: "hidden" },
+                    domProps: { value: _vm.update_key },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.update_key = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-6",
+                      class: _vm.error.crop_year_id ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "crop_year_id" } }, [
+                        _vm._v("Crop Year *")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: { options: _vm.crop_years },
+                        model: {
+                          value: _vm.crop_year_id,
+                          callback: function($$v) {
+                            _vm.crop_year_id = $$v
+                          },
+                          expression: "crop_year_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.crop_year_id
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.crop_year_id.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-6",
+                      class: _vm.error.mill_id ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "mill_id" } }, [
+                        _vm._v("Mill *")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: { options: _vm.mills },
+                        model: {
+                          value: _vm.mill_id,
+                          callback: function($$v) {
+                            _vm.mill_id = $$v
+                          },
+                          expression: "mill_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.mill_id
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.mill_id.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.percent_pol ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "percent_pol" } }, [
+                        _vm._v("PERCENT POL")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "PERCENT POL" },
+                        model: {
+                          value: _vm.percent_pol,
+                          callback: function($$v) {
+                            _vm.percent_pol = $$v
+                          },
+                          expression: "percent_pol"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.percent_pol
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.percent_pol.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.percent_sucrose ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "percent_sucrose" } }, [
+                        _vm._v("PERCENT SUCROSE")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "PERCENT SUCROSE"
+                        },
+                        model: {
+                          value: _vm.percent_sucrose,
+                          callback: function($$v) {
+                            _vm.percent_sucrose = $$v
+                          },
+                          expression: "percent_sucrose"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.percent_sucrose
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.percent_sucrose.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.percent_fiber ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "percent_fiber" } }, [
+                        _vm._v("PERCENT FIBER")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "PERCENT FIBER" },
+                        model: {
+                          value: _vm.percent_fiber,
+                          callback: function($$v) {
+                            _vm.percent_fiber = $$v
+                          },
+                          expression: "percent_fiber"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.percent_fiber
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.percent_fiber.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.percent_trash ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "percent_trash" } }, [
+                        _vm._v("PERCENT TRASH")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "PERCENT TRASH" },
+                        model: {
+                          value: _vm.percent_trash,
+                          callback: function($$v) {
+                            _vm.percent_trash = $$v
+                          },
+                          expression: "percent_trash"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.percent_trash
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.percent_trash.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.pol_percent_fiber ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "pol_percent_fiber" } }, [
+                        _vm._v("POL PERCENT FIBER")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "POL PERCENT FIBER"
+                        },
+                        model: {
+                          value: _vm.pol_percent_fiber,
+                          callback: function($$v) {
+                            _vm.pol_percent_fiber = $$v
+                          },
+                          expression: "pol_percent_fiber"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.pol_percent_fiber
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(
+                              _vm._s(_vm.error.pol_percent_fiber.toString())
+                            )
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { "data-dismiss": "modal" },
+                    on: { click: _vm.closeModal }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-success", attrs: { type: "submit" } },
+                  [_vm._v("Save")]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("button", {
+        staticClass: "close",
+        staticStyle: { padding: "5px" },
+        attrs: { "data-dismiss": "modal" }
+      }),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [
+        _c("i", { staticClass: "glyphicon glyphicon-pencil" }),
+        _vm._v(" Edit\n            "),
+        _c("div", { staticClass: "pull-right" }, [
+          _c("code", [_vm._v("Fields with asterisks(*) are required")])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -39253,7 +40039,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--11-1!../../postcss-loader/src??ref--11-2!./vue-loading.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--13-1!../../postcss-loader/src??ref--13-2!./vue-loading.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -39294,7 +40080,7 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--11-1!../../postcss-loader/src??ref--11-2!./vue-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--13-1!../../postcss-loader/src??ref--13-2!./vue-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -39347,7 +40133,7 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--11-1!../../postcss-loader/src??ref--11-2!./theme-sugar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--13-1!../../postcss-loader/src??ref--13-2!./theme-sugar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -51449,9 +52235,9 @@ Vue.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_3___default.a);
 Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
 Vue.component('number-format', _components_Numberformat__WEBPACK_IMPORTED_MODULE_0__["default"]["default"]);
 Vue.component('cane-analysis-list', __webpack_require__(/*! ./components/synopsis/CaneAnalysisList.vue */ "./resources/assets/js/components/synopsis/CaneAnalysisList.vue")["default"]);
-Vue.component('cane-analysis-create-modal', __webpack_require__(/*! ./components/synopsis/CaneAnalysisCreateModal.vue */ "./resources/assets/js/components/synopsis/CaneAnalysisCreateModal.vue")["default"]); // Vue.component('cane-analysis-update-modal', require('./components/synopsis/CaneAnalysisUpdateModal.vue').default);
-// Vue.component('cane-analysis-delete-modal', require('./components/synopsis/CaneAnalysisDeleteModal.vue').default);
-
+Vue.component('cane-analysis-create-modal', __webpack_require__(/*! ./components/synopsis/CaneAnalysisCreateModal.vue */ "./resources/assets/js/components/synopsis/CaneAnalysisCreateModal.vue")["default"]);
+Vue.component('cane-analysis-update-modal', __webpack_require__(/*! ./components/synopsis/CaneAnalysisUpdateModal.vue */ "./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue")["default"]);
+Vue.component('cane-analysis-delete-modal', __webpack_require__(/*! ./components/synopsis/CaneAnalysisDeleteModal.vue */ "./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -51645,6 +52431,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CaneAnalysisDeleteModal_vue_vue_type_template_id_506bb026___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026& */ "./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026&");
+/* harmony import */ var _CaneAnalysisDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CaneAnalysisDeleteModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CaneAnalysisDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CaneAnalysisDeleteModal_vue_vue_type_template_id_506bb026___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CaneAnalysisDeleteModal_vue_vue_type_template_id_506bb026___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneAnalysisDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisDeleteModal_vue_vue_type_template_id_506bb026___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisDeleteModal.vue?vue&type=template&id=506bb026&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisDeleteModal_vue_vue_type_template_id_506bb026___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisDeleteModal_vue_vue_type_template_id_506bb026___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/synopsis/CaneAnalysisList.vue":
 /*!**********************************************************************!*\
   !*** ./resources/assets/js/components/synopsis/CaneAnalysisList.vue ***!
@@ -51709,6 +52564,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisList_vue_vue_type_template_id_fb2bf5fa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisList_vue_vue_type_template_id_fb2bf5fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CaneAnalysisUpdateModal_vue_vue_type_template_id_1df5d2e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2& */ "./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2&");
+/* harmony import */ var _CaneAnalysisUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CaneAnalysisUpdateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CaneAnalysisUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CaneAnalysisUpdateModal_vue_vue_type_template_id_1df5d2e2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CaneAnalysisUpdateModal_vue_vue_type_template_id_1df5d2e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneAnalysisUpdateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisUpdateModal_vue_vue_type_template_id_1df5d2e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/CaneAnalysisUpdateModal.vue?vue&type=template&id=1df5d2e2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisUpdateModal_vue_vue_type_template_id_1df5d2e2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaneAnalysisUpdateModal_vue_vue_type_template_id_1df5d2e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

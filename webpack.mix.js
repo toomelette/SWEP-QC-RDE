@@ -31,6 +31,14 @@ mix.js('resources/assets/js/SynRatiosOnGrossCaneMain.js', 'public/js')
 mix.js('resources/assets/js/SynCaneAnalysisMain.js', 'public/js')
 	.sass('resources/assets/sass/SynCaneAnalysisMain.scss', 'public/css');
 
+// SYNOPSIS SUGAR ANALYSIS
+mix.js('resources/assets/js/SynSugarAnalysisMain.js', 'public/js')
+	.sass('resources/assets/sass/SynSugarAnalysisMain.scss', 'public/css');
+
+// SYNOPSIS FIRST EXPRESSED JUICE
+mix.js('resources/assets/js/SynFirstExpressedJuiceMain.js', 'public/js')
+	.sass('resources/assets/sass/SynFirstExpressedJuiceMain.scss', 'public/css');
+
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')
 	.sass('resources/assets/sass/SynOutputsMain.scss', 'public/css');

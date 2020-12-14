@@ -52,6 +52,9 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	Route::get('/synopsis/ratios_on_gross_cane', 'SynopsisController@ratiosOnGrossCane')->name('synopsis.ratios_on_gross_cane_index');
 	Route::get('/synopsis/prdn_increment', 'SynopsisController@prdnIncrement')->name('synopsis.prdn_increment_index');
 	Route::get('/synopsis/cane_analysis', 'SynopsisController@caneAnalysis')->name('synopsis.cane_analysis');
+	Route::get('/synopsis/sugar_analysis', 'SynopsisController@sugarAnalysis')->name('synopsis.sugar_analysis');
+	Route::get('/synopsis/first_expressed_juice', 'SynopsisController@firstExpressedJuice')->name('synopsis.first_expressed_juice');
+
 	Route::get('/synopsis/outputs', 'SynopsisController@outputs')->name('synopsis.outputs');
 	Route::get('/synopsis/outputs/export_excel', 'SynopsisController@outputsExportExcel')->name('synopsis.outputs_export_excel');
 	Route::get('/synopsis/outputs/print', 'SynopsisController@outputsPrint')->name('synopsis.outputs_print');

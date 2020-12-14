@@ -21,6 +21,9 @@ Vue.component('v-select', VueSelect);
 Vue.component('cane-sugar-tons-format', require('./components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat').default);
 Vue.component('prdn-increment-format', require('./components/Synopsis/OutputCategoryFormats/PRDNIncrementFormat').default);
 Vue.component('ratios-on-gross-cane-format', require('./components/Synopsis/OutputCategoryFormats/RatiosOnGrossCaneFormat').default);
+Vue.component('cane-analysis', require('./components/Synopsis/OutputCategoryFormats/CaneAnalysisFormat').default);
+Vue.component('sugar-analysis', require('./components/Synopsis/OutputCategoryFormats/SugarAnalysisFormat').default);
+Vue.component('first-expressed-juice', require('./components/Synopsis/OutputCategoryFormats/FirstExpressedJuiceFormat').default);
 
 
 Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);

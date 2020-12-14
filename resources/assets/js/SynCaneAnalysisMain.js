@@ -22,8 +22,8 @@ Vue.component('number-format', Numberformat.default);
 
 Vue.component('cane-analysis-list', require('./components/synopsis/CaneAnalysisList.vue').default);
 Vue.component('cane-analysis-create-modal', require('./components/synopsis/CaneAnalysisCreateModal.vue').default);
-// Vue.component('cane-analysis-update-modal', require('./components/synopsis/CaneAnalysisUpdateModal.vue').default);
-// Vue.component('cane-analysis-delete-modal', require('./components/synopsis/CaneAnalysisDeleteModal.vue').default);
+Vue.component('cane-analysis-update-modal', require('./components/synopsis/CaneAnalysisUpdateModal.vue').default);
+Vue.component('cane-analysis-delete-modal', require('./components/synopsis/CaneAnalysisDeleteModal.vue').default);
 
 
 const app = new Vue({

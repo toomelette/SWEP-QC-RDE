@@ -97,6 +97,19 @@
                         <ratios-on-gross-cane-format v-if="category_id.toString() == 3" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </ratios-on-gross-cane-format>
 
+                        <!-- Cane Analysis -->
+                        <cane-analysis v-if="category_id.toString() == 4" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </cane-analysis>
+
+                        <!-- Cane Analysis -->
+                        <sugar-analysis v-if="category_id.toString() == 5" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </sugar-analysis>
+
+                        <!-- Cane Analysis -->
+                        <first-expressed-juice v-if="category_id.toString() == 6" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </first-expressed-juice>
+
+
                     </div>
 
                 </div>
@@ -206,7 +219,6 @@
                     .then((response) => {
                         this.collection = response.data;
                         loader.hide();
-                        console.log(this.collection);
                     })
                     .catch((error) =>{
                         this.$toast.error('Cannot Process! Error occurred.', {

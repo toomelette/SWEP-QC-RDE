@@ -37,34 +37,34 @@
                             <p v-if="error.mill_id" class="help-block">{{ error.mill_id.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.sgrcane_gross_tonnes ? 'has-error' : ''">
-                            <label for="sgrcane_gross_tonnes">Sugar Cane Gross Tonnes</label>
-                            <number-format decimals="2" v-model="sgrcane_gross_tonnes" class="form-control" placeholder="Sugar Cane Gross Tonnes"/>
-                            <p v-if="error.sgrcane_gross_tonnes" class="help-block">{{ error.sgrcane_gross_tonnes.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.percent_pol ? 'has-error' : ''">
+                            <label for="percent_pol">PERCENT POL</label>
+                            <number-format decimals="2" v-model="percent_pol" class="form-control" placeholder="PERCENT POL"/>
+                            <p v-if="error.percent_pol" class="help-block">{{ error.percent_pol.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.sgrcane_net_tonnes ? 'has-error' : ''">
-                            <label for="sgrcane_net_tonnes">Sugar Cane Net Tonnes</label>
-                            <number-format decimals="2" v-model="sgrcane_net_tonnes" class="form-control" placeholder="Sugar Cane Net Tonnes"/>
-                            <p v-if="error.sgrcane_net_tonnes" class="help-block">{{ error.sgrcane_net_tonnes.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.percent_sucrose ? 'has-error' : ''">
+                            <label for="percent_sucrose">PERCENT SUCROSE</label>
+                            <number-format decimals="2" v-model="percent_sucrose" class="form-control" placeholder="PERCENT SUCROSE"/>
+                            <p v-if="error.percent_sucrose" class="help-block">{{ error.percent_sucrose.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.rawsgr_tonnes_due_cane ? 'has-error' : ''">
-                            <label for="rawsgr_tonnes_due_cane">Raw Sugar Tonnes Due Cane</label>
-                            <number-format decimals="2" v-model="rawsgr_tonnes_due_cane" class="form-control" placeholder="Raw Sugar Tonnes Due Cane"/>  
-                            <p v-if="error.rawsgr_tonnes_due_cane" class="help-block">{{ error.rawsgr_tonnes_due_cane.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.percent_fiber ? 'has-error' : ''">
+                            <label for="percent_fiber">PERCENT FIBER</label>
+                            <number-format decimals="2" v-model="percent_fiber" class="form-control" placeholder="PERCENT FIBER"/>
+                            <p v-if="error.percent_fiber" class="help-block">{{ error.percent_fiber.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.rawsgr_tonnes_manufactured ? 'has-error' : ''">
-                            <label for="rawsgr_tonnes_manufactured">Raw Sugar Tonnes Manufactured</label>
-                            <number-format decimals="2" v-model="rawsgr_tonnes_manufactured" class="form-control" placeholder="Raw Sugar Tonnes Manufactured"/>
-                            <p v-if="error.rawsgr_tonnes_manufactured" class="help-block">{{ error.rawsgr_tonnes_manufactured.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.percent_trash ? 'has-error' : ''">
+                            <label for="percent_trash">PERCENT TRASH</label>
+                            <number-format decimals="2" v-model="percent_trash" class="form-control" placeholder="PERCENT TRASH"/>
+                            <p v-if="error.percent_trash" class="help-block">{{ error.percent_trash.toString() }}</p>
                         </div>
 
-                        <div class="form-group col-md-12" v-bind:class="error.equivalent ? 'has-error' : ''">
-                            <label for="equivalent">Equivalend</label>
-                            <number-format decimals="2" v-model="equivalent" class="form-control" placeholder="Equivalent"/>  
-                            <p v-if="error.equivalent" class="help-block">{{ error.equivalent.toString() }}</p>
+                        <div class="form-group col-md-12" v-bind:class="error.pol_percent_fiber ? 'has-error' : ''">
+                            <label for="pol_percent_fiber">POL PERCENT FIBER</label>
+                            <number-format decimals="2" v-model="pol_percent_fiber" class="form-control" placeholder="POL PERCENT FIBER"/>
+                            <p v-if="error.pol_percent_fiber" class="help-block">{{ error.pol_percent_fiber.toString() }}</p>
                         </div>
                         
                     </div>
@@ -75,7 +75,8 @@
                 <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal" @click="closeModal()">Close</button>
                     <button type="submit" class="btn btn-success">Save</button>
-                </div>     
+                </div>    
+
             </form>
             
 
@@ -115,11 +116,11 @@
                 // fields
                 crop_year_id: {},
                 mill_id: {},
-                sgrcane_gross_tonnes: "",
-                sgrcane_net_tonnes: "",
-                rawsgr_tonnes_due_cane: "",
-                rawsgr_tonnes_manufactured: "", 
-                equivalent: "",
+                percent_pol: "",
+                percent_sucrose: "",
+                percent_fiber: "",
+                percent_trash: "", 
+                pol_percent_fiber: "",
 
             }
 
@@ -171,15 +172,15 @@
                   isFullPage:false,
                 });
 
-                axios.post('synopsis/cane_sugar_tons/store', {
+                axios.post('synopsis/cane_analysis/store', {
 
                     crop_year_id: this.crop_year_id?.code, 
                     mill_id: this.mill_id?.code,
-                    sgrcane_gross_tonnes: this.sgrcane_gross_tonnes, 
-                    sgrcane_net_tonnes: this.sgrcane_net_tonnes, 
-                    rawsgr_tonnes_due_cane: this.rawsgr_tonnes_due_cane, 
-                    rawsgr_tonnes_manufactured: this.rawsgr_tonnes_manufactured,
-                    equivalent: this.equivalent, 
+                    percent_pol: this.percent_pol, 
+                    percent_sucrose: this.percent_sucrose, 
+                    percent_fiber: this.percent_fiber, 
+                    percent_trash: this.percent_trash,
+                    pol_percent_fiber: this.pol_percent_fiber, 
 
                 })
                 .then((response) => {
@@ -189,11 +190,11 @@
                         this.error = [];
                         this.crop_year_id = {};
                         this.mill_id = {};
-                        this.sgrcane_gross_tonnes = '';
-                        this.sgrcane_net_tonnes = '';
-                        this.rawsgr_tonnes_due_cane = '';
-                        this.rawsgr_tonnes_manufactured = '';
-                        this.equivalent = '';
+                        this.percent_pol = '';
+                        this.percent_sucrose = '';
+                        this.percent_fiber = '';
+                        this.percent_trash = '';
+                        this.pol_percent_fiber = '';
 
                         this.$toast.success('Data Successfully Saved!', {
                             position: 'top-right',

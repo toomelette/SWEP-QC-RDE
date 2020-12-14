@@ -23,9 +23,9 @@ class SynCaneAnalysisSubscriber extends BaseSubscriber{
 
     public function subscribe($events){
 
-        $events->listen('syn_cane_analysis.store', 'App\Core\Subscribers\SynCaneSugarTonSubscriber@onStore');
-        $events->listen('syn_cane_analysis.update', 'App\Core\Subscribers\SynCaneSugarTonSubscriber@onUpdate');
-        $events->listen('syn_cane_analysis.destroy', 'App\Core\Subscribers\SynCaneSugarTonSubscriber@onDestroy');
+        $events->listen('syn_cane_analysis.store', 'App\Core\Subscribers\SynCaneAnalysisSubscriber@onStore');
+        $events->listen('syn_cane_analysis.update', 'App\Core\Subscribers\SynCaneAnalysisSubscriber@onUpdate');
+        $events->listen('syn_cane_analysis.destroy', 'App\Core\Subscribers\SynCaneAnalysisSubscriber@onDestroy');
 
     }
 
@@ -33,7 +33,6 @@ class SynCaneAnalysisSubscriber extends BaseSubscriber{
 
 
     public function onStore($syn_cane_analysis){
-        
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_analysis:fetch:*');
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_cane_analysis:getByCropYearId:'. $syn_cane_analysis->crop_year_id .'');
 
