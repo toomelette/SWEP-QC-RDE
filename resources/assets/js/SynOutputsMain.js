@@ -24,6 +24,10 @@ Vue.component('ratios-on-gross-cane-format', require('./components/Synopsis/Outp
 Vue.component('cane-analysis', require('./components/Synopsis/OutputCategoryFormats/CaneAnalysisFormat').default);
 Vue.component('sugar-analysis', require('./components/Synopsis/OutputCategoryFormats/SugarAnalysisFormat').default);
 Vue.component('first-expressed-juice', require('./components/Synopsis/OutputCategoryFormats/FirstExpressedJuiceFormat').default);
+Vue.component('last-expressed-juice', require('./components/Synopsis/OutputCategoryFormats/LastExpressedJuiceFormat').default);
+Vue.component('mixed-juice', require('./components/Synopsis/OutputCategoryFormats/MixedJuiceFormat').default);
+Vue.component('clarification', require('./components/Synopsis/OutputCategoryFormats/ClarificationFormat').default);
+Vue.component('syrup', require('./components/Synopsis/OutputCategoryFormats/SyrupFormat').default);
 
 
 Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);

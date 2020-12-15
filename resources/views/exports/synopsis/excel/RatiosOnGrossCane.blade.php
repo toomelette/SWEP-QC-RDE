@@ -4,17 +4,17 @@
 <table style="font-size:8px;">
       
     <tr>
-      <td colspan="6" style="text-align: center;">CROP-YEAR: {{ $crop_year }}</td>
+      <td colspan="5" style="text-align: center;">CROP-YEAR: {{ $crop_year }}</td>
     </tr>
 
     <tr>
-      <td colspan="6" style="text-align: center;">
+      <td colspan="5" style="text-align: center;">
         TABLE III. RATIOS ON GROSS CANE GROUND
       </td>
     </tr>
       
     <tr>
-      <td colspan="6">&nbsp;</td>
+      <td colspan="5">&nbsp;</td>
     </tr>
 
     <thead>

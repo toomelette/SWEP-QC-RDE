@@ -12,6 +12,10 @@ use App\Core\Interfaces\SynRatiosOnGrossCaneInterface;
 use App\Core\Interfaces\SynCaneAnalysisInterface;
 use App\Core\Interfaces\SynSugarAnalysisInterface;
 use App\Core\Interfaces\SynFirstExpressedJuiceInterface;
+use App\Core\Interfaces\SynLastExpressedJuiceInterface;
+use App\Core\Interfaces\SynMixedJuiceInterface;
+use App\Core\Interfaces\SynClarificationInterface;
+use App\Core\Interfaces\SynSyrupInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -25,6 +29,10 @@ class ApiSynOutputController extends Controller{
         ['id' => '4', 'label' => 'Cane Analyses',],
         ['id' => '5', 'label' => 'Sugar Analyses',],
         ['id' => '6', 'label' => 'First Expressed Juice',],
+        ['id' => '7', 'label' => 'Last Expressed Juice',],
+        ['id' => '8', 'label' => 'Mixed Juice',],
+        ['id' => '9', 'label' => 'Clarification',],
+        ['id' => '10', 'label' => 'Syrup',],
 
     ];
     
@@ -48,6 +56,10 @@ class ApiSynOutputController extends Controller{
     protected $cane_analysis_repo;
     protected $sugar_analysis_repo;
     protected $first_expressed_juice_repo;
+    protected $last_expressed_juice_repo;
+    protected $mixed_juice_repo;
+    protected $clarification_repo;
+    protected $syrup_repo;
 
 
 
@@ -56,7 +68,11 @@ class ApiSynOutputController extends Controller{
                                 SynRatiosOnGrossCaneInterface $ratios_on_grosscane_repo,
                                 SynCaneAnalysisInterface $cane_analysis_repo,
                                 SynSugarAnalysisInterface $sugar_analysis_repo,
-                                SynFirstExpressedJuiceInterface $first_expressed_juice_repo){
+                                SynFirstExpressedJuiceInterface $first_expressed_juice_repo,
+                                SynLastExpressedJuiceInterface $last_expressed_juice_repo,
+                                SynMixedJuiceInterface $mixed_juice_repo,
+                                SynClarificationInterface $clarification_repo,
+                                SynSyrupInterface $syrup_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -64,6 +80,10 @@ class ApiSynOutputController extends Controller{
         $this->cane_analysis_repo = $cane_analysis_repo;
         $this->sugar_analysis_repo = $sugar_analysis_repo;
         $this->first_expressed_juice_repo = $first_expressed_juice_repo;
+        $this->last_expressed_juice_repo = $last_expressed_juice_repo;
+        $this->mixed_juice_repo = $mixed_juice_repo;
+        $this->clarification_repo = $clarification_repo;
+        $this->syrup_repo = $syrup_repo;
         
         parent::__construct();
 
@@ -87,35 +107,55 @@ class ApiSynOutputController extends Controller{
 
         $collection = [];
 
-        if(isset($request->cy)){
+        switch ($request->cat) {
 
-            if($request->cat == '1'){
+            case '1':
                 $collection = $this->cane_sugar_ton_repo->getByCropYearId($request->cy);
-            }
-            
-            if($request->cat == '2'){
+                break;
+
+            case '2':
                 $collection = $this->prdn_increment_repo->getByCropYearId($request->cy);
-            }
-            
-            if($request->cat == '3'){
+                break;
+
+            case '3':
                 $collection = $this->ratios_on_grosscane_repo->getByCropYearId($request->cy);
-            }
+                break;
             
-            if($request->cat == '4'){
+            case '4':
                 $collection = $this->cane_analysis_repo->getByCropYearId($request->cy);
-            }
+                break;
             
-            if($request->cat == '5'){
+            case '5':
                 $collection = $this->sugar_analysis_repo->getByCropYearId($request->cy);
-            }
+                break;
             
-            if($request->cat == '6'){
+            case '6':
                 $collection = $this->first_expressed_juice_repo->getByCropYearId($request->cy);
-            }
+                break;
+            
+            case '7':
+                $collection = $this->last_expressed_juice_repo->getByCropYearId($request->cy);
+                break;
+            
+            case '8':
+                $collection = $this->mixed_juice_repo->getByCropYearId($request->cy);
+                break;
+            
+            case '9':
+                $collection = $this->clarification_repo->getByCropYearId($request->cy);
+                break;
+            
+            case '10':
+                $collection = $this->syrup_repo->getByCropYearId($request->cy);
+                break;
+
+            default:
+                $collection = [];
+                break;
 
         }
 
-	    return response()->json($collection, 200);
+        return response()->json($collection, 200);
 
     }
 

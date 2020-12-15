@@ -4,17 +4,17 @@
 <table style="font-size:8px;">
       
     <tr>
-      <td colspan="6" style="text-align: center;">CROP YEAR: {{ $crop_year }}</td>
+      <td colspan="9" style="text-align: center;">CROP YEAR: {{ $crop_year }}</td>
     </tr>
 
     <tr>
-      <td colspan="6" style="text-align: center;">
+      <td colspan="9" style="text-align: center;">
         TABLE V. ANALYSES OF RAW SUGAR MANUFACTURED
       </td>
     </tr>
       
     <tr>
-      <td colspan="6">&nbsp;</td>
+      <td colspan="9">&nbsp;</td>
     </tr>
 
     <thead>

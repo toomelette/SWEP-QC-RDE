@@ -54,6 +54,11 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	Route::get('/synopsis/cane_analysis', 'SynopsisController@caneAnalysis')->name('synopsis.cane_analysis');
 	Route::get('/synopsis/sugar_analysis', 'SynopsisController@sugarAnalysis')->name('synopsis.sugar_analysis');
 	Route::get('/synopsis/first_expressed_juice', 'SynopsisController@firstExpressedJuice')->name('synopsis.first_expressed_juice');
+	Route::get('/synopsis/last_expressed_juice', 'SynopsisController@lastExpressedJuice')->name('synopsis.last_expressed_juice');
+	Route::get('/synopsis/mixed_juice', 'SynopsisController@mixedJuice')->name('synopsis.mixed_juice');
+	Route::get('/synopsis/clarification', 'SynopsisController@clarification')->name('synopsis.clarification');
+	Route::get('/synopsis/syrup', 'SynopsisController@syrup')->name('synopsis.syrup');
+	Route::get('/synopsis/bagasse', 'SynopsisController@bagasse')->name('synopsis.bagasse');
 
 	Route::get('/synopsis/outputs', 'SynopsisController@outputs')->name('synopsis.outputs');
 	Route::get('/synopsis/outputs/export_excel', 'SynopsisController@outputsExportExcel')->name('synopsis.outputs_export_excel');

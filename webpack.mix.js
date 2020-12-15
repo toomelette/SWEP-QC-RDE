@@ -39,6 +39,26 @@ mix.js('resources/assets/js/SynSugarAnalysisMain.js', 'public/js')
 mix.js('resources/assets/js/SynFirstExpressedJuiceMain.js', 'public/js')
 	.sass('resources/assets/sass/SynFirstExpressedJuiceMain.scss', 'public/css');
 
+// SYNOPSIS LAST EXPRESSED JUICE
+mix.js('resources/assets/js/SynLastExpressedJuiceMain.js', 'public/js')
+	.sass('resources/assets/sass/SynLastExpressedJuiceMain.scss', 'public/css');
+	
+// SYNOPSIS MIXED JUICE
+mix.js('resources/assets/js/SynMixedJuiceMain.js', 'public/js')
+	.sass('resources/assets/sass/SynMixedJuiceMain.scss', 'public/css');
+
+// SYNOPSIS CLARIFICATION
+mix.js('resources/assets/js/SynClarificationMain.js', 'public/js')
+.sass('resources/assets/sass/SynClarificationMain.scss', 'public/css');
+
+// SYNOPSIS SYRUP
+mix.js('resources/assets/js/SynSyrupMain.js', 'public/js')
+.sass('resources/assets/sass/SynSyrupMain.scss', 'public/css');
+
+// SYNOPSIS BAGASSE
+mix.js('resources/assets/js/SynBagasseMain.js', 'public/js')
+.sass('resources/assets/sass/SynBagasseMain.scss', 'public/css');
+
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')
 	.sass('resources/assets/sass/SynOutputsMain.scss', 'public/css');

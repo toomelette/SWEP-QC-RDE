@@ -85,29 +85,36 @@
 
                     <div ref="dataBody">
 
-                        <!-- Cane Sugar Tons -->
+                 
                         <cane-sugar-tons-format v-if="category_id.toString() == 1" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </cane-sugar-tons-format>
-
-                        <!-- Production Increment -->
+                      
                         <prdn-increment-format v-if="category_id.toString() == 2" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </prdn-increment-format>
-
-                        <!-- Ratios on Gross Cane -->
+                       
                         <ratios-on-gross-cane-format v-if="category_id.toString() == 3" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </ratios-on-gross-cane-format>
-
-                        <!-- Cane Analysis -->
+                        
                         <cane-analysis v-if="category_id.toString() == 4" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </cane-analysis>
-
-                        <!-- Cane Analysis -->
+                        
                         <sugar-analysis v-if="category_id.toString() == 5" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </sugar-analysis>
-
-                        <!-- Cane Analysis -->
+                        
                         <first-expressed-juice v-if="category_id.toString() == 6" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </first-expressed-juice>
+                        
+                        <last-expressed-juice v-if="category_id.toString() == 7" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </last-expressed-juice>
+                        
+                        <mixed-juice v-if="category_id.toString() == 8" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </mixed-juice>
+
+                        <clarification v-if="category_id.toString() == 9" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </clarification>
+
+                        <syrup v-if="category_id.toString() == 10" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </syrup>
 
 
                     </div>

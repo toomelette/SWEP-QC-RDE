@@ -43,6 +43,15 @@ class RepositoryServiceProvider extends ServiceProvider {
 
 		$this->app->bind('App\Core\Interfaces\SynFirstExpressedJuiceInterface', 'App\Core\Repositories\SynFirstExpressedJuiceRepository');
 		
+		$this->app->bind('App\Core\Interfaces\SynLastExpressedJuiceInterface', 'App\Core\Repositories\SynLastExpressedJuiceRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynMixedJuiceInterface', 'App\Core\Repositories\SynMixedJuiceRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynClarificationInterface', 'App\Core\Repositories\SynClarificationRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynSyrupInterface', 'App\Core\Repositories\SynSyrupRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynBagasseInterface', 'App\Core\Repositories\SynBagasseRepository');
 		
 	}
 

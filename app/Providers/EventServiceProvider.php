@@ -38,7 +38,12 @@ class EventServiceProvider extends ServiceProvider{
         'App\Core\Subscribers\SynRatiosOnGrossCaneSubscriber',
         'App\Core\Subscribers\SynCaneAnalysisSubscriber',
         'App\Core\Subscribers\SynSugarAnalysisSubscriber',
-        'App\Core\Subscribers\SynFirstExpressedJuiceSubscriber'
+        'App\Core\Subscribers\SynFirstExpressedJuiceSubscriber',
+        'App\Core\Subscribers\SynLastExpressedJuiceSubscriber',
+        'App\Core\Subscribers\SynMixedJuiceSubscriber',
+        'App\Core\Subscribers\SynClarificationSubscriber',
+        'App\Core\Subscribers\SynSyrupSubscriber',
+        'App\Core\Subscribers\SynBagasseSubscriber'
         
     ];
 

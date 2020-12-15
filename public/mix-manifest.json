@@ -7,12 +7,22 @@
     "/css/SynCaneAnalysisMain.css": "/css/SynCaneAnalysisMain.css",
     "/css/SynSugarAnalysisMain.css": "/css/SynSugarAnalysisMain.css",
     "/css/SynFirstExpressedJuiceMain.css": "/css/SynFirstExpressedJuiceMain.css",
+    "/css/SynLastExpressedJuiceMain.css": "/css/SynLastExpressedJuiceMain.css",
+    "/css/SynMixedJuiceMain.css": "/css/SynMixedJuiceMain.css",
+    "/css/SynClarificationMain.css": "/css/SynClarificationMain.css",
+    "/css/SynSyrupMain.css": "/css/SynSyrupMain.css",
+    "/css/SynBagasseMain.css": "/css/SynBagasseMain.css",
     "/css/SynOutputsMain.css": "/css/SynOutputsMain.css",
+    "/js/SynBagasseMain.js": "/js/SynBagasseMain.js",
     "/js/SynCaneAnalysisMain.js": "/js/SynCaneAnalysisMain.js",
     "/js/SynCaneSugarTonsMain.js": "/js/SynCaneSugarTonsMain.js",
+    "/js/SynClarificationMain.js": "/js/SynClarificationMain.js",
     "/js/SynFirstExpressedJuiceMain.js": "/js/SynFirstExpressedJuiceMain.js",
+    "/js/SynLastExpressedJuiceMain.js": "/js/SynLastExpressedJuiceMain.js",
+    "/js/SynMixedJuiceMain.js": "/js/SynMixedJuiceMain.js",
     "/js/SynOutputsMain.js": "/js/SynOutputsMain.js",
     "/js/SynPRDNIncrementMain.js": "/js/SynPRDNIncrementMain.js",
     "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js",
-    "/js/SynSugarAnalysisMain.js": "/js/SynSugarAnalysisMain.js"
+    "/js/SynSugarAnalysisMain.js": "/js/SynSugarAnalysisMain.js",
+    "/js/SynSyrupMain.js": "/js/SynSyrupMain.js"
 }
