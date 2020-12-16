@@ -96,6 +96,41 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/bagasse/{slug}','Api\ApiSynBagasseController@edit')->name('synopsis.bagasse_edit');
 	Route::post('synopsis/bagasse/{slug}','Api\ApiSynBagasseController@update')->name('synopsis.bagasse_update');
 	Route::delete('synopsis/bagasse/{slug}','Api\ApiSynBagasseController@delete')->name('synopsis.bagasse_delete');
+	
+	// Filter Cake
+	Route::get('synopsis/filter_cake','Api\ApiSynFilterCakeController@fetch')->name('synopsis.filter_cake_list');
+	Route::post('synopsis/filter_cake/store','Api\ApiSynFilterCakeController@store')->name('synopsis.filter_cake_store');
+	Route::get('synopsis/filter_cake/{slug}','Api\ApiSynFilterCakeController@edit')->name('synopsis.filter_cake_edit');
+	Route::post('synopsis/filter_cake/{slug}','Api\ApiSynFilterCakeController@update')->name('synopsis.filter_cake_update');
+	Route::delete('synopsis/filter_cake/{slug}','Api\ApiSynFilterCakeController@delete')->name('synopsis.filter_cake_delete');
+	
+	// MOLASSES
+	Route::get('synopsis/molasses','Api\ApiSynMolassesController@fetch')->name('synopsis.molasses_list');
+	Route::post('synopsis/molasses/store','Api\ApiSynMolassesController@store')->name('synopsis.molasses_store');
+	Route::get('synopsis/molasses/{slug}','Api\ApiSynMolassesController@edit')->name('synopsis.molasses_edit');
+	Route::post('synopsis/molasses/{slug}','Api\ApiSynMolassesController@update')->name('synopsis.molasses_update');
+	Route::delete('synopsis/molasses/{slug}','Api\ApiSynMolassesController@delete')->name('synopsis.molasses_delete');
+	
+	// Non Sugar
+	Route::get('synopsis/non_sugar','Api\ApiSynNonSugarController@fetch')->name('synopsis.non_sugar_list');
+	Route::post('synopsis/non_sugar/store','Api\ApiSynNonSugarController@store')->name('synopsis.non_sugar_store');
+	Route::get('synopsis/non_sugar/{slug}','Api\ApiSynNonSugarController@edit')->name('synopsis.non_sugar_edit');
+	Route::post('synopsis/non_sugar/{slug}','Api\ApiSynNonSugarController@update')->name('synopsis.non_sugar_update');
+	Route::delete('synopsis/non_sugar/{slug}','Api\ApiSynNonSugarController@delete')->name('synopsis.non_sugar_delete');
+	
+	// Cap Utilization
+	Route::get('synopsis/cap_utilization','Api\ApiSynCapUtilizationController@fetch')->name('synopsis.cap_utilization_list');
+	Route::post('synopsis/cap_utilization/store','Api\ApiSynCapUtilizationController@store')->name('synopsis.cap_utilization_store');
+	Route::get('synopsis/cap_utilization/{slug}','Api\ApiSynCapUtilizationController@edit')->name('synopsis.cap_utilization_edit');
+	Route::post('synopsis/cap_utilization/{slug}','Api\ApiSynCapUtilizationController@update')->name('synopsis.cap_utilization_update');
+	Route::delete('synopsis/cap_utilization/{slug}','Api\ApiSynCapUtilizationController@delete')->name('synopsis.cap_utilization_delete');
+	
+	// Milling Plant
+	Route::get('synopsis/milling_plant','Api\ApiSynMillingPlantController@fetch')->name('synopsis.milling_plant_list');
+	Route::post('synopsis/milling_plant/store','Api\ApiSynMillingPlantController@store')->name('synopsis.milling_plant_store');
+	Route::get('synopsis/milling_plant/{slug}','Api\ApiSynMillingPlantController@edit')->name('synopsis.milling_plant_edit');
+	Route::post('synopsis/milling_plant/{slug}','Api\ApiSynMillingPlantController@update')->name('synopsis.milling_plant_update');
+	Route::delete('synopsis/milling_plant/{slug}','Api\ApiSynMillingPlantController@delete')->name('synopsis.milling_plant_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');

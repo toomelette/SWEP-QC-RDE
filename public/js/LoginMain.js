@@ -6211,7 +6211,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css":
 /*!*************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--18-1!./node_modules/postcss-loader/src??ref--18-2!./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
+  !*** ./node_modules/css-loader??ref--23-1!./node_modules/postcss-loader/src??ref--23-2!./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
   \*************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -38257,7 +38257,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--18-1!../../postcss-loader/src??ref--18-2!./vue-loading.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--23-1!../../postcss-loader/src??ref--23-2!./vue-loading.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -50541,10 +50541,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/sass/SynCapUtilizationMain.scss":
+/*!**********************************************************!*\
+  !*** ./resources/assets/sass/SynCapUtilizationMain.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/SynClarificationMain.scss":
 /*!*********************************************************!*\
   !*** ./resources/assets/sass/SynClarificationMain.scss ***!
   \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/SynFilterCakeMain.scss":
+/*!******************************************************!*\
+  !*** ./resources/assets/sass/SynFilterCakeMain.scss ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -50574,10 +50596,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/sass/SynMillingPlantMain.scss":
+/*!********************************************************!*\
+  !*** ./resources/assets/sass/SynMillingPlantMain.scss ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/SynMixedJuiceMain.scss":
 /*!******************************************************!*\
   !*** ./resources/assets/sass/SynMixedJuiceMain.scss ***!
   \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/SynMolassesMain.scss":
+/*!****************************************************!*\
+  !*** ./resources/assets/sass/SynMolassesMain.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/SynNonSugarMain.scss":
+/*!****************************************************!*\
+  !*** ./resources/assets/sass/SynNonSugarMain.scss ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -50641,9 +50696,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/LoginMain.js ./resources/assets/sass/LoginMain.scss ./resources/assets/sass/SynCaneSugarTonsMain.scss ./resources/assets/sass/SynPRDNIncrementMain.scss ./resources/assets/sass/SynRatiosOnGrossCaneMain.scss ./resources/assets/sass/SynCaneAnalysisMain.scss ./resources/assets/sass/SynSugarAnalysisMain.scss ./resources/assets/sass/SynFirstExpressedJuiceMain.scss ./resources/assets/sass/SynLastExpressedJuiceMain.scss ./resources/assets/sass/SynMixedJuiceMain.scss ./resources/assets/sass/SynClarificationMain.scss ./resources/assets/sass/SynSyrupMain.scss ./resources/assets/sass/SynBagasseMain.scss ./resources/assets/sass/SynOutputsMain.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/LoginMain.js ./resources/assets/sass/LoginMain.scss ./resources/assets/sass/SynCaneSugarTonsMain.scss ./resources/assets/sass/SynPRDNIncrementMain.scss ./resources/assets/sass/SynRatiosOnGrossCaneMain.scss ./resources/assets/sass/SynCaneAnalysisMain.scss ./resources/assets/sass/SynSugarAnalysisMain.scss ./resources/assets/sass/SynFirstExpressedJuiceMain.scss ./resources/assets/sass/SynLastExpressedJuiceMain.scss ./resources/assets/sass/SynMixedJuiceMain.scss ./resources/assets/sass/SynClarificationMain.scss ./resources/assets/sass/SynSyrupMain.scss ./resources/assets/sass/SynBagasseMain.scss ./resources/assets/sass/SynFilterCakeMain.scss ./resources/assets/sass/SynMolassesMain.scss ./resources/assets/sass/SynNonSugarMain.scss ./resources/assets/sass/SynCapUtilizationMain.scss ./resources/assets/sass/SynMillingPlantMain.scss ./resources/assets/sass/SynOutputsMain.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50660,6 +50715,11 @@ __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynMix
 __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynClarificationMain.scss */"./resources/assets/sass/SynClarificationMain.scss");
 __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynSyrupMain.scss */"./resources/assets/sass/SynSyrupMain.scss");
 __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynBagasseMain.scss */"./resources/assets/sass/SynBagasseMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynFilterCakeMain.scss */"./resources/assets/sass/SynFilterCakeMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynMolassesMain.scss */"./resources/assets/sass/SynMolassesMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynNonSugarMain.scss */"./resources/assets/sass/SynNonSugarMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynCapUtilizationMain.scss */"./resources/assets/sass/SynCapUtilizationMain.scss");
+__webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynMillingPlantMain.scss */"./resources/assets/sass/SynMillingPlantMain.scss");
 module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\sass\SynOutputsMain.scss */"./resources/assets/sass/SynOutputsMain.scss");
 
 

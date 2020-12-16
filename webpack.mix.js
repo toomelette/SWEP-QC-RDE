@@ -59,6 +59,27 @@ mix.js('resources/assets/js/SynSyrupMain.js', 'public/js')
 mix.js('resources/assets/js/SynBagasseMain.js', 'public/js')
 .sass('resources/assets/sass/SynBagasseMain.scss', 'public/css');
 
+// SYNOPSIS FILTER CAKE
+mix.js('resources/assets/js/SynFilterCakeMain.js', 'public/js')
+.sass('resources/assets/sass/SynFilterCakeMain.scss', 'public/css');
+
+// SYNOPSIS MOLASSES
+mix.js('resources/assets/js/SynMolassesMain.js', 'public/js')
+.sass('resources/assets/sass/SynMolassesMain.scss', 'public/css');
+
+// SYNOPSIS NON SUGAR
+mix.js('resources/assets/js/SynNonSugarMain.js', 'public/js')
+.sass('resources/assets/sass/SynNonSugarMain.scss', 'public/css');
+
+// SYNOPSIS CAP UTILIZATION
+mix.js('resources/assets/js/SynCapUtilizationMain.js', 'public/js')
+.sass('resources/assets/sass/SynCapUtilizationMain.scss', 'public/css');
+
+// SYNOPSIS MILLING PLANT
+mix.js('resources/assets/js/SynMillingPlantMain.js', 'public/js')
+.sass('resources/assets/sass/SynMillingPlantMain.scss', 'public/css');
+
+
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')
 	.sass('resources/assets/sass/SynOutputsMain.scss', 'public/css');

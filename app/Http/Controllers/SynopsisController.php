@@ -13,6 +13,12 @@ use App\Core\Interfaces\SynLastExpressedJuiceInterface;
 use App\Core\Interfaces\SynMixedJuiceInterface;
 use App\Core\Interfaces\SynClarificationInterface;
 use App\Core\Interfaces\SynSyrupInterface;
+use App\Core\Interfaces\SynBagasseInterface;
+use App\Core\Interfaces\SynFilterCakeInterface;
+use App\Core\Interfaces\SynMolassesInterface;
+use App\Core\Interfaces\SynNonSugarInterface;
+use App\Core\Interfaces\SynCapUtilizationInterface;
+
 
 
 use App\Exports\Excel\SynCaneSugarTon;
@@ -25,6 +31,11 @@ use App\Exports\Excel\SynLastExpressedJuice;
 use App\Exports\Excel\SynMixedJuice;
 use App\Exports\Excel\SynClarification;
 use App\Exports\Excel\SynSyrup;
+use App\Exports\Excel\SynBagasse;
+use App\Exports\Excel\SynFilterCake;
+use App\Exports\Excel\SynMolasses;
+use App\Exports\Excel\SynNonSugar;
+use App\Exports\Excel\SynCapUtilization;
 
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -44,6 +55,11 @@ class SynopsisController extends Controller{
     protected $mixed_juice_repo;
     protected $clarification_repo;
     protected $syrup_repo;
+    protected $bagasse_repo;
+    protected $filter_cake_repo;
+    protected $molasses_repo;
+    protected $non_sugar_repo;
+    protected $cap_utilization_repo;
     
     
 	const SYN_OUTPUT_REGIONS = [
@@ -67,7 +83,12 @@ class SynopsisController extends Controller{
                                 SynLastExpressedJuiceInterface $last_expressed_juice_repo,
                                 SynMixedJuiceInterface $mixed_juice_repo,
                                 SynClarificationInterface $clarification_repo,
-                                SynSyrupInterface $syrup_repo){
+                                SynSyrupInterface $syrup_repo,
+                                SynBagasseInterface $bagasse_repo,
+                                SynFilterCakeInterface $filter_cake_repo,
+                                SynMolassesInterface $molasses_repo,
+                                SynNonSugarInterface $non_sugar_repo,
+                                SynCapUtilizationInterface $cap_utilization_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment = $prdn_increment;
@@ -79,6 +100,11 @@ class SynopsisController extends Controller{
         $this->mixed_juice_repo = $mixed_juice_repo;
         $this->clarification_repo = $clarification_repo;
         $this->syrup_repo = $syrup_repo;
+        $this->bagasse_repo = $bagasse_repo;
+        $this->filter_cake_repo = $filter_cake_repo;
+        $this->molasses_repo = $molasses_repo;
+        $this->non_sugar_repo = $non_sugar_repo;
+        $this->cap_utilization_repo = $cap_utilization_repo;
         
         
         parent::__construct();
@@ -129,6 +155,26 @@ class SynopsisController extends Controller{
 
     public function bagasse(){
         return view('dashboard.synopsis.bagasse');
+    }
+
+    public function filterCake(){
+        return view('dashboard.synopsis.filter_cake');
+    }
+
+    public function molasses(){
+        return view('dashboard.synopsis.molasses');
+    }
+
+    public function nonSugar(){
+        return view('dashboard.synopsis.non_sugar');
+    }
+
+    public function capUtilization(){
+        return view('dashboard.synopsis.cap_utilization');
+    }
+
+    public function millingPlant(){
+        return view('dashboard.synopsis.milling_plant');
     }
 
     public function outputs(){
@@ -214,6 +260,41 @@ class SynopsisController extends Controller{
                     $collection = $this->syrup_repo->getByCropYearId($request->cy_id);
                     $filename = 'Syrup'.' - '.$request->cy_name.'.xlsx';
                     return Excel::download(new SynSyrup($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+                
+                case '11':
+
+                    $collection = $this->bagasse_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Bagasse'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynBagasse($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+                
+                case '12':
+
+                    $collection = $this->filter_cake_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Filter Cake'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynFilterCake($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+                
+                case '13':
+
+                    $collection = $this->molasses_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Molasses'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynMolasses($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+                
+                case '14':
+
+                    $collection = $this->non_sugar_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Non-Sugar'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynNonSugar($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+                
+                case '15':
+
+                    $collection = $this->cap_utilization_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Capacity-Utilization'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynCapUtilization($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
                     break;
 
                 default:
@@ -337,6 +418,56 @@ class SynopsisController extends Controller{
 
                     $collection = $this->syrup_repo->getByCropYearId($request->cy_id);
                     return view('printables.synopsis.syrup')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+                
+                case '11':
+
+                    $collection = $this->bagasse_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.bagasse')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+                
+                case '12':
+
+                    $collection = $this->filter_cake_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.filter_cake')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+                
+                case '13':
+
+                    $collection = $this->molasses_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.molasses')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+                
+                case '14':
+
+                    $collection = $this->non_sugar_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.non_sugar')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+
+                case '15':
+
+                    $collection = $this->cap_utilization_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.cap_utilization')->with([
                         'collection' => $collection,
                         'regions' => self::SYN_OUTPUT_REGIONS,
                         'crop_year' => $request->cy_name

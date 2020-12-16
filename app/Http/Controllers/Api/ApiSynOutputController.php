@@ -16,6 +16,11 @@ use App\Core\Interfaces\SynLastExpressedJuiceInterface;
 use App\Core\Interfaces\SynMixedJuiceInterface;
 use App\Core\Interfaces\SynClarificationInterface;
 use App\Core\Interfaces\SynSyrupInterface;
+use App\Core\Interfaces\SynBagasseInterface;
+use App\Core\Interfaces\SynFilterCakeInterface;
+use App\Core\Interfaces\SynMolassesInterface;
+use App\Core\Interfaces\SynNonSugarInterface;
+use App\Core\Interfaces\SynCapUtilizationInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -33,6 +38,11 @@ class ApiSynOutputController extends Controller{
         ['id' => '8', 'label' => 'Mixed Juice',],
         ['id' => '9', 'label' => 'Clarification',],
         ['id' => '10', 'label' => 'Syrup',],
+        ['id' => '11', 'label' => 'Bagasse',],
+        ['id' => '12', 'label' => 'Filter Cake',],
+        ['id' => '13', 'label' => 'Molasses',],
+        ['id' => '14', 'label' => 'Non Sugar',],
+        ['id' => '15', 'label' => 'Capacity Utilization',],
 
     ];
     
@@ -60,6 +70,11 @@ class ApiSynOutputController extends Controller{
     protected $mixed_juice_repo;
     protected $clarification_repo;
     protected $syrup_repo;
+    protected $bagasse_repo;
+    protected $filter_cake_repo;
+    protected $molasses_repo;
+    protected $non_sugar_repo;
+    protected $cap_utilization_repo;
 
 
 
@@ -72,7 +87,12 @@ class ApiSynOutputController extends Controller{
                                 SynLastExpressedJuiceInterface $last_expressed_juice_repo,
                                 SynMixedJuiceInterface $mixed_juice_repo,
                                 SynClarificationInterface $clarification_repo,
-                                SynSyrupInterface $syrup_repo){
+                                SynSyrupInterface $syrup_repo,
+                                SynBagasseInterface $bagasse_repo,
+                                SynFilterCakeInterface $filter_cake_repo,
+                                SynMolassesInterface $molasses_repo,
+                                SynNonSugarInterface $non_sugar_repo,
+                                SynCapUtilizationInterface $cap_utilization_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -84,6 +104,11 @@ class ApiSynOutputController extends Controller{
         $this->mixed_juice_repo = $mixed_juice_repo;
         $this->clarification_repo = $clarification_repo;
         $this->syrup_repo = $syrup_repo;
+        $this->bagasse_repo = $bagasse_repo;
+        $this->filter_cake_repo = $filter_cake_repo;
+        $this->molasses_repo = $molasses_repo;
+        $this->non_sugar_repo = $non_sugar_repo;
+        $this->cap_utilization_repo = $cap_utilization_repo;
         
         parent::__construct();
 
@@ -147,6 +172,30 @@ class ApiSynOutputController extends Controller{
             
             case '10':
                 $collection = $this->syrup_repo->getByCropYearId($request->cy);
+                break;
+            
+            case '11':
+                $collection = $this->bagasse_repo->getByCropYearId($request->cy);
+                break;
+
+            
+            case '12':
+                $collection = $this->filter_cake_repo->getByCropYearId($request->cy);
+                break;
+                
+            
+            case '13':
+                $collection = $this->molasses_repo->getByCropYearId($request->cy);
+                break;
+                
+            
+            case '14':
+                $collection = $this->non_sugar_repo->getByCropYearId($request->cy);
+                break;
+
+
+            case '15':
+                $collection = $this->cap_utilization_repo->getByCropYearId($request->cy);
                 break;
 
             default:

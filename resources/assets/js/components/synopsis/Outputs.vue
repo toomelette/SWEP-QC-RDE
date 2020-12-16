@@ -86,14 +86,14 @@
                     <div ref="dataBody">
 
                  
-                        <cane-sugar-tons-format v-if="category_id.toString() == 1" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
-                        </cane-sugar-tons-format>
+                        <cane-sugar-tons v-if="category_id.toString() == 1" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </cane-sugar-tons>
                       
-                        <prdn-increment-format v-if="category_id.toString() == 2" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
-                        </prdn-increment-format>
+                        <prdn-increment v-if="category_id.toString() == 2" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </prdn-increment>
                        
-                        <ratios-on-gross-cane-format v-if="category_id.toString() == 3" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
-                        </ratios-on-gross-cane-format>
+                        <ratios-on-gross-cane v-if="category_id.toString() == 3" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </ratios-on-gross-cane>
                         
                         <cane-analysis v-if="category_id.toString() == 4" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </cane-analysis>
@@ -115,6 +115,21 @@
 
                         <syrup v-if="category_id.toString() == 10" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </syrup>
+
+                        <bagasse v-if="category_id.toString() == 11" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </bagasse>
+
+                        <filter-cake v-if="category_id.toString() == 12" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </filter-cake>
+
+                        <molasses v-if="category_id.toString() == 13" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </molasses>
+
+                        <non-sugar v-if="category_id.toString() == 14" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </non-sugar>
+
+                        <cap-utilization v-if="category_id.toString() == 15" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </cap-utilization>
 
 
                     </div>
