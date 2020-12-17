@@ -63,6 +63,14 @@ class RepositoryServiceProvider extends ServiceProvider {
 		
 		$this->app->bind('App\Core\Interfaces\SynMillingPlantInterface', 'App\Core\Repositories\SynMillingPlantRepository');
 		
+		$this->app->bind('App\Core\Interfaces\SynBHRInterface', 'App\Core\Repositories\SynBHRRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynOARInterface', 'App\Core\Repositories\SynOARRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynBHLossInterface', 'App\Core\Repositories\SynBHLossRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynKgSugarDueBHInterface', 'App\Core\Repositories\SynKgSugarDueBHRepository');
+		
 	}
 
 

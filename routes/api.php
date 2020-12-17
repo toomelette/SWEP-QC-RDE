@@ -131,6 +131,34 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/milling_plant/{slug}','Api\ApiSynMillingPlantController@edit')->name('synopsis.milling_plant_edit');
 	Route::post('synopsis/milling_plant/{slug}','Api\ApiSynMillingPlantController@update')->name('synopsis.milling_plant_update');
 	Route::delete('synopsis/milling_plant/{slug}','Api\ApiSynMillingPlantController@delete')->name('synopsis.milling_plant_delete');
+	
+	// BHR
+	Route::get('synopsis/oar','Api\ApiSynBHRController@fetch')->name('synopsis.brh_list');
+	Route::post('synopsis/oar/store','Api\ApiSynBHRController@store')->name('synopsis.brh_store');
+	Route::get('synopsis/oar/{slug}','Api\ApiSynBHRController@edit')->name('synopsis.brh_edit');
+	Route::post('synopsis/oar/{slug}','Api\ApiSynBHRController@update')->name('synopsis.brh_update');
+	Route::delete('synopsis/oar/{slug}','Api\ApiSynBHRController@delete')->name('synopsis.brh_delete');
+	
+	// OAR
+	Route::get('synopsis/oar','Api\ApiSynOARController@fetch')->name('synopsis.oar_list');
+	Route::post('synopsis/oar/store','Api\ApiSynOARController@store')->name('synopsis.oar_store');
+	Route::get('synopsis/oar/{slug}','Api\ApiSynOARController@edit')->name('synopsis.oar_edit');
+	Route::post('synopsis/oar/{slug}','Api\ApiSynOARController@update')->name('synopsis.oar_update');
+	Route::delete('synopsis/oar/{slug}','Api\ApiSynOARController@delete')->name('synopsis.oar_delete');
+	
+	// BH Loss
+	Route::get('synopsis/bh_loss','Api\ApiSynBHLossController@fetch')->name('synopsis.bh_loss_list');
+	Route::post('synopsis/bh_loss/store','Api\ApiSynBHLossController@store')->name('synopsis.bh_loss_store');
+	Route::get('synopsis/bh_loss/{slug}','Api\ApiSynBHLossController@edit')->name('synopsis.bh_loss_edit');
+	Route::post('synopsis/bh_loss/{slug}','Api\ApiSynBHLossController@update')->name('synopsis.bh_loss_update');
+	Route::delete('synopsis/bh_loss/{slug}','Api\ApiSynBHLossController@delete')->name('synopsis.bh_loss_delete');
+	
+	// KG of Sugar Due BH
+	Route::get('synopsis/kg_sugar_due_bh','Api\ApiSynKgSugarDueBHController@fetch')->name('synopsis.kg_sugar_due_bh_list');
+	Route::post('synopsis/kg_sugar_due_bh/store','Api\ApiSynKgSugarDueBHController@store')->name('synopsis.kg_sugar_due_bh_store');
+	Route::get('synopsis/kg_sugar_due_bh/{slug}','Api\ApiSynKgSugarDueBHController@edit')->name('synopsis.kg_sugar_due_bh_edit');
+	Route::post('synopsis/kg_sugar_due_bh/{slug}','Api\ApiSynKgSugarDueBHController@update')->name('synopsis.kg_sugar_due_bh_update');
+	Route::delete('synopsis/kg_sugar_due_bh/{slug}','Api\ApiSynKgSugarDueBHController@delete')->name('synopsis.kg_sugar_due_bh_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');

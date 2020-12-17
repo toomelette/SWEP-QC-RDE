@@ -21,6 +21,10 @@ use App\Core\Interfaces\SynFilterCakeInterface;
 use App\Core\Interfaces\SynMolassesInterface;
 use App\Core\Interfaces\SynNonSugarInterface;
 use App\Core\Interfaces\SynCapUtilizationInterface;
+use App\Core\Interfaces\SynMillingPlantInterface;
+use App\Core\Interfaces\SynBHRInterface;
+use App\Core\Interfaces\SynOARInterface;
+use App\Core\Interfaces\SynBHLossInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -43,6 +47,10 @@ class ApiSynOutputController extends Controller{
         ['id' => '13', 'label' => 'Molasses',],
         ['id' => '14', 'label' => 'Non Sugar',],
         ['id' => '15', 'label' => 'Capacity Utilization',],
+        ['id' => '16', 'label' => 'Milling Plant',],
+        ['id' => '17', 'label' => 'BHR',],
+        ['id' => '18', 'label' => 'OAR',],
+        ['id' => '19', 'label' => 'BH Losses',],
 
     ];
     
@@ -75,6 +83,10 @@ class ApiSynOutputController extends Controller{
     protected $molasses_repo;
     protected $non_sugar_repo;
     protected $cap_utilization_repo;
+    protected $milling_plant_repo;
+    protected $bhr_repo;
+    protected $oar_repo;
+    protected $bh_loss_repo;
 
 
 
@@ -92,7 +104,11 @@ class ApiSynOutputController extends Controller{
                                 SynFilterCakeInterface $filter_cake_repo,
                                 SynMolassesInterface $molasses_repo,
                                 SynNonSugarInterface $non_sugar_repo,
-                                SynCapUtilizationInterface $cap_utilization_repo){
+                                SynCapUtilizationInterface $cap_utilization_repo,
+                                SynMillingPlantInterface $milling_plant_repo,
+                                SynBHRInterface $bhr_repo,
+                                SynOARInterface $oar_repo,
+                                SynBHLossInterface $bh_loss_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -109,6 +125,10 @@ class ApiSynOutputController extends Controller{
         $this->molasses_repo = $molasses_repo;
         $this->non_sugar_repo = $non_sugar_repo;
         $this->cap_utilization_repo = $cap_utilization_repo;
+        $this->milling_plant_repo = $milling_plant_repo;
+        $this->bhr_repo = $bhr_repo;
+        $this->oar_repo = $oar_repo;
+        $this->bh_loss_repo = $bh_loss_repo;
         
         parent::__construct();
 
@@ -196,6 +216,26 @@ class ApiSynOutputController extends Controller{
 
             case '15':
                 $collection = $this->cap_utilization_repo->getByCropYearId($request->cy);
+                break;
+
+
+            case '16':
+                $collection = $this->milling_plant_repo->getByCropYearId($request->cy);
+                break;
+
+
+            case '17':
+                $collection = $this->bhr_repo->getByCropYearId($request->cy);
+                break;
+
+
+            case '18':
+                $collection = $this->oar_repo->getByCropYearId($request->cy);
+                break;
+
+
+            case '19':
+                $collection = $this->bh_loss_repo->getByCropYearId($request->cy);
                 break;
 
             default:

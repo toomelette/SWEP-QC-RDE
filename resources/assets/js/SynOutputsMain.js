@@ -33,6 +33,10 @@ Vue.component('filter-cake', require('./components/Synopsis/OutputCategoryFormat
 Vue.component('molasses', require('./components/Synopsis/OutputCategoryFormats/MolassesFormat').default);
 Vue.component('non-sugar', require('./components/Synopsis/OutputCategoryFormats/NonSugarFormat').default);
 Vue.component('cap-utilization', require('./components/Synopsis/OutputCategoryFormats/CapUtilizationFormat').default);
+Vue.component('milling-plant', require('./components/Synopsis/OutputCategoryFormats/MillingPlantFormat').default);
+Vue.component('bhr', require('./components/Synopsis/OutputCategoryFormats/BHRFormat').default);
+Vue.component('oar', require('./components/Synopsis/OutputCategoryFormats/OARFormat').default);
+Vue.component('bh-loss', require('./components/Synopsis/OutputCategoryFormats/BHLossFormat').default);
 
 
 Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);

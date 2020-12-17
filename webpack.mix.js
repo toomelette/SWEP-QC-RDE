@@ -79,6 +79,22 @@ mix.js('resources/assets/js/SynCapUtilizationMain.js', 'public/js')
 mix.js('resources/assets/js/SynMillingPlantMain.js', 'public/js')
 .sass('resources/assets/sass/SynMillingPlantMain.scss', 'public/css');
 
+// SYNOPSIS BHR
+mix.js('resources/assets/js/SynBHRMain.js', 'public/js')
+.sass('resources/assets/sass/SynBHRMain.scss', 'public/css');
+
+// SYNOPSIS OAR
+mix.js('resources/assets/js/SynOARMain.js', 'public/js')
+.sass('resources/assets/sass/SynOARMain.scss', 'public/css');
+
+// SYNOPSIS BH LOSSES
+mix.js('resources/assets/js/SynBHLossMain.js', 'public/js')
+.sass('resources/assets/sass/SynBHLossMain.scss', 'public/css');
+
+// SYNOPSIS KGs of Sugar Due BH
+mix.js('resources/assets/js/SynKgSugarDueBHMain.js', 'public/js')
+.sass('resources/assets/sass/SynKgSugarDueBHMain.scss', 'public/css');
+
 
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')

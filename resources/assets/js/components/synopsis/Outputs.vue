@@ -131,6 +131,18 @@
                         <cap-utilization v-if="category_id.toString() == 15" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </cap-utilization>
 
+                        <milling-plant v-if="category_id.toString() == 16" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </milling-plant>
+
+                        <bhr v-if="category_id.toString() == 17" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </bhr>
+
+                        <oar v-if="category_id.toString() == 18" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </oar>
+
+                        <bh-loss v-if="category_id.toString() == 19" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </bh-loss>
+
 
                     </div>
 

@@ -64,6 +64,10 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	Route::get('/synopsis/non_sugar', 'SynopsisController@nonSugar')->name('synopsis.non_sugar');
 	Route::get('/synopsis/cap_utilization', 'SynopsisController@capUtilization')->name('synopsis.cap_utilization');
 	Route::get('/synopsis/milling_plant', 'SynopsisController@millingPlant')->name('synopsis.milling_plant');
+	Route::get('/synopsis/bhr', 'SynopsisController@BHR')->name('synopsis.bhr');
+	Route::get('/synopsis/oar', 'SynopsisController@OAR')->name('synopsis.oar');
+	Route::get('/synopsis/bh_loss', 'SynopsisController@BHLoss')->name('synopsis.bh_loss');
+	Route::get('/synopsis/kg_sugar_due_bh', 'SynopsisController@kgSugarDueBH')->name('synopsis.kg_sugar_due_bh');
 
 	Route::get('/synopsis/outputs', 'SynopsisController@outputs')->name('synopsis.outputs');
 	Route::get('/synopsis/outputs/export_excel', 'SynopsisController@outputsExportExcel')->name('synopsis.outputs_export_excel');
