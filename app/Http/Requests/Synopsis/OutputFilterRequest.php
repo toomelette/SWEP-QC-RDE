@@ -23,7 +23,7 @@ class OutputFilterRequest extends FormRequest{
         return [
             
             'cy'=>'nullable|string|max:11',
-            'cat'=>'nullable|int|max:20',
+            'cat'=>'nullable|int|max:30',
 
         ];
 

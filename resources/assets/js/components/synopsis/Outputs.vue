@@ -143,6 +143,14 @@
                         <bh-loss v-if="category_id.toString() == 19" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </bh-loss>
 
+                        <kg-sugar-due-bh v-if="category_id.toString() == 20" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </kg-sugar-due-bh>
+
+                        <kg-sugar-due-clean-cane v-if="category_id.toString() == 21" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </kg-sugar-due-clean-cane>
+
+                        <potential-revenue v-if="category_id.toString() == 22" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </potential-revenue>
 
                     </div>
 

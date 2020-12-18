@@ -95,6 +95,17 @@ mix.js('resources/assets/js/SynBHLossMain.js', 'public/js')
 mix.js('resources/assets/js/SynKgSugarDueBHMain.js', 'public/js')
 .sass('resources/assets/sass/SynKgSugarDueBHMain.scss', 'public/css');
 
+// SYNOPSIS KGs of Sugar Due Clean Cane
+mix.js('resources/assets/js/SynKgSugarDueCleanCaneMain.js', 'public/js')
+.sass('resources/assets/sass/SynKgSugarDueCleanCaneMain.scss', 'public/css');
+
+// SYNOPSIS Potential Revenue
+mix.js('resources/assets/js/SynPotentialRevenueMain.js', 'public/js')
+.sass('resources/assets/sass/SynPotentialRevenueMain.scss', 'public/css');
+
+// SYNOPSIS Milling Duration
+mix.js('resources/assets/js/SynMillingDurationMain.js', 'public/js')
+.sass('resources/assets/sass/SynMillingDurationMain.scss', 'public/css');
 
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')

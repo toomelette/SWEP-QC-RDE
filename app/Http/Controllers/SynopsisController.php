@@ -22,6 +22,9 @@ use App\Core\Interfaces\SynMillingPlantInterface;
 use App\Core\Interfaces\SynBHRInterface;
 use App\Core\Interfaces\SynOARInterface;
 use App\Core\Interfaces\SynBHLossInterface;
+use App\Core\Interfaces\SynKgSugarDueBHInterface;
+use App\Core\Interfaces\SynKgSugarDueCleanCaneInterface;
+use App\Core\Interfaces\SynPotentialRevenueInterface;
 
 
 
@@ -44,6 +47,9 @@ use App\Exports\Excel\SynMillingPlant;
 use App\Exports\Excel\SynBHR;
 use App\Exports\Excel\SynOAR;
 use App\Exports\Excel\SynBHLoss;
+use App\Exports\Excel\SynKgSugarDueBH;
+use App\Exports\Excel\SynKgSugarDueCleanCane;
+use App\Exports\Excel\SynPotentialRevenue;
 
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -72,6 +78,9 @@ class SynopsisController extends Controller{
     protected $bhr_repo;
     protected $oar_repo;
     protected $bh_loss_repo;
+    protected $kg_sugar_due_bh_repo;
+    protected $kg_sugar_due_clean_cane_repo;
+    protected $potential_revenue_repo;
     
     
 	const SYN_OUTPUT_REGIONS = [
@@ -104,7 +113,10 @@ class SynopsisController extends Controller{
                                 SynMillingPlantInterface $milling_plant_repo,
                                 SynBHRInterface $bhr_repo,
                                 SynOARInterface $oar_repo,
-                                SynBHLossInterface $bh_loss_repo){
+                                SynBHLossInterface $bh_loss_repo,
+                                SynKgSugarDueBHInterface $kg_sugar_due_bh_repo,
+                                SynKgSugarDueCleanCaneInterface $kg_sugar_due_clean_cane_repo,
+                                SynPotentialRevenueInterface $potential_revenue_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment = $prdn_increment;
@@ -125,6 +137,9 @@ class SynopsisController extends Controller{
         $this->bhr_repo = $bhr_repo;
         $this->oar_repo = $oar_repo;
         $this->bh_loss_repo = $bh_loss_repo;
+        $this->kg_sugar_due_bh_repo = $kg_sugar_due_bh_repo;
+        $this->kg_sugar_due_clean_cane_repo = $kg_sugar_due_clean_cane_repo;
+        $this->potential_revenue_repo = $potential_revenue_repo;
         
         
         parent::__construct();
@@ -211,6 +226,18 @@ class SynopsisController extends Controller{
 
     public function kgSugarDueBH(){
         return view('dashboard.synopsis.kg_sugar_due_bh');
+    }
+
+    public function kgSugarDueCleanCane(){
+        return view('dashboard.synopsis.kg_sugar_due_clean_cane');
+    }
+
+    public function potentialRevenue(){
+        return view('dashboard.synopsis.potential_revenue');
+    }
+
+    public function millingDuration(){
+        return view('dashboard.synopsis.milling_duration');
     }
 
     public function outputs(){
@@ -359,6 +386,27 @@ class SynopsisController extends Controller{
                     $collection = $this->bh_loss_repo->getByCropYearId($request->cy_id);
                     $filename = 'BH Loss'.' - '.$request->cy_name.'.xlsx';
                     return Excel::download(new SynBHLoss($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+
+                case '20':
+
+                    $collection = $this->kg_sugar_due_bh_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Kgs of Sugar Due BH'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynKgSugarDueBH($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+
+                case '21':
+
+                    $collection = $this->kg_sugar_due_clean_cane_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Kgs of Sugar Due Clean Cane'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynKgSugarDueCleanCane($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+
+                case '22':
+
+                    $collection = $this->potential_revenue_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Potential Revenue'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynPotentialRevenue($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
                     break;
 
                 default:
@@ -572,6 +620,36 @@ class SynopsisController extends Controller{
 
                     $collection = $this->bh_loss_repo->getByCropYearId($request->cy_id);
                     return view('printables.synopsis.bh_loss')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+
+                case '20':
+
+                    $collection = $this->kg_sugar_due_bh_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.kg_sugar_due_bh')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+
+                case '21':
+
+                    $collection = $this->kg_sugar_due_clean_cane_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.kg_sugar_due_clean_cane')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+
+                case '22':
+
+                    $collection = $this->potential_revenue_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.potential_revenue')->with([
                         'collection' => $collection,
                         'regions' => self::SYN_OUTPUT_REGIONS,
                         'crop_year' => $request->cy_name

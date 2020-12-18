@@ -52,7 +52,12 @@ class EventServiceProvider extends ServiceProvider{
         'App\Core\Subscribers\SynBHRSubscriber',
         'App\Core\Subscribers\SynOARSubscriber',
         'App\Core\Subscribers\SynBHLossSubscriber',
-        'App\Core\Subscribers\SynKgSugarDueBHSubscriber'
+        'App\Core\Subscribers\SynKgSugarDueBHSubscriber',
+        'App\Core\Subscribers\SynKgSugarDueCleanCaneSubscriber',
+        'App\Core\Subscribers\SynPotentialRevenueSubscriber',
+        'App\Core\Subscribers\SynMillingDurationSubscriber'
+
+        
 
     ];
 

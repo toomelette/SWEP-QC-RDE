@@ -24,7 +24,7 @@ class OutputExportExcelRequest extends FormRequest{
             
             'cy_id'=>'nullable|string|max:11',
             'cy_name'=>'nullable|string|max:255',
-            'cat'=>'nullable|int|max:20',
+            'cat'=>'nullable|int|max:30',
 
         ];
 

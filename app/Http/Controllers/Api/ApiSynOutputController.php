@@ -25,6 +25,9 @@ use App\Core\Interfaces\SynMillingPlantInterface;
 use App\Core\Interfaces\SynBHRInterface;
 use App\Core\Interfaces\SynOARInterface;
 use App\Core\Interfaces\SynBHLossInterface;
+use App\Core\Interfaces\SynKgSugarDueBHInterface;
+use App\Core\Interfaces\SynKgSugarDueCleanCaneInterface;
+use App\Core\Interfaces\SynPotentialRevenueInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -51,6 +54,9 @@ class ApiSynOutputController extends Controller{
         ['id' => '17', 'label' => 'BHR',],
         ['id' => '18', 'label' => 'OAR',],
         ['id' => '19', 'label' => 'BH Losses',],
+        ['id' => '20', 'label' => 'Kgs of Sugar Due BH',],
+        ['id' => '21', 'label' => 'Kgs of Sugar Due Clean Cane',],
+        ['id' => '22', 'label' => 'Potential Revenue',],
 
     ];
     
@@ -87,6 +93,9 @@ class ApiSynOutputController extends Controller{
     protected $bhr_repo;
     protected $oar_repo;
     protected $bh_loss_repo;
+    protected $kg_sugar_due_bh_repo;
+    protected $kg_sugar_due_clean_cane_repo;
+    protected $potential_revenue_repo;
 
 
 
@@ -108,7 +117,10 @@ class ApiSynOutputController extends Controller{
                                 SynMillingPlantInterface $milling_plant_repo,
                                 SynBHRInterface $bhr_repo,
                                 SynOARInterface $oar_repo,
-                                SynBHLossInterface $bh_loss_repo){
+                                SynBHLossInterface $bh_loss_repo,
+                                SynKgSugarDueBHInterface $kg_sugar_due_bh_repo,
+                                SynKgSugarDueCleanCaneInterface $kg_sugar_due_clean_cane_repo,
+                                SynPotentialRevenueInterface $potential_revenue_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -129,6 +141,9 @@ class ApiSynOutputController extends Controller{
         $this->bhr_repo = $bhr_repo;
         $this->oar_repo = $oar_repo;
         $this->bh_loss_repo = $bh_loss_repo;
+        $this->kg_sugar_due_bh_repo = $kg_sugar_due_bh_repo;
+        $this->kg_sugar_due_clean_cane_repo = $kg_sugar_due_clean_cane_repo;
+        $this->potential_revenue_repo = $potential_revenue_repo;
         
         parent::__construct();
 
@@ -236,6 +251,18 @@ class ApiSynOutputController extends Controller{
 
             case '19':
                 $collection = $this->bh_loss_repo->getByCropYearId($request->cy);
+                break;
+
+            case '20':
+                $collection = $this->kg_sugar_due_bh_repo->getByCropYearId($request->cy);
+                break;
+
+            case '21':
+                $collection = $this->kg_sugar_due_clean_cane_repo->getByCropYearId($request->cy);
+                break;
+
+            case '22':
+                $collection = $this->potential_revenue_repo->getByCropYearId($request->cy);
                 break;
 
             default:

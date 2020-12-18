@@ -159,6 +159,27 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/kg_sugar_due_bh/{slug}','Api\ApiSynKgSugarDueBHController@edit')->name('synopsis.kg_sugar_due_bh_edit');
 	Route::post('synopsis/kg_sugar_due_bh/{slug}','Api\ApiSynKgSugarDueBHController@update')->name('synopsis.kg_sugar_due_bh_update');
 	Route::delete('synopsis/kg_sugar_due_bh/{slug}','Api\ApiSynKgSugarDueBHController@delete')->name('synopsis.kg_sugar_due_bh_delete');
+	
+	// KG of Sugar Due Clean Cane
+	Route::get('synopsis/kg_sugar_due_clean_cane','Api\ApiSynKgSugarDueCleanCaneController@fetch')->name('synopsis.kg_sugar_due_clean_cane_list');
+	Route::post('synopsis/kg_sugar_due_clean_cane/store','Api\ApiSynKgSugarDueCleanCaneController@store')->name('synopsis.kg_sugar_due_clean_cane_store');
+	Route::get('synopsis/kg_sugar_due_clean_cane/{slug}','Api\ApiSynKgSugarDueCleanCaneController@edit')->name('synopsis.kg_sugar_due_clean_cane_edit');
+	Route::post('synopsis/kg_sugar_due_clean_cane/{slug}','Api\ApiSynKgSugarDueCleanCaneController@update')->name('synopsis.kg_sugar_due_clean_cane_update');
+	Route::delete('synopsis/kg_sugar_due_clean_cane/{slug}','Api\ApiSynKgSugarDueCleanCaneController@delete')->name('synopsis.kg_sugar_due_clean_cane_delete');
+	
+	// Potential Revenue
+	Route::get('synopsis/potential_revenue','Api\ApiSynPotentialRevenueController@fetch')->name('synopsis.potential_revenuene_list');
+	Route::post('synopsis/potential_revenue/store','Api\ApiSynPotentialRevenueController@store')->name('synopsis.potential_revenue_store');
+	Route::get('synopsis/potential_revenue/{slug}','Api\ApiSynPotentialRevenueController@edit')->name('synopsis.potential_revenuene_edit');
+	Route::post('synopsis/potential_revenue/{slug}','Api\ApiSynPotentialRevenueController@update')->name('synopsis.potential_revenue_update');
+	Route::delete('synopsis/potential_revenue/{slug}','Api\ApiSynPotentialRevenueController@delete')->name('synopsis.potential_revenue_delete');
+	
+	// Milling Duration
+	Route::get('synopsis/milling_duration','Api\ApiSynMillingDurationController@fetch')->name('synopsis.milling_duration_list');
+	Route::post('synopsis/milling_duration/store','Api\ApiSynMillingDurationController@store')->name('synopsis.milling_duration_store');
+	Route::get('synopsis/milling_duration/{slug}','Api\ApiSynMillingDurationController@edit')->name('synopsis.milling_duration_edit');
+	Route::post('synopsis/milling_duration/{slug}','Api\ApiSynMillingDurationController@update')->name('synopsis.milling_duration_update');
+	Route::delete('synopsis/milling_duration/{slug}','Api\ApiSynMillingDurationController@delete')->name('synopsis.milling_duration_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');
