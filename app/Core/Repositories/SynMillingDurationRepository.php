@@ -137,22 +137,22 @@ class SynMillingDurationRepository extends BaseRepository implements SynMillingD
 
 
 
-    // public function getByCropYearId($crop_year_id){
+    public function getByCropYearId($crop_year_id){
 
-    //     $syn_milling_duration = $this->cache->remember('syn_milling_duration:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
+        $syn_milling_duration = $this->cache->remember('syn_milling_duration:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
 
-    //         $syn_milling_duration = $this->syn_milling_duration->newQuery();
+            $syn_milling_duration = $this->syn_milling_duration->newQuery();
 
-    //         return $syn_milling_duration->select('mill_id', 'due_bh', 'due_trash', 'total', 'milling_duration')
-    //                                   ->with('mill')
-    //                                   ->where('crop_year_id', $crop_year_id)
-    //                                   ->get();
+            return $syn_milling_duration->select('mill_id', 'mill_start', 'mill_end', 'crop_length', 'tet')
+                                      ->with('mill')
+                                      ->where('crop_year_id', $crop_year_id)
+                                      ->get();
 
-    //     });
+        });
 
-    //     return $syn_milling_duration;
+        return $syn_milling_duration;
 
-    // }
+    }
 
 
 

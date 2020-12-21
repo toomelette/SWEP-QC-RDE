@@ -152,6 +152,12 @@
                         <potential-revenue v-if="category_id.toString() == 22" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </potential-revenue>
 
+                        <milling-duration v-if="category_id.toString() == 23" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </milling-duration>
+
+                        <grind-stoppage v-if="category_id.toString() == 24" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </grind-stoppage>
+
                     </div>
 
                 </div>
@@ -175,8 +181,10 @@
     import 'vue-select/dist/vue-select.css';
     import 'vue-toast-notification/dist/theme-sugar.css';
     import 'vue-loading-overlay/dist/vue-loading.css';
+import GrindStoppageList from './GrindStoppageList.vue';
 
     export default {
+  components: { GrindStoppageList },
 
 
         mixins: [ Utils ],

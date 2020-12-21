@@ -16,6 +16,6 @@ interface SynMillingDurationInterface {
 
 	public function destroy($slug);
 
-	// public function getByCropYearId($crop_year_id);
+	public function getByCropYearId($crop_year_id);
 		
 }

@@ -40,6 +40,8 @@ Vue.component('bh-loss', require('./components/Synopsis/OutputCategoryFormats/BH
 Vue.component('kg-sugar-due-bh', require('./components/Synopsis/OutputCategoryFormats/KgSugarDueBHFormat').default);
 Vue.component('kg-sugar-due-clean-cane', require('./components/Synopsis/OutputCategoryFormats/KgSugarDueCleanCaneFormat').default);
 Vue.component('potential-revenue', require('./components/Synopsis/OutputCategoryFormats/PotentialRevenueFormat').default);
+Vue.component('milling-duration', require('./components/Synopsis/OutputCategoryFormats/MillingDurationFormat').default);
+Vue.component('grind-stoppage', require('./components/Synopsis/OutputCategoryFormats/GrindStoppageFormat').default);
 
 
 Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);

@@ -28,6 +28,8 @@ use App\Core\Interfaces\SynBHLossInterface;
 use App\Core\Interfaces\SynKgSugarDueBHInterface;
 use App\Core\Interfaces\SynKgSugarDueCleanCaneInterface;
 use App\Core\Interfaces\SynPotentialRevenueInterface;
+use App\Core\Interfaces\SynMillingDurationInterface;
+use App\Core\Interfaces\SynGrindStoppageInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -57,6 +59,8 @@ class ApiSynOutputController extends Controller{
         ['id' => '20', 'label' => 'Kgs of Sugar Due BH',],
         ['id' => '21', 'label' => 'Kgs of Sugar Due Clean Cane',],
         ['id' => '22', 'label' => 'Potential Revenue',],
+        ['id' => '23', 'label' => 'Milling Duration',],
+        ['id' => '24', 'label' => 'Grinding Stoppages',],
 
     ];
     
@@ -96,6 +100,8 @@ class ApiSynOutputController extends Controller{
     protected $kg_sugar_due_bh_repo;
     protected $kg_sugar_due_clean_cane_repo;
     protected $potential_revenue_repo;
+    protected $milling_duration_repo;
+    protected $grind_stoppage_repo;
 
 
 
@@ -120,7 +126,9 @@ class ApiSynOutputController extends Controller{
                                 SynBHLossInterface $bh_loss_repo,
                                 SynKgSugarDueBHInterface $kg_sugar_due_bh_repo,
                                 SynKgSugarDueCleanCaneInterface $kg_sugar_due_clean_cane_repo,
-                                SynPotentialRevenueInterface $potential_revenue_repo){
+                                SynPotentialRevenueInterface $potential_revenue_repo,
+                                SynMillingDurationInterface $milling_duration_repo,
+                                SynGrindStoppageInterface $grind_stoppage_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -144,6 +152,8 @@ class ApiSynOutputController extends Controller{
         $this->kg_sugar_due_bh_repo = $kg_sugar_due_bh_repo;
         $this->kg_sugar_due_clean_cane_repo = $kg_sugar_due_clean_cane_repo;
         $this->potential_revenue_repo = $potential_revenue_repo;
+        $this->milling_duration_repo = $milling_duration_repo;
+        $this->grind_stoppage_repo = $grind_stoppage_repo;
         
         parent::__construct();
 
@@ -263,6 +273,14 @@ class ApiSynOutputController extends Controller{
 
             case '22':
                 $collection = $this->potential_revenue_repo->getByCropYearId($request->cy);
+                break;
+
+            case '23':
+                $collection = $this->milling_duration_repo->getByCropYearId($request->cy);
+                break;
+
+            case '24':
+                $collection = $this->grind_stoppage_repo->getByCropYearId($request->cy);
                 break;
 
             default:

@@ -180,6 +180,20 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/milling_duration/{slug}','Api\ApiSynMillingDurationController@edit')->name('synopsis.milling_duration_edit');
 	Route::post('synopsis/milling_duration/{slug}','Api\ApiSynMillingDurationController@update')->name('synopsis.milling_duration_update');
 	Route::delete('synopsis/milling_duration/{slug}','Api\ApiSynMillingDurationController@delete')->name('synopsis.milling_duration_delete');
+	
+	// Grinding Stoppages
+	Route::get('synopsis/grind_stoppage','Api\ApiSynGrindStoppageController@fetch')->name('synopsis.grind_stoppage_list');
+	Route::post('synopsis/grind_stoppage/store','Api\ApiSynGrindStoppageController@store')->name('synopsis.grind_stoppage_store');
+	Route::get('synopsis/grind_stoppage/{slug}','Api\ApiSynGrindStoppageController@edit')->name('synopsis.grind_stoppage_edit');
+	Route::post('synopsis/grind_stoppage/{slug}','Api\ApiSynGrindStoppageController@update')->name('synopsis.grind_stoppage_update');
+	Route::delete('synopsis/grind_stoppage/{slug}','Api\ApiSynGrindStoppageController@delete')->name('synopsis.grind_stoppage_delete');
+	
+	// Detail of Stoppage - A
+	Route::get('synopsis/detail_of_stoppage_a','Api\ApiSynDetailOfStoppageAController@fetch')->name('synopsis.detail_of_stoppag_a_list');
+	Route::post('synopsis/detail_of_stoppage_a/store','Api\ApiSynDetailOfStoppageAController@store')->name('synopsis.detail_of_stoppag_a_store');
+	Route::get('synopsis/detail_of_stoppage_a/{slug}','Api\ApiSynDetailOfStoppageAController@edit')->name('synopsis.detail_of_stoppag_a_edit');
+	Route::post('synopsis/detail_of_stoppage_a/{slug}','Api\ApiSynDetailOfStoppageAController@update')->name('synopsis.detail_of_stoppag_a_update');
+	Route::delete('synopsis/detail_of_stoppage_a/{slug}','Api\ApiSynDetailOfStoppageAController@delete')->name('synopsis.detail_of_stoppag_a_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');

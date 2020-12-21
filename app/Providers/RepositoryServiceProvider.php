@@ -77,6 +77,10 @@ class RepositoryServiceProvider extends ServiceProvider {
 		
 		$this->app->bind('App\Core\Interfaces\SynMillingDurationInterface', 'App\Core\Repositories\SynMillingDurationRepository');
 		
+		$this->app->bind('App\Core\Interfaces\SynGrindStoppageInterface', 'App\Core\Repositories\SynGrindStoppageRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynDetailOfStoppageAInterface', 'App\Core\Repositories\SynDetailOfStoppageARepository');
+		
 	}
 
 
