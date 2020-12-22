@@ -18,6 +18,9 @@ Vue.use(Loading);
 Vue.component('v-select', VueSelect);
 
 
+Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);
+
+
 Vue.component('cane-sugar-tons', require('./components/Synopsis/OutputCategoryFormats/CaneSugarTonsFormat').default);
 Vue.component('prdn-increment', require('./components/Synopsis/OutputCategoryFormats/PRDNIncrementFormat').default);
 Vue.component('ratios-on-gross-cane', require('./components/Synopsis/OutputCategoryFormats/RatiosOnGrossCaneFormat').default);
@@ -42,9 +45,8 @@ Vue.component('kg-sugar-due-clean-cane', require('./components/Synopsis/OutputCa
 Vue.component('potential-revenue', require('./components/Synopsis/OutputCategoryFormats/PotentialRevenueFormat').default);
 Vue.component('milling-duration', require('./components/Synopsis/OutputCategoryFormats/MillingDurationFormat').default);
 Vue.component('grind-stoppage', require('./components/Synopsis/OutputCategoryFormats/GrindStoppageFormat').default);
-
-
-Vue.component('outputs', require('./components/synopsis/Outputs.vue').default);
+Vue.component('detail-of-stoppage-a', require('./components/Synopsis/OutputCategoryFormats/DetailOfStoppageAFormat').default);
+Vue.component('detail-of-stoppage-b', require('./components/Synopsis/OutputCategoryFormats/DetailOfStoppageBFormat').default);
 
 
 const app = new Vue({

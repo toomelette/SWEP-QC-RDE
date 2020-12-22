@@ -158,6 +158,12 @@
                         <grind-stoppage v-if="category_id.toString() == 24" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </grind-stoppage>
 
+                        <detail-of-stoppage-a v-if="category_id.toString() == 25" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </detail-of-stoppage-a>
+
+                        <detail-of-stoppage-b v-if="category_id.toString() == 26" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
+                        </detail-of-stoppage-b>
+
                     </div>
 
                 </div>
@@ -181,14 +187,10 @@
     import 'vue-select/dist/vue-select.css';
     import 'vue-toast-notification/dist/theme-sugar.css';
     import 'vue-loading-overlay/dist/vue-loading.css';
-import GrindStoppageList from './GrindStoppageList.vue';
 
     export default {
-  components: { GrindStoppageList },
-
 
         mixins: [ Utils ],
-
 
         data() {
 

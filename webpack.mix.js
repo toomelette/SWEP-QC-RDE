@@ -115,6 +115,10 @@ mix.js('resources/assets/js/SynGrindStoppageMain.js', 'public/js')
 mix.js('resources/assets/js/SynDetailOfStoppageAMain.js', 'public/js')
 .sass('resources/assets/sass/SynDetailOfStoppageAMain.scss', 'public/css');
 
+// SYNOPSIS Detail of Stoppage - B
+mix.js('resources/assets/js/SynDetailOfStoppageBMain.js', 'public/js')
+.sass('resources/assets/sass/SynDetailOfStoppageBMain.scss', 'public/css');
+
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')
 	.sass('resources/assets/sass/SynOutputsMain.scss', 'public/css');

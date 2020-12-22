@@ -73,6 +73,7 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	Route::get('/synopsis/milling_duration', 'SynopsisController@millingDuration')->name('synopsis.milling_duration');
 	Route::get('/synopsis/grind_stoppage', 'SynopsisController@grindStoppage')->name('synopsis.grind_stoppage');
 	Route::get('/synopsis/detail_of_stoppage_a', 'SynopsisController@detailOfStoppageA')->name('synopsis.detail_of_stoppage_a');
+	Route::get('/synopsis/detail_of_stoppage_b', 'SynopsisController@detailOfStoppageB')->name('synopsis.detail_of_stoppage_b');
 
 	Route::get('/synopsis/outputs', 'SynopsisController@outputs')->name('synopsis.outputs');
 	Route::get('/synopsis/outputs/export_excel', 'SynopsisController@outputsExportExcel')->name('synopsis.outputs_export_excel');

@@ -30,6 +30,8 @@ use App\Core\Interfaces\SynKgSugarDueCleanCaneInterface;
 use App\Core\Interfaces\SynPotentialRevenueInterface;
 use App\Core\Interfaces\SynMillingDurationInterface;
 use App\Core\Interfaces\SynGrindStoppageInterface;
+use App\Core\Interfaces\SynDetailOfStoppageAInterface;
+use App\Core\Interfaces\SynDetailOfStoppageBInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -61,6 +63,8 @@ class ApiSynOutputController extends Controller{
         ['id' => '22', 'label' => 'Potential Revenue',],
         ['id' => '23', 'label' => 'Milling Duration',],
         ['id' => '24', 'label' => 'Grinding Stoppages',],
+        ['id' => '25', 'label' => 'Detail of Stoppage - A',],
+        ['id' => '26', 'label' => 'Detail of Stoppage - B',],
 
     ];
     
@@ -102,6 +106,8 @@ class ApiSynOutputController extends Controller{
     protected $potential_revenue_repo;
     protected $milling_duration_repo;
     protected $grind_stoppage_repo;
+    protected $detail_of_stoppage_a_repo;
+    protected $detail_of_stoppage_b_repo;
 
 
 
@@ -128,7 +134,9 @@ class ApiSynOutputController extends Controller{
                                 SynKgSugarDueCleanCaneInterface $kg_sugar_due_clean_cane_repo,
                                 SynPotentialRevenueInterface $potential_revenue_repo,
                                 SynMillingDurationInterface $milling_duration_repo,
-                                SynGrindStoppageInterface $grind_stoppage_repo){
+                                SynGrindStoppageInterface $grind_stoppage_repo,
+                                SynDetailOfStoppageAInterface $detail_of_stoppage_a_repo,
+                                SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -154,6 +162,8 @@ class ApiSynOutputController extends Controller{
         $this->potential_revenue_repo = $potential_revenue_repo;
         $this->milling_duration_repo = $milling_duration_repo;
         $this->grind_stoppage_repo = $grind_stoppage_repo;
+        $this->detail_of_stoppage_a_repo = $detail_of_stoppage_a_repo;
+        $this->detail_of_stoppage_b_repo = $detail_of_stoppage_b_repo;
         
         parent::__construct();
 
@@ -281,6 +291,14 @@ class ApiSynOutputController extends Controller{
 
             case '24':
                 $collection = $this->grind_stoppage_repo->getByCropYearId($request->cy);
+                break;
+
+            case '25':
+                $collection = $this->detail_of_stoppage_a_repo->getByCropYearId($request->cy);
+                break;
+
+            case '26':
+                $collection = $this->detail_of_stoppage_b_repo->getByCropYearId($request->cy);
                 break;
 
             default:

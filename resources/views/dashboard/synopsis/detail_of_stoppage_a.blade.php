@@ -3,7 +3,7 @@
 @section('content')
 
 	<section class="content-header">
-		<h1>Grinding Stopagges</h1>
+		<h1>Detail of Stoppages - A</h1>
 	</section>
 
 	<section class="content">

@@ -81,6 +81,8 @@ class RepositoryServiceProvider extends ServiceProvider {
 		
 		$this->app->bind('App\Core\Interfaces\SynDetailOfStoppageAInterface', 'App\Core\Repositories\SynDetailOfStoppageARepository');
 		
+		$this->app->bind('App\Core\Interfaces\SynDetailOfStoppageBInterface', 'App\Core\Repositories\SynDetailOfStoppageBRepository');
+		
 	}
 
 

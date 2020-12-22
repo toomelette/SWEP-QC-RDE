@@ -27,6 +27,8 @@ use App\Core\Interfaces\SynKgSugarDueCleanCaneInterface;
 use App\Core\Interfaces\SynPotentialRevenueInterface;
 use App\Core\Interfaces\SynMillingDurationInterface;
 use App\Core\Interfaces\SynGrindStoppageInterface;
+use App\Core\Interfaces\SynDetailOfStoppageAInterface;
+use App\Core\Interfaces\SynDetailOfStoppageBInterface;
 
 
 
@@ -54,6 +56,8 @@ use App\Exports\Excel\SynKgSugarDueCleanCane;
 use App\Exports\Excel\SynPotentialRevenue;
 use App\Exports\Excel\SynMillingDuration;
 use App\Exports\Excel\SynGrindStoppage;
+use App\Exports\Excel\SynDetailOfStoppageA;
+use App\Exports\Excel\SynDetailOfStoppageB;
 
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -87,6 +91,8 @@ class SynopsisController extends Controller{
     protected $potential_revenue_repo;
     protected $milling_duration_repo;
     protected $grind_stoppage_repo;
+    protected $detail_of_stoppage_a_repo;
+    protected $detail_of_stoppage_b_repo;
     
     
 	const SYN_OUTPUT_REGIONS = [
@@ -124,7 +130,9 @@ class SynopsisController extends Controller{
                                 SynKgSugarDueCleanCaneInterface $kg_sugar_due_clean_cane_repo,
                                 SynPotentialRevenueInterface $potential_revenue_repo,
                                 SynMillingDurationInterface $milling_duration_repo,
-                                SynGrindStoppageInterface $grind_stoppage_repo){
+                                SynGrindStoppageInterface $grind_stoppage_repo,
+                                SynDetailOfStoppageAInterface $detail_of_stoppage_a_repo,
+                                SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment = $prdn_increment;
@@ -150,6 +158,8 @@ class SynopsisController extends Controller{
         $this->potential_revenue_repo = $potential_revenue_repo;
         $this->milling_duration_repo = $milling_duration_repo;
         $this->grind_stoppage_repo = $grind_stoppage_repo;
+        $this->detail_of_stoppage_a_repo = $detail_of_stoppage_a_repo;
+        $this->detail_of_stoppage_b_repo = $detail_of_stoppage_b_repo;
         
         
         parent::__construct();
@@ -256,6 +266,10 @@ class SynopsisController extends Controller{
 
     public function detailOfStoppageA(){
         return view('dashboard.synopsis.detail_of_stoppage_a');
+    }
+
+    public function detailOfStoppageB(){
+        return view('dashboard.synopsis.detail_of_stoppage_b');
     }
 
     public function outputs(){
@@ -439,6 +453,20 @@ class SynopsisController extends Controller{
                     $collection = $this->grind_stoppage_repo->getByCropYearId($request->cy_id);
                     $filename = 'Grind Stoppage'.' - '.$request->cy_name.'.xlsx';
                     return Excel::download(new SynGrindStoppage($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+
+                case '25':
+
+                    $collection = $this->detail_of_stoppage_a_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Detail of Stoppage - A'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynDetailOfStoppageA($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+
+                case '26':
+
+                    $collection = $this->detail_of_stoppage_b_repo->getByCropYearId($request->cy_id);
+                    $filename = 'Detail of Stoppage - B'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynDetailOfStoppageB($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
                     break;
 
                 default:
@@ -702,6 +730,26 @@ class SynopsisController extends Controller{
 
                     $collection = $this->grind_stoppage_repo->getByCropYearId($request->cy_id);
                     return view('printables.synopsis.grind_stoppage')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+
+                case '25':
+
+                    $collection = $this->detail_of_stoppage_a_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.detail_of_stoppage_a')->with([
+                        'collection' => $collection,
+                        'regions' => self::SYN_OUTPUT_REGIONS,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+
+                case '26':
+
+                    $collection = $this->detail_of_stoppage_b_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.detail_of_stoppage_b')->with([
                         'collection' => $collection,
                         'regions' => self::SYN_OUTPUT_REGIONS,
                         'crop_year' => $request->cy_name

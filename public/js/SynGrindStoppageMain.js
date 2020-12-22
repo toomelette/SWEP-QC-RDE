@@ -1969,6 +1969,109 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
+/* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SynGrindStoppageMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynGrindStoppageMain */ "./resources/assets/js/SynGrindStoppageMain.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      delete_key: ""
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    _SynGrindStoppageMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('OPEN_GRIND_STOPPAGE_DELETE_MODAL', function (data) {
+      _this.showModal(data);
+    });
+  },
+  methods: {
+    showModal: function showModal(data) {
+      var _this2 = this;
+
+      $("#delete_modal").modal("show");
+      axios.get('synopsis/grind_stoppage/' + data.delete_key).then(function (response) {
+        if (response.status == 200) {
+          _this2.delete_key = response.data.data.slug;
+        }
+      });
+    },
+    destroy: function destroy() {
+      var _this3 = this;
+
+      axios["delete"]('synopsis/grind_stoppage/' + this.delete_key).then(function (response) {
+        if (response.status == 200) {
+          $('#delete_modal').modal('toggle');
+
+          _this3.$toast.success('Data Successfully Deleted!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+
+          _SynGrindStoppageMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('GRIND_STOPPAGE_UPDATE_LIST', {});
+        } else {
+          _this3.$toast.error('Unable to delete data!', {
+            position: 'top-right',
+            duration: 5000,
+            dismissible: true
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/GrindStoppageList.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/GrindStoppageList.vue?vue&type=script&lang=js& ***!
@@ -6827,7 +6930,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css":
 /*!*************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--32-1!./node_modules/postcss-loader/src??ref--32-2!./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
+  !*** ./node_modules/css-loader??ref--33-1!./node_modules/postcss-loader/src??ref--33-2!./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
   \*************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -6846,7 +6949,7 @@ exports.push([module.i, ".vld-shown {\n  overflow: hidden;\n}\n\n.vld-overlay {\
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css":
 /*!***************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--32-1!./node_modules/postcss-loader/src??ref--32-2!./node_modules/vue-select/dist/vue-select.css ***!
+  !*** ./node_modules/css-loader??ref--33-1!./node_modules/postcss-loader/src??ref--33-2!./node_modules/vue-select/dist/vue-select.css ***!
   \***************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -6865,7 +6968,7 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css":
 /*!****************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--32-1!./node_modules/postcss-loader/src??ref--32-2!./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
+  !*** ./node_modules/css-loader??ref--33-1!./node_modules/postcss-loader/src??ref--33-2!./node_modules/vue-toast-notification/dist/theme-sugar.css ***!
   \****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -39013,6 +39116,123 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: { id: "delete_modal", "data-backdrop": "static" }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog modal-md" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.destroy()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.delete_key,
+                      expression: "delete_key"
+                    }
+                  ],
+                  attrs: { type: "hidden" },
+                  domProps: { value: _vm.delete_key },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.delete_key = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("p", { staticStyle: { "font-size": "17px" } }, [
+                  _vm._v("Are you sure, you want to delete this record?")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeModal()
+                      }
+                    }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+                  [_vm._v("Delete")]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("button", {
+        staticClass: "close",
+        staticStyle: { padding: "5px" },
+        attrs: { "data-dismiss": "modal" }
+      }),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [
+        _c("i", { staticClass: "fa fa-exclamation-circle" }),
+        _vm._v(" Delete\n          ")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/GrindStoppageList.vue?vue&type=template&id=3727a302&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/GrindStoppageList.vue?vue&type=template&id=3727a302& ***!
@@ -39760,7 +39980,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--32-1!../../postcss-loader/src??ref--32-2!./vue-loading.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--33-1!../../postcss-loader/src??ref--33-2!./vue-loading.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -39801,7 +40021,7 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--32-1!../../postcss-loader/src??ref--32-2!./vue-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--33-1!../../postcss-loader/src??ref--33-2!./vue-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -39854,7 +40074,7 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--32-1!../../postcss-loader/src??ref--32-2!./theme-sugar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--33-1!../../postcss-loader/src??ref--33-2!./theme-sugar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toast-notification/dist/theme-sugar.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -51957,8 +52177,8 @@ Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
 Vue.component('number-format', _components_Numberformat__WEBPACK_IMPORTED_MODULE_0__["default"]["default"]);
 Vue.component('grind-stoppage-list', __webpack_require__(/*! ./components/synopsis/GrindStoppageList.vue */ "./resources/assets/js/components/synopsis/GrindStoppageList.vue")["default"]);
 Vue.component('grind-stoppage-create-modal', __webpack_require__(/*! ./components/synopsis/GrindStoppageCreateModal.vue */ "./resources/assets/js/components/synopsis/GrindStoppageCreateModal.vue")["default"]);
-Vue.component('grind-stoppage-update-modal', __webpack_require__(/*! ./components/synopsis/GrindStoppageUpdateModal.vue */ "./resources/assets/js/components/synopsis/GrindStoppageUpdateModal.vue")["default"]); // Vue.component('grind-stoppage-delete-modal', require('./components/synopsis/GrindStoppageDeleteModal.vue').default);
-
+Vue.component('grind-stoppage-update-modal', __webpack_require__(/*! ./components/synopsis/GrindStoppageUpdateModal.vue */ "./resources/assets/js/components/synopsis/GrindStoppageUpdateModal.vue")["default"]);
+Vue.component('grind-stoppage-delete-modal', __webpack_require__(/*! ./components/synopsis/GrindStoppageDeleteModal.vue */ "./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -52152,6 +52372,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GrindStoppageDeleteModal_vue_vue_type_template_id_1e6cca1e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e& */ "./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e&");
+/* harmony import */ var _GrindStoppageDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GrindStoppageDeleteModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GrindStoppageDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GrindStoppageDeleteModal_vue_vue_type_template_id_1e6cca1e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GrindStoppageDeleteModal_vue_vue_type_template_id_1e6cca1e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GrindStoppageDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./GrindStoppageDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GrindStoppageDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e& ***!
+  \*************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GrindStoppageDeleteModal_vue_vue_type_template_id_1e6cca1e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/GrindStoppageDeleteModal.vue?vue&type=template&id=1e6cca1e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GrindStoppageDeleteModal_vue_vue_type_template_id_1e6cca1e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GrindStoppageDeleteModal_vue_vue_type_template_id_1e6cca1e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/synopsis/GrindStoppageList.vue":
 /*!***********************************************************************!*\
   !*** ./resources/assets/js/components/synopsis/GrindStoppageList.vue ***!
@@ -52334,7 +52623,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! f:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynGrindStoppageMain.js */"./resources/assets/js/SynGrindStoppageMain.js");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynGrindStoppageMain.js */"./resources/assets/js/SynGrindStoppageMain.js");
 
 
 /***/ })

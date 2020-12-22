@@ -58,6 +58,7 @@ class EventServiceProvider extends ServiceProvider{
         'App\Core\Subscribers\SynMillingDurationSubscriber',
         'App\Core\Subscribers\SynGrindStoppageSubscriber',
         'App\Core\Subscribers\SynDetailOfStoppageASubscriber',
+        'App\Core\Subscribers\SynDetailOfStoppageBSubscriber',
 
         
 

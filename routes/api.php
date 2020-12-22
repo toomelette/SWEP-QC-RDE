@@ -194,6 +194,13 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/detail_of_stoppage_a/{slug}','Api\ApiSynDetailOfStoppageAController@edit')->name('synopsis.detail_of_stoppag_a_edit');
 	Route::post('synopsis/detail_of_stoppage_a/{slug}','Api\ApiSynDetailOfStoppageAController@update')->name('synopsis.detail_of_stoppag_a_update');
 	Route::delete('synopsis/detail_of_stoppage_a/{slug}','Api\ApiSynDetailOfStoppageAController@delete')->name('synopsis.detail_of_stoppag_a_delete');
+	
+	// Detail of Stoppage - B
+	Route::get('synopsis/detail_of_stoppage_b','Api\ApiSynDetailOfStoppageBController@fetch')->name('synopsis.detail_of_stoppag_b_list');
+	Route::post('synopsis/detail_of_stoppage_b/store','Api\ApiSynDetailOfStoppageBController@store')->name('synopsis.detail_of_stoppag_b_store');
+	Route::get('synopsis/detail_of_stoppage_b/{slug}','Api\ApiSynDetailOfStoppageBController@edit')->name('synopsis.detail_of_stoppag_b_edit');
+	Route::post('synopsis/detail_of_stoppage_b/{slug}','Api\ApiSynDetailOfStoppageBController@update')->name('synopsis.detail_of_stoppag_b_update');
+	Route::delete('synopsis/detail_of_stoppage_b/{slug}','Api\ApiSynDetailOfStoppageBController@delete')->name('synopsis.detail_of_stoppag_b_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');

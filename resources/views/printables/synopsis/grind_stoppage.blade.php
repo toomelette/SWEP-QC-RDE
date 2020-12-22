@@ -5,7 +5,7 @@
 <html>
 
 <head>
-  <title>First Expressed Juice</title>
+  <title>Grinding Stoppages</title>
   <link rel="stylesheet" href="{{ asset('template/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('template/bower_components/font-awesome/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css') }}">
@@ -19,7 +19,7 @@
   {{-- HEADER --}}
   <div class="row" style="padding:11px; text-align: center;">
     <span style="font-size: 14px;">CROP-YEAR: {{ $crop_year }}</span><br>
-    <span style="font-size: 14px;">TABLE VI. FIRST EXPRESSED JUICE</span>
+    <span style="font-size: 14px;">TABLE XXIV.  HOURS ACTUAL GRINDING ; TOTAL DELAYS AND STOPPAGES</span>
   </div>
 
   <div class="row" id="content">
