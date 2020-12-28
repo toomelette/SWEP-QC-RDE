@@ -119,6 +119,10 @@ mix.js('resources/assets/js/SynDetailOfStoppageAMain.js', 'public/js')
 mix.js('resources/assets/js/SynDetailOfStoppageBMain.js', 'public/js')
 .sass('resources/assets/sass/SynDetailOfStoppageBMain.scss', 'public/css');
 
+// TEN YEAR PRODUCTION DATA
+mix.js('resources/assets/js/SynTenYrPrdnMain.js', 'public/js')
+.sass('resources/assets/sass/SynTenYrPrdnMain.scss', 'public/css');
+
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')
 	.sass('resources/assets/sass/SynOutputsMain.scss', 'public/css');

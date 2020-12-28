@@ -32,6 +32,7 @@ use App\Core\Interfaces\SynMillingDurationInterface;
 use App\Core\Interfaces\SynGrindStoppageInterface;
 use App\Core\Interfaces\SynDetailOfStoppageAInterface;
 use App\Core\Interfaces\SynDetailOfStoppageBInterface;
+use App\Core\Interfaces\SynTenYrPrdnInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -65,6 +66,7 @@ class ApiSynOutputController extends Controller{
         ['id' => '24', 'label' => 'Grinding Stoppages',],
         ['id' => '25', 'label' => 'Detail of Stoppage - A',],
         ['id' => '26', 'label' => 'Detail of Stoppage - B',],
+        ['id' => '27', 'label' => '10 Year Production Data',],
 
     ];
     
@@ -108,6 +110,7 @@ class ApiSynOutputController extends Controller{
     protected $grind_stoppage_repo;
     protected $detail_of_stoppage_a_repo;
     protected $detail_of_stoppage_b_repo;
+    protected $ten_yr_prdn_repo;
 
 
 
@@ -136,7 +139,8 @@ class ApiSynOutputController extends Controller{
                                 SynMillingDurationInterface $milling_duration_repo,
                                 SynGrindStoppageInterface $grind_stoppage_repo,
                                 SynDetailOfStoppageAInterface $detail_of_stoppage_a_repo,
-                                SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo){
+                                SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo,
+                                SynTenYrPrdnInterface $ten_yr_prdn_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -164,6 +168,7 @@ class ApiSynOutputController extends Controller{
         $this->grind_stoppage_repo = $grind_stoppage_repo;
         $this->detail_of_stoppage_a_repo = $detail_of_stoppage_a_repo;
         $this->detail_of_stoppage_b_repo = $detail_of_stoppage_b_repo;
+        $this->ten_yr_prdn_repo = $ten_yr_prdn_repo;
         
         parent::__construct();
 
@@ -299,6 +304,10 @@ class ApiSynOutputController extends Controller{
 
             case '26':
                 $collection = $this->detail_of_stoppage_b_repo->getByCropYearId($request->cy);
+                break;
+
+            case '27':
+                $collection = $this->ten_yr_prdn_repo->getByCropYearId($request->cy);
                 break;
 
             default:

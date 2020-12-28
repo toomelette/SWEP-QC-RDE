@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1753,16 +1753,16 @@ Vue.component('number-format', {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SynBagasseMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../SynBagasseMain */ "./resources/assets/js/SynBagasseMain.js");
+/* harmony import */ var _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../SynTenYrPrdnMain */ "./resources/assets/js/SynTenYrPrdnMain.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./resources/assets/js/components/utils.js");
 /* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select/dist/vue-select.css */ "./node_modules/vue-select/dist/vue-select.css");
 /* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__);
@@ -1770,20 +1770,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1876,51 +1862,39 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_utils__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
-      mills: [],
       crop_years: [],
       error: [],
       // fields
       crop_year_id: {},
-      mill_id: {},
-      tonnes: "",
-      percent_on_cane: "",
-      percent_pol: "",
-      percent_moisture: "",
-      percent_fiber: "",
-      calorific_value: ""
+      gross_cane_milled: "",
+      raw_sugar_man: "",
+      molasses_due_cane: "",
+      bagasse: "",
+      filter_cake: ""
     };
   },
   created: function created() {
     var _this = this;
 
-    _SynBagasseMain__WEBPACK_IMPORTED_MODULE_0__["default"].$on('OPEN_BAGASSE_CREATE_MODAL', function (data) {
+    _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_0__["default"].$on('OPEN_TEN_YR_PRDN_CREATE_MODAL', function (data) {
       _this.showModal();
     });
-    this.getAllMills();
     this.getAllCropYears();
   },
   methods: {
     showModal: function showModal() {
       $("#create_modal").modal("show");
     },
-    getAllMills: function getAllMills() {
+    getAllCropYears: function getAllCropYears() {
       var _this2 = this;
 
-      axios.get('mill/get_all').then(function (response) {
-        _this2.mills = _this2.utilVSelectOptions(response.data, 'mill_id', 'name');
-      });
-    },
-    getAllCropYears: function getAllCropYears() {
-      var _this3 = this;
-
       axios.get('crop_year/get_all').then(function (response) {
-        _this3.crop_years = _this3.utilVSelectOptions(response.data, 'crop_year_id', 'name');
+        _this2.crop_years = _this2.utilVSelectOptions(response.data, 'crop_year_id', 'name');
       });
     },
     store: function store() {
       var _this$crop_year_id,
-          _this$mill_id,
-          _this4 = this;
+          _this3 = this;
 
       var loader = this.$loading.show({
         container: this.$refs.create_form,
@@ -1930,39 +1904,35 @@ __webpack_require__.r(__webpack_exports__);
         transition: null,
         isFullPage: false
       });
-      axios.post('synopsis/bagasse/store', {
+      axios.post('synopsis/ten_yr_prdn/store', {
         crop_year_id: (_this$crop_year_id = this.crop_year_id) === null || _this$crop_year_id === void 0 ? void 0 : _this$crop_year_id.code,
-        mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code,
-        tonnes: this.tonnes,
-        percent_on_cane: this.percent_on_cane,
-        percent_pol: this.percent_pol,
-        percent_moisture: this.percent_moisture,
-        percent_fiber: this.percent_fiber,
-        calorific_value: this.calorific_value
+        gross_cane_milled: this.gross_cane_milled,
+        raw_sugar_man: this.raw_sugar_man,
+        molasses_due_cane: this.molasses_due_cane,
+        bagasse: this.bagasse,
+        filter_cake: this.filter_cake
       }).then(function (response) {
         if (response.status == 200) {
-          _this4.error = [];
-          _this4.crop_year_id = {};
-          _this4.mill_id = {};
-          _this4.tonnes = '';
-          _this4.percent_on_cane = '';
-          _this4.percent_pol = '';
-          _this4.percent_moisture = '';
-          _this4.percent_fiber = '';
-          _this4.calorific_value = '';
+          _this3.error = [];
+          _this3.crop_year_id = {};
+          _this3.gross_cane_milled = '';
+          _this3.raw_sugar_man = '';
+          _this3.molasses_due_cane = '';
+          _this3.bagasse = '';
+          _this3.filter_cake = '';
 
-          _this4.$toast.success('Data Successfully Saved!', {
+          _this3.$toast.success('Data Successfully Saved!', {
             position: 'top-right',
             duration: 5000,
             dismissible: true
           });
 
-          _SynBagasseMain__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('BAGASSE_UPDATE_LIST', {
+          _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('TEN_YR_PRDN_UPDATE_LIST', {
             'key': response.data.key
           });
           loader.hide();
         } else {
-          _this4.$toast.error('Unable to send data!', {
+          _this3.$toast.error('Unable to send data!', {
             position: 'top-right',
             duration: 5000,
             dismissible: true
@@ -1974,7 +1944,7 @@ __webpack_require__.r(__webpack_exports__);
         var _error$response;
 
         if (((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.status) == 422) {
-          _this4.error = error.response.data.errors;
+          _this3.error = error.response.data.errors;
         }
 
         loader.hide();
@@ -1988,10 +1958,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1999,7 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toast-notification/dist/theme-sugar.css */ "./node_modules/vue-toast-notification/dist/theme-sugar.css");
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynBagasseMain */ "./resources/assets/js/SynBagasseMain.js");
+/* harmony import */ var _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynTenYrPrdnMain */ "./resources/assets/js/SynTenYrPrdnMain.js");
 //
 //
 //
@@ -2048,7 +2018,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('OPEN_BAGASSE_DELETE_MODAL', function (data) {
+    _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('OPEN_TEN_YR_PRDN_DELETE_MODAL', function (data) {
       _this.showModal(data);
     });
   },
@@ -2057,7 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       $("#delete_modal").modal("show");
-      axios.get('synopsis/bagasse/' + data.delete_key).then(function (response) {
+      axios.get('synopsis/ten_yr_prdn/' + data.delete_key).then(function (response) {
         if (response.status == 200) {
           _this2.delete_key = response.data.data.slug;
         }
@@ -2066,7 +2036,7 @@ __webpack_require__.r(__webpack_exports__);
     destroy: function destroy() {
       var _this3 = this;
 
-      axios["delete"]('synopsis/bagasse/' + this.delete_key).then(function (response) {
+      axios["delete"]('synopsis/ten_yr_prdn/' + this.delete_key).then(function (response) {
         if (response.status == 200) {
           $('#delete_modal').modal('toggle');
 
@@ -2076,7 +2046,7 @@ __webpack_require__.r(__webpack_exports__);
             dismissible: true
           });
 
-          _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('BAGASSE_UPDATE_LIST', {});
+          _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('TEN_YR_PRDN_UPDATE_LIST', {});
         } else {
           _this3.$toast.error('Unable to delete data!', {
             position: 'top-right',
@@ -2091,10 +2061,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2102,9 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var v_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! v-debounce */ "./node_modules/v-debounce/index.js");
 /* harmony import */ var v_debounce__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(v_debounce__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynBagasseMain */ "./resources/assets/js/SynBagasseMain.js");
-//
-//
+/* harmony import */ var _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../SynTenYrPrdnMain */ "./resources/assets/js/SynTenYrPrdnMain.js");
 //
 //
 //
@@ -2229,7 +2197,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('BAGASSE_UPDATE_LIST', function (data) {
+    _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__["default"].$on('TEN_YR_PRDN_UPDATE_LIST', function (data) {
       _this.created_key = data.key;
 
       _this.fetch();
@@ -2247,7 +2215,7 @@ __webpack_require__.r(__webpack_exports__);
     fetch: function fetch(page_no) {
       var _this2 = this;
 
-      axios.get('synopsis/bagasse', {
+      axios.get('synopsis/ten_yr_prdn', {
         params: {
           q: this.search_value,
           e: this.entry_value,
@@ -2266,15 +2234,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     emitCreateModal: function emitCreateModal() {
-      _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_BAGASSE_CREATE_MODAL', {});
+      _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_TEN_YR_PRDN_CREATE_MODAL', {});
     },
     emitUpdateModal: function emitUpdateModal(update_key) {
-      _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_BAGASSE_UPDATE_MODAL', {
+      _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_TEN_YR_PRDN_UPDATE_MODAL', {
         'update_key': update_key
       });
     },
     emitDeleteModal: function emitDeleteModal(delete_key) {
-      _SynBagasseMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_BAGASSE_DELETE_MODAL', {
+      _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('OPEN_TEN_YR_PRDN_DELETE_MODAL', {
         'delete_key': delete_key
       });
     }
@@ -2286,16 +2254,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SynBagasseMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../SynBagasseMain */ "./resources/assets/js/SynBagasseMain.js");
+/* harmony import */ var _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../SynTenYrPrdnMain */ "./resources/assets/js/SynTenYrPrdnMain.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./resources/assets/js/components/utils.js");
 /* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select/dist/vue-select.css */ "./node_modules/vue-select/dist/vue-select.css");
 /* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__);
@@ -2303,19 +2271,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_theme_sugar_css__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2410,28 +2365,24 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_utils__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
-      mills: [],
       crop_years: [],
       error: [],
       // fields
       update_key: "",
       crop_year_id: {},
-      mill_id: {},
-      tonnes: "",
-      percent_on_cane: "",
-      percent_pol: "",
-      percent_moisture: "",
-      percent_fiber: "",
-      calorific_value: ""
+      gross_cane_milled: "",
+      raw_sugar_man: "",
+      molasses_due_cane: "",
+      bagasse: "",
+      filter_cake: ""
     };
   },
   created: function created() {
     var _this = this;
 
-    _SynBagasseMain__WEBPACK_IMPORTED_MODULE_0__["default"].$on('OPEN_BAGASSE_UPDATE_MODAL', function (data) {
+    _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_0__["default"].$on('OPEN_TEN_YR_PRDN_UPDATE_MODAL', function (data) {
       _this.showModal(data);
     });
-    this.getAllMills();
     this.getAllCropYears();
   },
   methods: {
@@ -2439,45 +2390,32 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       $("#update_modal").modal("show");
-      axios.get('synopsis/bagasse/' + data.update_key).then(function (response) {
+      axios.get('synopsis/ten_yr_prdn/' + data.update_key).then(function (response) {
         if (response.status == 200) {
-          var bagasse = response.data.data;
-          _this2.update_key = bagasse.slug;
+          var ten_yr_prdn = response.data.data;
+          _this2.update_key = ten_yr_prdn.slug;
           _this2.crop_year_id = {
-            code: bagasse.crop_year.crop_year_id,
-            label: bagasse.crop_year.name
+            code: ten_yr_prdn.crop_year.crop_year_id,
+            label: ten_yr_prdn.crop_year.name
           };
-          _this2.mill_id = {
-            code: bagasse.mill.mill_id,
-            label: bagasse.mill.name
-          };
-          _this2.tonnes = _this2.utilCheckFloat(bagasse.tonnes);
-          _this2.percent_on_cane = _this2.utilCheckFloat(bagasse.percent_on_cane);
-          _this2.percent_pol = _this2.utilCheckFloat(bagasse.percent_pol);
-          _this2.percent_moisture = _this2.utilCheckFloat(bagasse.percent_moisture);
-          _this2.percent_fiber = _this2.utilCheckFloat(bagasse.percent_fiber);
-          _this2.calorific_value = _this2.utilCheckFloat(bagasse.calorific_value);
+          _this2.gross_cane_milled = _this2.utilCheckFloat(ten_yr_prdn.gross_cane_milled);
+          _this2.raw_sugar_man = _this2.utilCheckFloat(ten_yr_prdn.raw_sugar_man);
+          _this2.molasses_due_cane = _this2.utilCheckFloat(ten_yr_prdn.molasses_due_cane);
+          _this2.bagasse = _this2.utilCheckFloat(ten_yr_prdn.bagasse);
+          _this2.filter_cake = _this2.utilCheckFloat(ten_yr_prdn.filter_cake);
         }
       });
     },
-    getAllMills: function getAllMills() {
+    getAllCropYears: function getAllCropYears() {
       var _this3 = this;
 
-      axios.get('mill/get_all').then(function (response) {
-        _this3.mills = _this3.utilVSelectOptions(response.data, 'mill_id', 'name');
-      });
-    },
-    getAllCropYears: function getAllCropYears() {
-      var _this4 = this;
-
       axios.get('crop_year/get_all').then(function (response) {
-        _this4.crop_years = _this4.utilVSelectOptions(response.data, 'crop_year_id', 'name');
+        _this3.crop_years = _this3.utilVSelectOptions(response.data, 'crop_year_id', 'name');
       });
     },
     update: function update() {
       var _this$crop_year_id,
-          _this$mill_id,
-          _this5 = this;
+          _this4 = this;
 
       var loader = this.$loading.show({
         container: this.$refs.update_form,
@@ -2487,31 +2425,29 @@ __webpack_require__.r(__webpack_exports__);
         transition: null,
         isFullPage: false
       });
-      axios.post('synopsis/bagasse/' + this.update_key, {
+      axios.post('synopsis/ten_yr_prdn/' + this.update_key, {
         crop_year_id: (_this$crop_year_id = this.crop_year_id) === null || _this$crop_year_id === void 0 ? void 0 : _this$crop_year_id.code.toString(),
-        mill_id: (_this$mill_id = this.mill_id) === null || _this$mill_id === void 0 ? void 0 : _this$mill_id.code.toString(),
-        tonnes: this.utilCheckFloat(this.tonnes),
-        percent_on_cane: this.utilCheckFloat(this.percent_on_cane),
-        percent_pol: this.utilCheckFloat(this.percent_pol),
-        percent_moisture: this.utilCheckFloat(this.percent_moisture),
-        percent_fiber: this.utilCheckFloat(this.percent_fiber),
-        calorific_value: this.utilCheckFloat(this.calorific_value)
+        gross_cane_milled: this.utilCheckFloat(this.gross_cane_milled),
+        raw_sugar_man: this.utilCheckFloat(this.raw_sugar_man),
+        molasses_due_cane: this.utilCheckFloat(this.molasses_due_cane),
+        bagasse: this.utilCheckFloat(this.bagasse),
+        filter_cake: this.utilCheckFloat(this.filter_cake)
       }).then(function (response) {
         if (response.status == 200) {
           $('#update_modal').modal('toggle');
 
-          _this5.$toast.success('Data Successfully Updated!', {
+          _this4.$toast.success('Data Successfully Updated!', {
             position: 'top-right',
             duration: 5000,
             dismissible: true
           });
 
-          _SynBagasseMain__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('BAGASSE_UPDATE_LIST', {
+          _SynTenYrPrdnMain__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('TEN_YR_PRDN_UPDATE_LIST', {
             'key': response.data.key
           });
           loader.hide();
         } else {
-          _this5.$toast.error('Unable to send data!', {
+          _this4.$toast.error('Unable to send data!', {
             position: 'top-right',
             duration: 5000,
             dismissible: true
@@ -2523,7 +2459,7 @@ __webpack_require__.r(__webpack_exports__);
         var _error$response;
 
         if (((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.status) == 422) {
-          _this5.error = error.response.data.errors;
+          _this4.error = error.response.data.errors;
         }
 
         loader.hide();
@@ -38845,10 +38781,10 @@ module.exports = directive
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=template&id=7adbd8ce&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=template&id=7adbd8ce& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38888,7 +38824,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "form-group col-md-6",
+                      staticClass: "form-group col-md-12",
                       class: _vm.error.crop_year_id ? "has-error" : ""
                     },
                     [
@@ -38919,163 +38855,33 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "form-group col-md-6",
-                      class: _vm.error.mill_id ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "mill_id" } }, [
-                        _vm._v("Mill *")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-select", {
-                        attrs: { options: _vm.mills },
-                        model: {
-                          value: _vm.mill_id,
-                          callback: function($$v) {
-                            _vm.mill_id = $$v
-                          },
-                          expression: "mill_id"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.mill_id
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.mill_id.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.tonnes ? "has-error" : ""
+                      class: _vm.error.gross_cane_milled ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "tonnes" } }, [
-                        _vm._v("Tonnes")
-                      ]),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Tonnes" },
-                        model: {
-                          value: _vm.tonnes,
-                          callback: function($$v) {
-                            _vm.tonnes = $$v
-                          },
-                          expression: "tonnes"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.tonnes
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.tonnes.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_on_cane ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "percent_on_cane" } }, [
-                        _vm._v("Percent on Cane")
+                      _c("label", { attrs: { for: "gross_cane_milled" } }, [
+                        _vm._v("Gross Cane Milled")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Percent on Cane"
+                          placeholder: "Gross Cane Milled"
                         },
                         model: {
-                          value: _vm.percent_on_cane,
+                          value: _vm.gross_cane_milled,
                           callback: function($$v) {
-                            _vm.percent_on_cane = $$v
+                            _vm.gross_cane_milled = $$v
                           },
-                          expression: "percent_on_cane"
+                          expression: "gross_cane_milled"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.percent_on_cane
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.percent_on_cane.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_pol ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "percent_pol" } }, [
-                        _vm._v("Percent POL")
-                      ]),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Percent POL" },
-                        model: {
-                          value: _vm.percent_pol,
-                          callback: function($$v) {
-                            _vm.percent_pol = $$v
-                          },
-                          expression: "percent_pol"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.percent_pol
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.percent_pol.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_moisture ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "percent_moisture" } }, [
-                        _vm._v("Percent MOISTURE")
-                      ]),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Percent MOISTURE"
-                        },
-                        model: {
-                          value: _vm.percent_moisture,
-                          callback: function($$v) {
-                            _vm.percent_moisture = $$v
-                          },
-                          expression: "percent_moisture"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.percent_moisture
+                      _vm.error.gross_cane_milled
                         ? _c("p", { staticClass: "help-block" }, [
                             _vm._v(
-                              _vm._s(_vm.error.percent_moisture.toString())
+                              _vm._s(_vm.error.gross_cane_milled.toString())
                             )
                           ])
                         : _vm._e()
@@ -39087,28 +38893,31 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_fiber ? "has-error" : ""
+                      class: _vm.error.raw_sugar_man ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "percent_fiber" } }, [
-                        _vm._v("Percent FIBER")
+                      _c("label", { attrs: { for: "raw_sugar_man" } }, [
+                        _vm._v("Raw Sugar Manufactured")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Percent FIBER" },
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Raw Sugar Manufactured"
+                        },
                         model: {
-                          value: _vm.percent_fiber,
+                          value: _vm.raw_sugar_man,
                           callback: function($$v) {
-                            _vm.percent_fiber = $$v
+                            _vm.raw_sugar_man = $$v
                           },
-                          expression: "percent_fiber"
+                          expression: "raw_sugar_man"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.percent_fiber
+                      _vm.error.raw_sugar_man
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.percent_fiber.toString()))
+                            _vm._v(_vm._s(_vm.error.raw_sugar_man.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -39119,31 +38928,97 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.calorific_value ? "has-error" : ""
+                      class: _vm.error.molasses_due_cane ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "calorific_value" } }, [
-                        _vm._v("Calorific Value")
+                      _c("label", { attrs: { for: "molasses_due_cane" } }, [
+                        _vm._v("Molasses Due Cane")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Calorific Value"
+                          placeholder: "Molasses Due Cane"
                         },
                         model: {
-                          value: _vm.calorific_value,
+                          value: _vm.molasses_due_cane,
                           callback: function($$v) {
-                            _vm.calorific_value = $$v
+                            _vm.molasses_due_cane = $$v
                           },
-                          expression: "calorific_value"
+                          expression: "molasses_due_cane"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.calorific_value
+                      _vm.error.molasses_due_cane
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.calorific_value.toString()))
+                            _vm._v(
+                              _vm._s(_vm.error.molasses_due_cane.toString())
+                            )
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.bagasse ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "bagasse" } }, [
+                        _vm._v("Bagasse")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "Bagasse" },
+                        model: {
+                          value: _vm.bagasse,
+                          callback: function($$v) {
+                            _vm.bagasse = $$v
+                          },
+                          expression: "bagasse"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.bagasse
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.bagasse.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.filter_cake ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "filter_cake" } }, [
+                        _vm._v("Filter Cake")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "Filter Cake" },
+                        model: {
+                          value: _vm.filter_cake,
+                          callback: function($$v) {
+                            _vm.filter_cake = $$v
+                          },
+                          expression: "filter_cake"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.filter_cake
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.filter_cake.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -39208,10 +39083,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=template&id=488603ca&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=template&id=488603ca& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39325,10 +39200,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=template&id=6b89d074&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=template&id=6b89d074& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=template&id=7c77fdfc&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=template&id=7c77fdfc& ***!
+  \********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39474,10 +39349,6 @@ var render = function() {
                       _vm._v(_vm._s(data.crop_year.name))
                     ]),
                     _vm._v(" "),
-                    _c("td", { attrs: { id: "mid-vert" } }, [
-                      _vm._v(_vm._s(data.mill.name))
-                    ]),
-                    _vm._v(" "),
                     _c("td", [
                       _c(
                         "button",
@@ -39612,8 +39483,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Mill")]),
-        _vm._v(" "),
         _c("th", [_vm._v("CropYear")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
@@ -39627,10 +39496,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=template&id=61c0f26c&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=template&id=61c0f26c& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39691,7 +39560,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "form-group col-md-6",
+                      staticClass: "form-group col-md-12",
                       class: _vm.error.crop_year_id ? "has-error" : ""
                     },
                     [
@@ -39722,163 +39591,33 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "form-group col-md-6",
-                      class: _vm.error.mill_id ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "mill_id" } }, [
-                        _vm._v("Mill *")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-select", {
-                        attrs: { options: _vm.mills },
-                        model: {
-                          value: _vm.mill_id,
-                          callback: function($$v) {
-                            _vm.mill_id = $$v
-                          },
-                          expression: "mill_id"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.mill_id
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.mill_id.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.tonnes ? "has-error" : ""
+                      class: _vm.error.gross_cane_milled ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "tonnes" } }, [
-                        _vm._v("Tonnes")
-                      ]),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Tonnes" },
-                        model: {
-                          value: _vm.tonnes,
-                          callback: function($$v) {
-                            _vm.tonnes = $$v
-                          },
-                          expression: "tonnes"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.tonnes
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.tonnes.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_on_cane ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "percent_on_cane" } }, [
-                        _vm._v("Percent on Cane")
+                      _c("label", { attrs: { for: "gross_cane_milled" } }, [
+                        _vm._v("Gross Cane Milled")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Percent on Cane"
+                          placeholder: "Gross Cane Milled"
                         },
                         model: {
-                          value: _vm.percent_on_cane,
+                          value: _vm.gross_cane_milled,
                           callback: function($$v) {
-                            _vm.percent_on_cane = $$v
+                            _vm.gross_cane_milled = $$v
                           },
-                          expression: "percent_on_cane"
+                          expression: "gross_cane_milled"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.percent_on_cane
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.percent_on_cane.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_pol ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "percent_pol" } }, [
-                        _vm._v("Percent POL")
-                      ]),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Percent POL" },
-                        model: {
-                          value: _vm.percent_pol,
-                          callback: function($$v) {
-                            _vm.percent_pol = $$v
-                          },
-                          expression: "percent_pol"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.percent_pol
-                        ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.percent_pol.toString()))
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_moisture ? "has-error" : ""
-                    },
-                    [
-                      _c("label", { attrs: { for: "percent_moisture" } }, [
-                        _vm._v("Percent MOISTURE")
-                      ]),
-                      _vm._v(" "),
-                      _c("number-format", {
-                        staticClass: "form-control",
-                        attrs: {
-                          decimals: "2",
-                          placeholder: "Percent MOISTURE"
-                        },
-                        model: {
-                          value: _vm.percent_moisture,
-                          callback: function($$v) {
-                            _vm.percent_moisture = $$v
-                          },
-                          expression: "percent_moisture"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error.percent_moisture
+                      _vm.error.gross_cane_milled
                         ? _c("p", { staticClass: "help-block" }, [
                             _vm._v(
-                              _vm._s(_vm.error.percent_moisture.toString())
+                              _vm._s(_vm.error.gross_cane_milled.toString())
                             )
                           ])
                         : _vm._e()
@@ -39890,28 +39629,31 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.percent_fiber ? "has-error" : ""
+                      class: _vm.error.raw_sugar_man ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "percent_fiber" } }, [
-                        _vm._v("Percent FIBER")
+                      _c("label", { attrs: { for: "raw_sugar_man" } }, [
+                        _vm._v("Raw Sugar Manufactured")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
-                        attrs: { decimals: "2", placeholder: "Percent FIBER" },
+                        attrs: {
+                          decimals: "2",
+                          placeholder: "Raw Sugar Manufactured"
+                        },
                         model: {
-                          value: _vm.percent_fiber,
+                          value: _vm.raw_sugar_man,
                           callback: function($$v) {
-                            _vm.percent_fiber = $$v
+                            _vm.raw_sugar_man = $$v
                           },
-                          expression: "percent_fiber"
+                          expression: "raw_sugar_man"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.percent_fiber
+                      _vm.error.raw_sugar_man
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.percent_fiber.toString()))
+                            _vm._v(_vm._s(_vm.error.raw_sugar_man.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -39922,31 +39664,97 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12",
-                      class: _vm.error.calorific_value ? "has-error" : ""
+                      class: _vm.error.molasses_due_cane ? "has-error" : ""
                     },
                     [
-                      _c("label", { attrs: { for: "calorific_value" } }, [
-                        _vm._v("Calorific Value")
+                      _c("label", { attrs: { for: "molasses_due_cane" } }, [
+                        _vm._v("Molasses Due Cane")
                       ]),
                       _vm._v(" "),
                       _c("number-format", {
                         staticClass: "form-control",
                         attrs: {
                           decimals: "2",
-                          placeholder: "Calorific Value"
+                          placeholder: "Molasses Due Cane"
                         },
                         model: {
-                          value: _vm.calorific_value,
+                          value: _vm.molasses_due_cane,
                           callback: function($$v) {
-                            _vm.calorific_value = $$v
+                            _vm.molasses_due_cane = $$v
                           },
-                          expression: "calorific_value"
+                          expression: "molasses_due_cane"
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error.calorific_value
+                      _vm.error.molasses_due_cane
                         ? _c("p", { staticClass: "help-block" }, [
-                            _vm._v(_vm._s(_vm.error.calorific_value.toString()))
+                            _vm._v(
+                              _vm._s(_vm.error.molasses_due_cane.toString())
+                            )
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.bagasse ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "bagasse" } }, [
+                        _vm._v("Bagasse")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "Bagasse" },
+                        model: {
+                          value: _vm.bagasse,
+                          callback: function($$v) {
+                            _vm.bagasse = $$v
+                          },
+                          expression: "bagasse"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.bagasse
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.bagasse.toString()))
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-12",
+                      class: _vm.error.filter_cake ? "has-error" : ""
+                    },
+                    [
+                      _c("label", { attrs: { for: "filter_cake" } }, [
+                        _vm._v("Filter Cake")
+                      ]),
+                      _vm._v(" "),
+                      _c("number-format", {
+                        staticClass: "form-control",
+                        attrs: { decimals: "2", placeholder: "Filter Cake" },
+                        model: {
+                          value: _vm.filter_cake,
+                          callback: function($$v) {
+                            _vm.filter_cake = $$v
+                          },
+                          expression: "filter_cake"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error.filter_cake
+                        ? _c("p", { staticClass: "help-block" }, [
+                            _vm._v(_vm._s(_vm.error.filter_cake.toString()))
                           ])
                         : _vm._e()
                     ],
@@ -52293,10 +52101,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/SynBagasseMain.js":
-/*!***********************************************!*\
-  !*** ./resources/assets/js/SynBagasseMain.js ***!
-  \***********************************************/
+/***/ "./resources/assets/js/SynTenYrPrdnMain.js":
+/*!*************************************************!*\
+  !*** ./resources/assets/js/SynTenYrPrdnMain.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52322,10 +52130,10 @@ Vue.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_2___default.a);
 Vue.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_3___default.a);
 Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
 Vue.component('number-format', _components_Numberformat__WEBPACK_IMPORTED_MODULE_0__["default"]["default"]);
-Vue.component('bagasse-list', __webpack_require__(/*! ./components/synopsis/BagasseList.vue */ "./resources/assets/js/components/synopsis/BagasseList.vue")["default"]);
-Vue.component('bagasse-create-modal', __webpack_require__(/*! ./components/synopsis/BagasseCreateModal.vue */ "./resources/assets/js/components/synopsis/BagasseCreateModal.vue")["default"]);
-Vue.component('bagasse-update-modal', __webpack_require__(/*! ./components/synopsis/BagasseUpdateModal.vue */ "./resources/assets/js/components/synopsis/BagasseUpdateModal.vue")["default"]);
-Vue.component('bagasse-delete-modal', __webpack_require__(/*! ./components/synopsis/BagasseDeleteModal.vue */ "./resources/assets/js/components/synopsis/BagasseDeleteModal.vue")["default"]);
+Vue.component('ten-yr-prdn-list', __webpack_require__(/*! ./components/synopsis/TenYrPrdnList.vue */ "./resources/assets/js/components/synopsis/TenYrPrdnList.vue")["default"]);
+Vue.component('ten-yr-prdn-create-modal', __webpack_require__(/*! ./components/synopsis/TenYrPrdnCreateModal.vue */ "./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue")["default"]);
+Vue.component('ten-yr-prdn-update-modal', __webpack_require__(/*! ./components/synopsis/TenYrPrdnUpdateModal.vue */ "./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue")["default"]);
+Vue.component('ten-yr-prdn-delete-modal', __webpack_require__(/*! ./components/synopsis/TenYrPrdnDeleteModal.vue */ "./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -52450,17 +52258,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseCreateModal.vue":
-/*!************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseCreateModal.vue ***!
-  \************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _BagasseCreateModal_vue_vue_type_template_id_7adbd8ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BagasseCreateModal.vue?vue&type=template&id=7adbd8ce& */ "./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=template&id=7adbd8ce&");
-/* harmony import */ var _BagasseCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BagasseCreateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _TenYrPrdnCreateModal_vue_vue_type_template_id_e6b436ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba& */ "./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba&");
+/* harmony import */ var _TenYrPrdnCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TenYrPrdnCreateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52470,9 +52278,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _BagasseCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BagasseCreateModal_vue_vue_type_template_id_7adbd8ce___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _BagasseCreateModal_vue_vue_type_template_id_7adbd8ce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _TenYrPrdnCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TenYrPrdnCreateModal_vue_vue_type_template_id_e6b436ba___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TenYrPrdnCreateModal_vue_vue_type_template_id_e6b436ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52482,54 +52290,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/BagasseCreateModal.vue"
+component.options.__file = "resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseCreateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnCreateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnCreateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=template&id=7adbd8ce&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=template&id=7adbd8ce& ***!
-  \*******************************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba& ***!
+  \*********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseCreateModal_vue_vue_type_template_id_7adbd8ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseCreateModal.vue?vue&type=template&id=7adbd8ce& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseCreateModal.vue?vue&type=template&id=7adbd8ce&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseCreateModal_vue_vue_type_template_id_7adbd8ce___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnCreateModal_vue_vue_type_template_id_e6b436ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnCreateModal.vue?vue&type=template&id=e6b436ba&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnCreateModal_vue_vue_type_template_id_e6b436ba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseCreateModal_vue_vue_type_template_id_7adbd8ce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnCreateModal_vue_vue_type_template_id_e6b436ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseDeleteModal.vue":
-/*!************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseDeleteModal.vue ***!
-  \************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _BagasseDeleteModal_vue_vue_type_template_id_488603ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BagasseDeleteModal.vue?vue&type=template&id=488603ca& */ "./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=template&id=488603ca&");
-/* harmony import */ var _BagasseDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BagasseDeleteModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _TenYrPrdnDeleteModal_vue_vue_type_template_id_1299d4d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4& */ "./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4&");
+/* harmony import */ var _TenYrPrdnDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TenYrPrdnDeleteModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52539,9 +52347,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _BagasseDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BagasseDeleteModal_vue_vue_type_template_id_488603ca___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _BagasseDeleteModal_vue_vue_type_template_id_488603ca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _TenYrPrdnDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TenYrPrdnDeleteModal_vue_vue_type_template_id_1299d4d4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TenYrPrdnDeleteModal_vue_vue_type_template_id_1299d4d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52551,54 +52359,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/BagasseDeleteModal.vue"
+component.options.__file = "resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=template&id=488603ca&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=template&id=488603ca& ***!
-  \*******************************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4& ***!
+  \*********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseDeleteModal_vue_vue_type_template_id_488603ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseDeleteModal.vue?vue&type=template&id=488603ca& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseDeleteModal.vue?vue&type=template&id=488603ca&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseDeleteModal_vue_vue_type_template_id_488603ca___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnDeleteModal_vue_vue_type_template_id_1299d4d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnDeleteModal.vue?vue&type=template&id=1299d4d4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnDeleteModal_vue_vue_type_template_id_1299d4d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseDeleteModal_vue_vue_type_template_id_488603ca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnDeleteModal_vue_vue_type_template_id_1299d4d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseList.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseList.vue ***!
-  \*****************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnList.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnList.vue ***!
+  \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _BagasseList_vue_vue_type_template_id_6b89d074___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BagasseList.vue?vue&type=template&id=6b89d074& */ "./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=template&id=6b89d074&");
-/* harmony import */ var _BagasseList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BagasseList.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _TenYrPrdnList_vue_vue_type_template_id_7c77fdfc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TenYrPrdnList.vue?vue&type=template&id=7c77fdfc& */ "./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=template&id=7c77fdfc&");
+/* harmony import */ var _TenYrPrdnList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TenYrPrdnList.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52608,9 +52416,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _BagasseList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BagasseList_vue_vue_type_template_id_6b89d074___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _BagasseList_vue_vue_type_template_id_6b89d074___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _TenYrPrdnList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TenYrPrdnList_vue_vue_type_template_id_7c77fdfc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TenYrPrdnList_vue_vue_type_template_id_7c77fdfc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52620,54 +52428,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/BagasseList.vue"
+component.options.__file = "resources/assets/js/components/synopsis/TenYrPrdnList.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=template&id=6b89d074&":
-/*!************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=template&id=6b89d074& ***!
-  \************************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=template&id=7c77fdfc&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=template&id=7c77fdfc& ***!
+  \**************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseList_vue_vue_type_template_id_6b89d074___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseList.vue?vue&type=template&id=6b89d074& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseList.vue?vue&type=template&id=6b89d074&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseList_vue_vue_type_template_id_6b89d074___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnList_vue_vue_type_template_id_7c77fdfc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnList.vue?vue&type=template&id=7c77fdfc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnList.vue?vue&type=template&id=7c77fdfc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnList_vue_vue_type_template_id_7c77fdfc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseList_vue_vue_type_template_id_6b89d074___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnList_vue_vue_type_template_id_7c77fdfc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseUpdateModal.vue":
-/*!************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseUpdateModal.vue ***!
-  \************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _BagasseUpdateModal_vue_vue_type_template_id_61c0f26c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BagasseUpdateModal.vue?vue&type=template&id=61c0f26c& */ "./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=template&id=61c0f26c&");
-/* harmony import */ var _BagasseUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BagasseUpdateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _TenYrPrdnUpdateModal_vue_vue_type_template_id_2bd4c376___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376& */ "./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376&");
+/* harmony import */ var _TenYrPrdnUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TenYrPrdnUpdateModal.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52677,9 +52485,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _BagasseUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BagasseUpdateModal_vue_vue_type_template_id_61c0f26c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _BagasseUpdateModal_vue_vue_type_template_id_61c0f26c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _TenYrPrdnUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TenYrPrdnUpdateModal_vue_vue_type_template_id_2bd4c376___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TenYrPrdnUpdateModal_vue_vue_type_template_id_2bd4c376___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52689,38 +52497,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/synopsis/BagasseUpdateModal.vue"
+component.options.__file = "resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseUpdateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnUpdateModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnUpdateModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=template&id=61c0f26c&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=template&id=61c0f26c& ***!
-  \*******************************************************************************************************/
+/***/ "./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376& ***!
+  \*********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseUpdateModal_vue_vue_type_template_id_61c0f26c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BagasseUpdateModal.vue?vue&type=template&id=61c0f26c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/BagasseUpdateModal.vue?vue&type=template&id=61c0f26c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseUpdateModal_vue_vue_type_template_id_61c0f26c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnUpdateModal_vue_vue_type_template_id_2bd4c376___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/synopsis/TenYrPrdnUpdateModal.vue?vue&type=template&id=2bd4c376&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnUpdateModal_vue_vue_type_template_id_2bd4c376___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BagasseUpdateModal_vue_vue_type_template_id_61c0f26c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TenYrPrdnUpdateModal_vue_vue_type_template_id_2bd4c376___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -52763,14 +52571,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 11:
-/*!*****************************************************!*\
-  !*** multi ./resources/assets/js/SynBagasseMain.js ***!
-  \*****************************************************/
+/***/ 27:
+/*!*******************************************************!*\
+  !*** multi ./resources/assets/js/SynTenYrPrdnMain.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynBagasseMain.js */"./resources/assets/js/SynBagasseMain.js");
+module.exports = __webpack_require__(/*! F:\XAMPP\htdocs\SWEP-QC-RDE\resources\assets\js\SynTenYrPrdnMain.js */"./resources/assets/js/SynTenYrPrdnMain.js");
 
 
 /***/ })

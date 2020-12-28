@@ -27,6 +27,7 @@
     "/css/SynGrindStoppageMain.css": "/css/SynGrindStoppageMain.css",
     "/css/SynDetailOfStoppageAMain.css": "/css/SynDetailOfStoppageAMain.css",
     "/css/SynDetailOfStoppageBMain.css": "/css/SynDetailOfStoppageBMain.css",
+    "/css/SynTenYrPrdnMain.css": "/css/SynTenYrPrdnMain.css",
     "/css/SynOutputsMain.css": "/css/SynOutputsMain.css",
     "/js/SynBHLossMain.js": "/js/SynBHLossMain.js",
     "/js/SynBHRMain.js": "/js/SynBHRMain.js",
@@ -54,5 +55,6 @@
     "/js/SynPotentialRevenueMain.js": "/js/SynPotentialRevenueMain.js",
     "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js",
     "/js/SynSugarAnalysisMain.js": "/js/SynSugarAnalysisMain.js",
-    "/js/SynSyrupMain.js": "/js/SynSyrupMain.js"
+    "/js/SynSyrupMain.js": "/js/SynSyrupMain.js",
+    "/js/SynTenYrPrdnMain.js": "/js/SynTenYrPrdnMain.js"
 }

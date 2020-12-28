@@ -47,6 +47,7 @@ Vue.component('milling-duration', require('./components/Synopsis/OutputCategoryF
 Vue.component('grind-stoppage', require('./components/Synopsis/OutputCategoryFormats/GrindStoppageFormat').default);
 Vue.component('detail-of-stoppage-a', require('./components/Synopsis/OutputCategoryFormats/DetailOfStoppageAFormat').default);
 Vue.component('detail-of-stoppage-b', require('./components/Synopsis/OutputCategoryFormats/DetailOfStoppageBFormat').default);
+Vue.component('ten-yr-prdn', require('./components/Synopsis/OutputCategoryFormats/TenYrPrdnFormat').default);
 
 
 const app = new Vue({

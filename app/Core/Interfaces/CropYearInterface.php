@@ -11,5 +11,7 @@ interface CropYearInterface {
 	public function currentCropYear();
 
 	public function findByCropYearId($cy_id);
+
+	public function getLastTenByCropYear($cy_id);
 		
 }

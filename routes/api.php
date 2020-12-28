@@ -201,6 +201,13 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/detail_of_stoppage_b/{slug}','Api\ApiSynDetailOfStoppageBController@edit')->name('synopsis.detail_of_stoppag_b_edit');
 	Route::post('synopsis/detail_of_stoppage_b/{slug}','Api\ApiSynDetailOfStoppageBController@update')->name('synopsis.detail_of_stoppag_b_update');
 	Route::delete('synopsis/detail_of_stoppage_b/{slug}','Api\ApiSynDetailOfStoppageBController@delete')->name('synopsis.detail_of_stoppag_b_delete');
+	
+	// Ten Year Production Data
+	Route::get('synopsis/ten_yr_prdn','Api\ApiSynTenYrPrdnController@fetch')->name('synopsis.ten_yr_prdn_list');
+	Route::post('synopsis/ten_yr_prdn/store','Api\ApiSynTenYrPrdnController@store')->name('synopsis.ten_yr_prdn_store');
+	Route::get('synopsis/ten_yr_prdn/{slug}','Api\ApiSynTenYrPrdnController@edit')->name('synopsis.ten_yr_prdn_edit');
+	Route::post('synopsis/ten_yr_prdn/{slug}','Api\ApiSynTenYrPrdnController@update')->name('synopsis.ten_yr_prdn_update');
+	Route::delete('synopsis/ten_yr_prdn/{slug}','Api\ApiSynTenYrPrdnController@delete')->name('synopsis.ten_yr_prdn_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');

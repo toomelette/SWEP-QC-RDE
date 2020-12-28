@@ -164,6 +164,9 @@
                         <detail-of-stoppage-b v-if="category_id.toString() == 26" :collection="collection" :regions="regions" :crop_year="crop_year_id.label">
                         </detail-of-stoppage-b>
 
+                        <ten-yr-prdn v-if="category_id.toString() == 27" :collection="collection" :crop_year="crop_year_id.label">
+                        </ten-yr-prdn>
+
                     </div>
 
                 </div>

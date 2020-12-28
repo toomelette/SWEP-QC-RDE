@@ -29,6 +29,7 @@ use App\Core\Interfaces\SynMillingDurationInterface;
 use App\Core\Interfaces\SynGrindStoppageInterface;
 use App\Core\Interfaces\SynDetailOfStoppageAInterface;
 use App\Core\Interfaces\SynDetailOfStoppageBInterface;
+use App\Core\Interfaces\SynTenYrPrdnInterface;
 
 
 
@@ -58,6 +59,7 @@ use App\Exports\Excel\SynMillingDuration;
 use App\Exports\Excel\SynGrindStoppage;
 use App\Exports\Excel\SynDetailOfStoppageA;
 use App\Exports\Excel\SynDetailOfStoppageB;
+use App\Exports\Excel\SynTenYrPrdn;
 
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -93,6 +95,7 @@ class SynopsisController extends Controller{
     protected $grind_stoppage_repo;
     protected $detail_of_stoppage_a_repo;
     protected $detail_of_stoppage_b_repo;
+    protected $ten_yr_prdn;
     
     
 	const SYN_OUTPUT_REGIONS = [
@@ -132,7 +135,8 @@ class SynopsisController extends Controller{
                                 SynMillingDurationInterface $milling_duration_repo,
                                 SynGrindStoppageInterface $grind_stoppage_repo,
                                 SynDetailOfStoppageAInterface $detail_of_stoppage_a_repo,
-                                SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo){
+                                SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo, 
+                                SynTenYrPrdnInterface $ten_yr_prdn){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment = $prdn_increment;
@@ -160,6 +164,7 @@ class SynopsisController extends Controller{
         $this->grind_stoppage_repo = $grind_stoppage_repo;
         $this->detail_of_stoppage_a_repo = $detail_of_stoppage_a_repo;
         $this->detail_of_stoppage_b_repo = $detail_of_stoppage_b_repo;
+        $this->ten_yr_prdn = $ten_yr_prdn;
         
         
         parent::__construct();
@@ -270,6 +275,10 @@ class SynopsisController extends Controller{
 
     public function detailOfStoppageB(){
         return view('dashboard.synopsis.detail_of_stoppage_b');
+    }
+
+    public function tenYrPrdn(){
+        return view('dashboard.synopsis.ten_yr_prdn');
     }
 
     public function outputs(){
@@ -467,6 +476,13 @@ class SynopsisController extends Controller{
                     $collection = $this->detail_of_stoppage_b_repo->getByCropYearId($request->cy_id);
                     $filename = 'Detail of Stoppage - B'.' - '.$request->cy_name.'.xlsx';
                     return Excel::download(new SynDetailOfStoppageB($collection, self::SYN_OUTPUT_REGIONS, $request->cy_name), $filename);
+                    break;
+
+                case '27':
+
+                    $collection = $this->ten_yr_prdn_repo->getByCropYearId($request->cy_id);
+                    $filename = '10 Year Production Data'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynTenYrPrdn($collection, $request->cy_name), $filename);
                     break;
 
                 default:
