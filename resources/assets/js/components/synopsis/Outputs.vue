@@ -167,6 +167,12 @@
                         <ten-yr-prdn v-if="category_id.toString() == 27" :collection="collection" :crop_year="crop_year_id.label">
                         </ten-yr-prdn>
 
+                        <ten-yr-ratio-yield v-if="category_id.toString() == 28" :collection="collection" :crop_year="crop_year_id.label">
+                        </ten-yr-ratio-yield>
+
+                        <ten-yr-factory-performance v-if="category_id.toString() == 29" :collection="collection" :crop_year="crop_year_id.label">
+                        </ten-yr-factory-performance>
+
                     </div>
 
                 </div>

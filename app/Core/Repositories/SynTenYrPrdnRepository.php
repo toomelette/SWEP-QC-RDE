@@ -38,12 +38,9 @@ class SynTenYrPrdnRepository extends BaseRepository implements SynTenYrPrdnInter
             $syn_ten_yr_prdn = $this->syn_ten_yr_prdn->newQuery();
             
             if(isset($request->q)){
-                $syn_ten_yr_prdn->whereHas('mill', function($mill) use ($request){
-                                    $mill->where('name', 'LIKE', '%'. $request->q .'%');
-                                })
-                                ->orWhereHas('cropYear', function($cy) use ($request){
+                $syn_ten_yr_prdn->whereHas('cropYear', function($cy) use ($request){
                                     $cy->where('name', 'LIKE', '%'. $request->q .'%');
-                                });
+                                  });
             }
 
             return $syn_ten_yr_prdn->select('slug', 'crop_year_id', 'ten_yr_prdn_id')

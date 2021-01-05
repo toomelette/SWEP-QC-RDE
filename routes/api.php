@@ -208,6 +208,27 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 	Route::get('synopsis/ten_yr_prdn/{slug}','Api\ApiSynTenYrPrdnController@edit')->name('synopsis.ten_yr_prdn_edit');
 	Route::post('synopsis/ten_yr_prdn/{slug}','Api\ApiSynTenYrPrdnController@update')->name('synopsis.ten_yr_prdn_update');
 	Route::delete('synopsis/ten_yr_prdn/{slug}','Api\ApiSynTenYrPrdnController@delete')->name('synopsis.ten_yr_prdn_delete');
+	
+	// Ten Year Ratio Yield
+	Route::get('synopsis/ten_yr_ratio_yield','Api\ApiSynTenYrRatioYieldController@fetch')->name('synopsis.ten_yr_ratio_yield_list');
+	Route::post('synopsis/ten_yr_ratio_yield/store','Api\ApiSynTenYrRatioYieldController@store')->name('synopsis.ten_yr_ratio_yield_store');
+	Route::get('synopsis/ten_yr_ratio_yield/{slug}','Api\ApiSynTenYrRatioYieldController@edit')->name('synopsis.ten_yr_ratio_yield_edit');
+	Route::post('synopsis/ten_yr_ratio_yield/{slug}','Api\ApiSynTenYrRatioYieldController@update')->name('synopsis.ten_yr_ratio_yield_update');
+	Route::delete('synopsis/ten_yr_ratio_yield/{slug}','Api\ApiSynTenYrRatioYieldController@delete')->name('synopsis.ten_yr_ratio_yield_delete');
+	
+	// Ten Year Factory Performance
+	Route::get('synopsis/ten_yr_factory_performance','Api\ApiSynTenYrFactoryPerformanceController@fetch')->name('synopsis.ten_yr_factory_performance_list');
+	Route::post('synopsis/ten_yr_factory_performance/store','Api\ApiSynTenYrFactoryPerformanceController@store')->name('synopsis.ten_yr_factory_performance_store');
+	Route::get('synopsis/ten_yr_factory_performance/{slug}','Api\ApiSynTenYrFactoryPerformanceController@edit')->name('synopsis.ten_yr_factory_performance_edit');
+	Route::post('synopsis/ten_yr_factory_performance/{slug}','Api\ApiSynTenYrFactoryPerformanceController@update')->name('synopsis.ten_yr_factory_performance_update');
+	Route::delete('synopsis/ten_yr_factory_performance/{slug}','Api\ApiSynTenYrFactoryPerformanceController@delete')->name('synopsis.ten_yr_factory_performance_delete');
+	
+	// Ten Year Agri Param
+	Route::get('synopsis/ten_yr_agri_param','Api\ApiSynTenYrAgriParamController@fetch')->name('synopsis.ten_yr_agri_param_list');
+	Route::post('synopsis/ten_yr_agri_param/store','Api\ApiSynTenYrAgriParamController@store')->name('synopsis.ten_yr_agri_param_store');
+	Route::get('synopsis/ten_yr_agri_param/{slug}','Api\ApiSynTenYrAgriParamController@edit')->name('synopsis.ten_yr_agri_param_edit');
+	Route::post('synopsis/ten_yr_agri_param/{slug}','Api\ApiSynTenYrAgriParamController@update')->name('synopsis.ten_yr_agri_param_update');
+	Route::delete('synopsis/ten_yr_agri_param/{slug}','Api\ApiSynTenYrAgriParamController@delete')->name('synopsis.ten_yr_agri_param_delete');
 
 	// OUTPUT
 	Route::get('synopsis/outputs/get_categories','Api\ApiSynOutputController@getAllCategories')->name('synopsis.output_get_categories');

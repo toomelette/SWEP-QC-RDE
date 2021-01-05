@@ -28,6 +28,9 @@
     "/css/SynDetailOfStoppageAMain.css": "/css/SynDetailOfStoppageAMain.css",
     "/css/SynDetailOfStoppageBMain.css": "/css/SynDetailOfStoppageBMain.css",
     "/css/SynTenYrPrdnMain.css": "/css/SynTenYrPrdnMain.css",
+    "/css/SynTenYrRatioYieldMain.css": "/css/SynTenYrRatioYieldMain.css",
+    "/css/SynTenYrFactoryPerformanceMain.css": "/css/SynTenYrFactoryPerformanceMain.css",
+    "/css/SynTenYrAgriParamMain.css": "/css/SynTenYrAgriParamMain.css",
     "/css/SynOutputsMain.css": "/css/SynOutputsMain.css",
     "/js/SynBHLossMain.js": "/js/SynBHLossMain.js",
     "/js/SynBHRMain.js": "/js/SynBHRMain.js",
@@ -56,5 +59,8 @@
     "/js/SynRatiosOnGrossCaneMain.js": "/js/SynRatiosOnGrossCaneMain.js",
     "/js/SynSugarAnalysisMain.js": "/js/SynSugarAnalysisMain.js",
     "/js/SynSyrupMain.js": "/js/SynSyrupMain.js",
-    "/js/SynTenYrPrdnMain.js": "/js/SynTenYrPrdnMain.js"
+    "/js/SynTenYrAgriParamMain.js": "/js/SynTenYrAgriParamMain.js",
+    "/js/SynTenYrFactoryPerformanceMain.js": "/js/SynTenYrFactoryPerformanceMain.js",
+    "/js/SynTenYrPrdnMain.js": "/js/SynTenYrPrdnMain.js",
+    "/js/SynTenYrRatioYieldMain.js": "/js/SynTenYrRatioYieldMain.js"
 }

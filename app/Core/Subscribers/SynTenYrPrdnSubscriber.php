@@ -34,7 +34,7 @@ class SynTenYrPrdnSubscriber extends BaseSubscriber{
 
     public function onStore($syn_ten_yr_prdn){
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:fetch:*');
-        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:getByCropYearId:'. $syn_ten_yr_prdn->crop_year_id .'');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:getByCropYearId:*');
 
     }
 
@@ -44,7 +44,7 @@ class SynTenYrPrdnSubscriber extends BaseSubscriber{
 
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:fetch:*');
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:findBySlug:'. $syn_ten_yr_prdn->slug .'');
-        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:getByCropYearId:'. $syn_ten_yr_prdn->crop_year_id .'');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:getByCropYearId:*');
 
     }
 
@@ -54,7 +54,7 @@ class SynTenYrPrdnSubscriber extends BaseSubscriber{
 
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:fetch:*');
         $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:findBySlug:'. $syn_ten_yr_prdn->slug .'');
-        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:getByCropYearId:'. $syn_ten_yr_prdn->crop_year_id .'');
+        $this->__cache->deletePattern(''. config('app.name') .'_cache:syn_ten_yr_prdn:getByCropYearId:*');
 
     }
 

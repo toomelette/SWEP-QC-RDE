@@ -33,6 +33,8 @@ use App\Core\Interfaces\SynGrindStoppageInterface;
 use App\Core\Interfaces\SynDetailOfStoppageAInterface;
 use App\Core\Interfaces\SynDetailOfStoppageBInterface;
 use App\Core\Interfaces\SynTenYrPrdnInterface;
+use App\Core\Interfaces\SynTenYrRatioYieldInterface;
+use App\Core\Interfaces\SynTenYrFactoryPerformanceInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -67,6 +69,8 @@ class ApiSynOutputController extends Controller{
         ['id' => '25', 'label' => 'Detail of Stoppage - A',],
         ['id' => '26', 'label' => 'Detail of Stoppage - B',],
         ['id' => '27', 'label' => '10 Year Production Data',],
+        ['id' => '28', 'label' => '10 Year Ratio Yield',],
+        ['id' => '29', 'label' => '10 Year Factory Performance',],
 
     ];
     
@@ -111,6 +115,8 @@ class ApiSynOutputController extends Controller{
     protected $detail_of_stoppage_a_repo;
     protected $detail_of_stoppage_b_repo;
     protected $ten_yr_prdn_repo;
+    protected $ten_yr_ratio_yield_repo;
+    protected $ten_yr_factory_performance_repo;
 
 
 
@@ -140,7 +146,9 @@ class ApiSynOutputController extends Controller{
                                 SynGrindStoppageInterface $grind_stoppage_repo,
                                 SynDetailOfStoppageAInterface $detail_of_stoppage_a_repo,
                                 SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo,
-                                SynTenYrPrdnInterface $ten_yr_prdn_repo){
+                                SynTenYrPrdnInterface $ten_yr_prdn_repo,
+                                SynTenYrRatioYieldInterface $ten_yr_ratio_yield_repo,
+                                SynTenYrFactoryPerformanceInterface $ten_yr_factory_performance_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -169,6 +177,8 @@ class ApiSynOutputController extends Controller{
         $this->detail_of_stoppage_a_repo = $detail_of_stoppage_a_repo;
         $this->detail_of_stoppage_b_repo = $detail_of_stoppage_b_repo;
         $this->ten_yr_prdn_repo = $ten_yr_prdn_repo;
+        $this->ten_yr_ratio_yield_repo = $ten_yr_ratio_yield_repo;
+        $this->ten_yr_factory_performance_repo = $ten_yr_factory_performance_repo;
         
         parent::__construct();
 
@@ -308,6 +318,14 @@ class ApiSynOutputController extends Controller{
 
             case '27':
                 $collection = $this->ten_yr_prdn_repo->getByCropYearId($request->cy);
+                break;
+
+            case '28':
+                $collection = $this->ten_yr_ratio_yield_repo->getByCropYearId($request->cy);
+                break;
+
+            case '29':
+                $collection = $this->ten_yr_factory_performance_repo->getByCropYearId($request->cy);
                 break;
 
             default:

@@ -16,7 +16,7 @@
                 </tr>    
             </thead>    
             <tbody>
-                <tr v-for="(data, data_key) in filterCollection(collection, region_key)">
+                <tr v-for="(data, data_key) in filterCollection(collection)">
                     <td id="mid-vert">{{ data.cy_name }}</td>
                     <td id="mid-vert">{{ data.gross_cane_milled }}</td>
                     <td id="mid-vert">{{ data.raw_sugar_man }}</td>

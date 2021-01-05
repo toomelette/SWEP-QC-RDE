@@ -60,6 +60,9 @@ class EventServiceProvider extends ServiceProvider{
         'App\Core\Subscribers\SynDetailOfStoppageASubscriber',
         'App\Core\Subscribers\SynDetailOfStoppageBSubscriber',
         'App\Core\Subscribers\SynTenYrPrdnSubscriber',
+        'App\Core\Subscribers\SynTenYrRatioYieldSubscriber',
+        'App\Core\Subscribers\SynTenYrFactoryPerformanceSubscriber',
+        'App\Core\Subscribers\SynTenYrAgriParamSubscriber'
 
         
 

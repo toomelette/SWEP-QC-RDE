@@ -123,6 +123,18 @@ mix.js('resources/assets/js/SynDetailOfStoppageBMain.js', 'public/js')
 mix.js('resources/assets/js/SynTenYrPrdnMain.js', 'public/js')
 .sass('resources/assets/sass/SynTenYrPrdnMain.scss', 'public/css');
 
+// TEN YEAR RATIO YIELD
+mix.js('resources/assets/js/SynTenYrRatioYieldMain.js', 'public/js')
+.sass('resources/assets/sass/SynTenYrRatioYieldMain.scss', 'public/css');
+
+// TEN YEAR FACTORY PERFORMANCE
+mix.js('resources/assets/js/SynTenYrFactoryPerformanceMain.js', 'public/js')
+.sass('resources/assets/sass/SynTenYrFactoryPerformanceMain.scss', 'public/css');
+
+// TEN YEAR AGRI PARAMETERS
+mix.js('resources/assets/js/SynTenYrAgriParamMain.js', 'public/js')
+.sass('resources/assets/sass/SynTenYrAgriParamMain.scss', 'public/css');
+
 // SYNOPSIS OUTPUTS
 mix.js('resources/assets/js/SynOutputsMain.js', 'public/js')
 	.sass('resources/assets/sass/SynOutputsMain.scss', 'public/css');

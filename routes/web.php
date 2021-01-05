@@ -75,6 +75,9 @@ Route::group(['prefix'=>'dashboard', 'as' => 'dashboard.', 'middleware' => ['che
 	Route::get('/synopsis/detail_of_stoppage_a', 'SynopsisController@detailOfStoppageA')->name('synopsis.detail_of_stoppage_a');
 	Route::get('/synopsis/detail_of_stoppage_b', 'SynopsisController@detailOfStoppageB')->name('synopsis.detail_of_stoppage_b');
 	Route::get('/synopsis/ten_yr_prdn', 'SynopsisController@tenYrPrdn')->name('synopsis.ten_yr_prdn');
+	Route::get('/synopsis/ten_yr_ratio_yield', 'SynopsisController@tenYrRatioYield')->name('synopsis.ten_yr_ratio_yield');
+	Route::get('/synopsis/ten_yr_factory_performance', 'SynopsisController@tenYrFactoryPerformance')->name('synopsis.ten_yr_factory_performance');
+	Route::get('/synopsis/ten_yr_agri_param', 'SynopsisController@tenYrAgriParam')->name('synopsis.ten_yr_agri_param');
 
 	Route::get('/synopsis/outputs', 'SynopsisController@outputs')->name('synopsis.outputs');
 	Route::get('/synopsis/outputs/export_excel', 'SynopsisController@outputsExportExcel')->name('synopsis.outputs_export_excel');

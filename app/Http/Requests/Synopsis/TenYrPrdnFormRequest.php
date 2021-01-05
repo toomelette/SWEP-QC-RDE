@@ -4,7 +4,7 @@ namespace App\Http\Requests\Synopsis;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TenYrPrdnFormRequest extends FormRequest{
+class TenYrRatioYieldFormRequest extends FormRequest{
 
 
     
@@ -23,11 +23,12 @@ class TenYrPrdnFormRequest extends FormRequest{
         return [
             
             'crop_year_id'=>'required|string|max:11',
-            'gross_cane_milled'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
-            'raw_sugar_man'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
-            'molasses_due_cane'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
-            'bagasse'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
-            'filter_cake'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
+            'imbibition_fiber_ratio'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
+            'rendement'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
+            'quality_ratio'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
+            'kg_mollasses_per_ton_cane'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
+            'kg_bagasse_per_ton_cane'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
+            'kg_fc_per_ton_cane'=>'nullable|numeric|regex:/^\d*(\.\d{1,2})?$/',
 
         ];
 

@@ -48,6 +48,8 @@ Vue.component('grind-stoppage', require('./components/Synopsis/OutputCategoryFor
 Vue.component('detail-of-stoppage-a', require('./components/Synopsis/OutputCategoryFormats/DetailOfStoppageAFormat').default);
 Vue.component('detail-of-stoppage-b', require('./components/Synopsis/OutputCategoryFormats/DetailOfStoppageBFormat').default);
 Vue.component('ten-yr-prdn', require('./components/Synopsis/OutputCategoryFormats/TenYrPrdnFormat').default);
+Vue.component('ten-yr-ratio-yield', require('./components/Synopsis/OutputCategoryFormats/TenYrRatioYieldFormat').default);
+Vue.component('ten-yr-factory-performance', require('./components/Synopsis/OutputCategoryFormats/TenYrFactoryPerformanceFormat').default);
 
 
 const app = new Vue({

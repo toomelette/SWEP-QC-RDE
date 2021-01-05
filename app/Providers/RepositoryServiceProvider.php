@@ -85,6 +85,12 @@ class RepositoryServiceProvider extends ServiceProvider {
 		
 		$this->app->bind('App\Core\Interfaces\SynTenYrPrdnInterface', 'App\Core\Repositories\SynTenYrPrdnRepository');
 		
+		$this->app->bind('App\Core\Interfaces\SynTenYrRatioYieldInterface', 'App\Core\Repositories\SynTenYrRatioYieldRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynTenYrFactoryPerformanceInterface', 'App\Core\Repositories\SynTenYrFactoryPerformanceRepository');
+		
+		$this->app->bind('App\Core\Interfaces\SynTenYrAgriParamInterface', 'App\Core\Repositories\SynTenYrAgriParamRepository');
+		
 	}
 
 
