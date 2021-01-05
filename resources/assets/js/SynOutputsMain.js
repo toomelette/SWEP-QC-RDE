@@ -50,6 +50,7 @@ Vue.component('detail-of-stoppage-b', require('./components/Synopsis/OutputCateg
 Vue.component('ten-yr-prdn', require('./components/Synopsis/OutputCategoryFormats/TenYrPrdnFormat').default);
 Vue.component('ten-yr-ratio-yield', require('./components/Synopsis/OutputCategoryFormats/TenYrRatioYieldFormat').default);
 Vue.component('ten-yr-factory-performance', require('./components/Synopsis/OutputCategoryFormats/TenYrFactoryPerformanceFormat').default);
+Vue.component('ten-yr-agri-param', require('./components/Synopsis/OutputCategoryFormats/TenYrAgriParamFormat').default);
 
 
 const app = new Vue({

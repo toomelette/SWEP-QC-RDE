@@ -35,6 +35,7 @@ use App\Core\Interfaces\SynDetailOfStoppageBInterface;
 use App\Core\Interfaces\SynTenYrPrdnInterface;
 use App\Core\Interfaces\SynTenYrRatioYieldInterface;
 use App\Core\Interfaces\SynTenYrFactoryPerformanceInterface;
+use App\Core\Interfaces\SynTenYrAgriParamInterface;
 
 class ApiSynOutputController extends Controller{
     
@@ -71,6 +72,7 @@ class ApiSynOutputController extends Controller{
         ['id' => '27', 'label' => '10 Year Production Data',],
         ['id' => '28', 'label' => '10 Year Ratio Yield',],
         ['id' => '29', 'label' => '10 Year Factory Performance',],
+        ['id' => '30', 'label' => '10 Year Agri Parameters',],
 
     ];
     
@@ -117,6 +119,7 @@ class ApiSynOutputController extends Controller{
     protected $ten_yr_prdn_repo;
     protected $ten_yr_ratio_yield_repo;
     protected $ten_yr_factory_performance_repo;
+    protected $ten_yr_agri_param_repo;
 
 
 
@@ -148,7 +151,8 @@ class ApiSynOutputController extends Controller{
                                 SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo,
                                 SynTenYrPrdnInterface $ten_yr_prdn_repo,
                                 SynTenYrRatioYieldInterface $ten_yr_ratio_yield_repo,
-                                SynTenYrFactoryPerformanceInterface $ten_yr_factory_performance_repo){
+                                SynTenYrFactoryPerformanceInterface $ten_yr_factory_performance_repo,
+                                SynTenYrAgriParamInterface $ten_yr_agri_param_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment_repo = $prdn_increment_repo;
@@ -179,6 +183,7 @@ class ApiSynOutputController extends Controller{
         $this->ten_yr_prdn_repo = $ten_yr_prdn_repo;
         $this->ten_yr_ratio_yield_repo = $ten_yr_ratio_yield_repo;
         $this->ten_yr_factory_performance_repo = $ten_yr_factory_performance_repo;
+        $this->ten_yr_agri_param_repo = $ten_yr_agri_param_repo;
         
         parent::__construct();
 
@@ -326,6 +331,10 @@ class ApiSynOutputController extends Controller{
 
             case '29':
                 $collection = $this->ten_yr_factory_performance_repo->getByCropYearId($request->cy);
+                break;
+
+            case '30':
+                $collection = $this->ten_yr_agri_param_repo->getByCropYearId($request->cy);
                 break;
 
             default:

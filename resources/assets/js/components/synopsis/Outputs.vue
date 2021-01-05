@@ -173,6 +173,9 @@
                         <ten-yr-factory-performance v-if="category_id.toString() == 29" :collection="collection" :crop_year="crop_year_id.label">
                         </ten-yr-factory-performance>
 
+                        <ten-yr-agri-param v-if="category_id.toString() == 30" :collection="collection" :crop_year="crop_year_id.label">
+                        </ten-yr-agri-param>
+
                     </div>
 
                 </div>

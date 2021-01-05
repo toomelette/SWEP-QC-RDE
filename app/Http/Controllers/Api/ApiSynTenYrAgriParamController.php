@@ -31,42 +31,42 @@ class ApiSynTenYrAgriParamController extends Controller{
 
 
 
-	// public function store(TenYrAgriParamFormRequest $request){
+	public function store(TenYrAgriParamFormRequest $request){
 
-	// 	$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->store($request);
-    //     $this->event->fire('syn_ten_yr_agri_param.store', $syn_ten_yr_agri_param);
-	// 	return response()->json(['key' => $syn_ten_yr_agri_param->slug], 200);
+		$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->store($request);
+        $this->event->fire('syn_ten_yr_agri_param.store', $syn_ten_yr_agri_param);
+		return response()->json(['key' => $syn_ten_yr_agri_param->slug], 200);
 
-    // }
-
-
-
-	// public function edit($slug){
-
-	// 	$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->findBySlug($slug);
-	// 	return response()->json(['data' => $syn_ten_yr_agri_param], 200);
-
-    // }
+    }
 
 
 
-	// public function update(TenYrAgriParamFormRequest $request, $slug){
+	public function edit($slug){
 
-	// 	$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->update($request, $slug);
-    //     $this->event->fire('syn_ten_yr_agri_param.update', $syn_ten_yr_agri_param);
-	// 	return response()->json(['key' => $syn_ten_yr_agri_param->slug], 200);
+		$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->findBySlug($slug);
+		return response()->json(['data' => $syn_ten_yr_agri_param], 200);
 
-    // }
-
+    }
 
 
-	// public function delete($slug){
 
-	// 	$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->destroy($slug);
-    //     $this->event->fire('syn_ten_yr_agri_param.destroy', $syn_ten_yr_agri_param);
-	// 	return response()->json(['success' => true], 200);
+	public function update(TenYrAgriParamFormRequest $request, $slug){
 
-    // }
+		$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->update($request, $slug);
+        $this->event->fire('syn_ten_yr_agri_param.update', $syn_ten_yr_agri_param);
+		return response()->json(['key' => $syn_ten_yr_agri_param->slug], 200);
+
+    }
+
+
+
+	public function delete($slug){
+
+		$syn_ten_yr_agri_param = $this->syn_ten_yr_agri_param_repo->destroy($slug);
+        $this->event->fire('syn_ten_yr_agri_param.destroy', $syn_ten_yr_agri_param);
+		return response()->json(['success' => true], 200);
+
+    }
 
 
 

@@ -58,121 +58,115 @@ class SynTenYrAgriParamRepository extends BaseRepository implements SynTenYrAgri
 
 
 
-    // public function store($request){
+    public function store($request){
 
-    //     $syn_ten_yr_agri_param = new SynTenYrAgriParam;
-    //     $syn_ten_yr_agri_param->slug = $this->str->random(16);
-    //     $syn_ten_yr_agri_param->ten_yr_agri_param_id = $this->getSynTenYrAgriParamIdInc();
-    //     $syn_ten_yr_agri_param->crop_year_id = $request->crop_year_id;
+        $syn_ten_yr_agri_param = new SynTenYrAgriParam;
+        $syn_ten_yr_agri_param->slug = $this->str->random(16);
+        $syn_ten_yr_agri_param->ten_yr_agri_param_id = $this->getSynTenYrAgriParamIdInc();
+        $syn_ten_yr_agri_param->crop_year_id = $request->crop_year_id;
 
-    //     $syn_ten_yr_agri_param->rated_capacity = $this->__dataType->string_to_num($request->rated_capacity);
-    //     $syn_ten_yr_agri_param->cap_utilization = $this->__dataType->string_to_num($request->cap_utilization);
-    //     $syn_ten_yr_agri_param->pol_extraction = $this->__dataType->string_to_num($request->pol_extraction);
-    //     $syn_ten_yr_agri_param->actual_bhr = $this->__dataType->string_to_num($request->actual_bhr);
-    //     $syn_ten_yr_agri_param->reduced_overall_recovery = $this->__dataType->string_to_num($request->reduced_overall_recovery);
-    //     $syn_ten_yr_agri_param->ave_num_of_grinding = $this->__dataType->string_to_num($request->ave_num_of_grinding);
+        $syn_ten_yr_agri_param->area_harvested = $this->__dataType->string_to_num($request->area_harvested);
+        $syn_ten_yr_agri_param->tc_ha = $this->__dataType->string_to_num($request->tc_ha);
+        $syn_ten_yr_agri_param->lkg_tc = $this->__dataType->string_to_num($request->lkg_tc);
+        $syn_ten_yr_agri_param->lkg_ha = $this->__dataType->string_to_num($request->lkg_ha);
 
-    //     $syn_ten_yr_agri_param->created_at = $this->carbon->now();
-    //     $syn_ten_yr_agri_param->updated_at = $this->carbon->now();
-    //     $syn_ten_yr_agri_param->ip_created = request()->ip();
-    //     $syn_ten_yr_agri_param->ip_updated = request()->ip();
-    //     $syn_ten_yr_agri_param->user_created = $this->auth->user()->user_id;
-    //     $syn_ten_yr_agri_param->user_updated = $this->auth->user()->user_id;
-    //     $syn_ten_yr_agri_param->save();
+        $syn_ten_yr_agri_param->created_at = $this->carbon->now();
+        $syn_ten_yr_agri_param->updated_at = $this->carbon->now();
+        $syn_ten_yr_agri_param->ip_created = request()->ip();
+        $syn_ten_yr_agri_param->ip_updated = request()->ip();
+        $syn_ten_yr_agri_param->user_created = $this->auth->user()->user_id;
+        $syn_ten_yr_agri_param->user_updated = $this->auth->user()->user_id;
+        $syn_ten_yr_agri_param->save();
         
-    //     return $syn_ten_yr_agri_param;
+        return $syn_ten_yr_agri_param;
 
-    // }
-
-
+    }
 
 
-    // public function update($request, $slug){
 
-    //     $syn_ten_yr_agri_param = $this->findBySlug($slug);
-    //     $syn_ten_yr_agri_param->crop_year_id = $request->crop_year_id;
 
-    //     $syn_ten_yr_agri_param->rated_capacity = $this->__dataType->string_to_num($request->rated_capacity);
-    //     $syn_ten_yr_agri_param->cap_utilization = $this->__dataType->string_to_num($request->cap_utilization);
-    //     $syn_ten_yr_agri_param->pol_extraction = $this->__dataType->string_to_num($request->pol_extraction);
-    //     $syn_ten_yr_agri_param->actual_bhr = $this->__dataType->string_to_num($request->actual_bhr);
-    //     $syn_ten_yr_agri_param->reduced_overall_recovery = $this->__dataType->string_to_num($request->reduced_overall_recovery);
-    //     $syn_ten_yr_agri_param->ave_num_of_grinding = $this->__dataType->string_to_num($request->ave_num_of_grinding);
+    public function update($request, $slug){
 
-    //     $syn_ten_yr_agri_param->updated_at = $this->carbon->now();
-    //     $syn_ten_yr_agri_param->ip_updated = request()->ip();
-    //     $syn_ten_yr_agri_param->user_updated = $this->auth->user()->user_id;
-    //     $syn_ten_yr_agri_param->save();
+        $syn_ten_yr_agri_param = $this->findBySlug($slug);
+        $syn_ten_yr_agri_param->crop_year_id = $request->crop_year_id;
+
+        $syn_ten_yr_agri_param->area_harvested = $this->__dataType->string_to_num($request->area_harvested);
+        $syn_ten_yr_agri_param->tc_ha = $this->__dataType->string_to_num($request->tc_ha);
+        $syn_ten_yr_agri_param->lkg_tc = $this->__dataType->string_to_num($request->lkg_tc);
+        $syn_ten_yr_agri_param->lkg_ha = $this->__dataType->string_to_num($request->lkg_ha);
+
+        $syn_ten_yr_agri_param->updated_at = $this->carbon->now();
+        $syn_ten_yr_agri_param->ip_updated = request()->ip();
+        $syn_ten_yr_agri_param->user_updated = $this->auth->user()->user_id;
+        $syn_ten_yr_agri_param->save();
         
-    //     return $syn_ten_yr_agri_param;
+        return $syn_ten_yr_agri_param;
 
-    // }
-
-
-
-
-    // public function destroy($slug){
-
-    //     $syn_ten_yr_agri_param = $this->findBySlug($slug);
-    //     $syn_ten_yr_agri_param->delete();
-
-    //     return $syn_ten_yr_agri_param;
-
-    // }
+    }
 
 
 
 
-    // public function findBySlug($slug){
+    public function destroy($slug){
 
-    //     $syn_ten_yr_agri_param = $this->cache->remember('syn_ten_yr_agri_param:findBySlug:' . $slug, 240, function() use ($slug){
-    //         return $this->syn_ten_yr_agri_param->where('slug', $slug)
-    //                                                     ->with('cropYear')
-    //                                                     ->first();
-    //     }); 
+        $syn_ten_yr_agri_param = $this->findBySlug($slug);
+        $syn_ten_yr_agri_param->delete();
+
+        return $syn_ten_yr_agri_param;
+
+    }
+
+
+
+
+    public function findBySlug($slug){
+
+        $syn_ten_yr_agri_param = $this->cache->remember('syn_ten_yr_agri_param:findBySlug:' . $slug, 240, function() use ($slug){
+            return $this->syn_ten_yr_agri_param->where('slug', $slug)
+                                               ->with('cropYear')
+                                               ->first();
+        }); 
         
-    //     if(empty($syn_ten_yr_agri_param)){ abort(404); }
+        if(empty($syn_ten_yr_agri_param)){ abort(404); }
 
-    //     return $syn_ten_yr_agri_param;
+        return $syn_ten_yr_agri_param;
 
-    // }
+    }
 
 
 
-    // public function getByCropYearId($crop_year_id){
+    public function getByCropYearId($crop_year_id){
 
-    //     $syn_ten_yr_agri_param = $this->cache->remember('syn_ten_yr_agri_param:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
+        $syn_ten_yr_agri_param = $this->cache->remember('syn_ten_yr_agri_param:getByCropYearId:' . $crop_year_id, 43200, function() use ($crop_year_id){
 
-    //         $crop_years = $this->crop_year->getLastTenByCropYear($crop_year_id);
-    //         $list = array();
+            $crop_years = $this->crop_year->getLastTenByCropYear($crop_year_id);
+            $list = array();
 
-    //         foreach ($crop_years as $data) {
+            foreach ($crop_years as $data) {
 
-    //             $ten_yr_agri_param = $this->syn_ten_yr_agri_param->where('crop_year_id', $data['crop_year_id'])->first();
+                $ten_yr_agri_param = $this->syn_ten_yr_agri_param->where('crop_year_id', $data['crop_year_id'])->first();
 
-    //             if(!empty($ten_yr_agri_param)){
+                if(!empty($ten_yr_agri_param)){
 
-    //                 $list[] = array(
-    //                     'cy_name' => $data['name'],
-    //                     'rated_capacity' => $ten_yr_agri_param->rated_capacity,
-    //                     'cap_utilization' => $ten_yr_agri_param->cap_utilization,
-    //                     'pol_extraction' => $ten_yr_agri_param->pol_extraction,
-    //                     'actual_bhr' => $ten_yr_agri_param->actual_bhr,
-    //                     'reduced_overall_recovery' => $ten_yr_agri_param->reduced_overall_recovery,
-    //                     'ave_num_of_grinding' => $ten_yr_agri_param->ave_num_of_grinding,
-    //                 );
+                    $list[] = array(
+                        'cy_name' => $data['name'],
+                        'area_harvested' => $ten_yr_agri_param->area_harvested,
+                        'tc_ha' => $ten_yr_agri_param->tc_ha,
+                        'lkg_tc' => $ten_yr_agri_param->lkg_tc,
+                        'lkg_ha' => $ten_yr_agri_param->lkg_ha,
+                    );
                     
-    //             }
+                }
 
-    //         }
+            }
 
-    //         return $list;
+            return $list;
 
-    //     });
+        });
 
-    //     return $syn_ten_yr_agri_param;
+        return $syn_ten_yr_agri_param;
 
-    // }
+    }
 
 
 

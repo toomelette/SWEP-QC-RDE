@@ -32,6 +32,7 @@ use App\Core\Interfaces\SynDetailOfStoppageBInterface;
 use App\Core\Interfaces\SynTenYrPrdnInterface;
 use App\Core\Interfaces\SynTenYrRatioYieldInterface;
 use App\Core\Interfaces\SynTenYrFactoryPerformanceInterface;
+use App\Core\Interfaces\SynTenYrAgriParamInterface;
 
 
 
@@ -64,6 +65,7 @@ use App\Exports\Excel\SynDetailOfStoppageB;
 use App\Exports\Excel\SynTenYrPrdn;
 use App\Exports\Excel\SynTenYrRatioYield;
 use App\Exports\Excel\SynTenYrFactoryPerformance;
+use App\Exports\Excel\SynTenYrAgriParam;
 
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -102,6 +104,7 @@ class SynopsisController extends Controller{
     protected $ten_yr_prdn_repo;
     protected $ten_yr_ratio_yield_repo;
     protected $ten_yr_factory_performance_repo;
+    protected $ten_yr_agri_param_repo;
     
     
 	const SYN_OUTPUT_REGIONS = [
@@ -144,7 +147,8 @@ class SynopsisController extends Controller{
                                 SynDetailOfStoppageBInterface $detail_of_stoppage_b_repo, 
                                 SynTenYrPrdnInterface $ten_yr_prdn_repo,
                                 SynTenYrRatioYieldInterface $ten_yr_ratio_yield_repo,
-                                SynTenYrFactoryPerformanceInterface $ten_yr_factory_performance_repo){
+                                SynTenYrFactoryPerformanceInterface $ten_yr_factory_performance_repo,
+                                SynTenYrAgriParamInterface $ten_yr_agri_param_repo){
 
 		$this->cane_sugar_ton_repo = $cane_sugar_ton_repo;
 		$this->prdn_increment = $prdn_increment;
@@ -175,6 +179,7 @@ class SynopsisController extends Controller{
         $this->ten_yr_prdn_repo = $ten_yr_prdn_repo;
         $this->ten_yr_ratio_yield_repo = $ten_yr_ratio_yield_repo;
         $this->ten_yr_factory_performance_repo = $ten_yr_factory_performance_repo;
+        $this->ten_yr_agri_param_repo = $ten_yr_agri_param_repo;
         
         
         parent::__construct();
@@ -521,6 +526,13 @@ class SynopsisController extends Controller{
                     return Excel::download(new SynTenYrFactoryPerformance($collection, $request->cy_name), $filename);
                     break;
 
+                case '30':
+
+                    $collection = $this->ten_yr_agri_param_repo->getByCropYearId($request->cy_id);
+                    $filename = '10 Year Agri Parameters'.' - '.$request->cy_name.'.xlsx';
+                    return Excel::download(new SynTenYrAgriParam($collection, $request->cy_name), $filename);
+                    break;
+
                 default:
 
                     abort(404);
@@ -830,6 +842,15 @@ class SynopsisController extends Controller{
 
                     $collection = $this->ten_yr_factory_performance_repo->getByCropYearId($request->cy_id);
                     return view('printables.synopsis.ten_yr_factory_performance')->with([
+                        'collection' => $collection,
+                        'crop_year' => $request->cy_name
+                    ]);
+                    break;
+
+                case '30':
+
+                    $collection = $this->ten_yr_agri_param_repo->getByCropYearId($request->cy_id);
+                    return view('printables.synopsis.ten_yr_agri_param')->with([
                         'collection' => $collection,
                         'crop_year' => $request->cy_name
                     ]);
